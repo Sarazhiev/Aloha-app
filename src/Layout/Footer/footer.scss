@@ -1,0 +1,25 @@
+.footer {
+  padding-bottom: 74px;
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__item {
+    margin-bottom: 20px;
+  }
+  &__item2 {
+    margin-bottom: 10px;
+    display: flex;
+    column-gap: 10px;
+  }
+  &__item3 {
+    display: flex;
+    column-gap: 13px;
+  }
+  &__social {
+    color: #252525;
+    display: flex;
+    column-gap: 10px;
+  }
+
+}

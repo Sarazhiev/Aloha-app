@@ -1,0 +1,74 @@
+.basket {
+  padding: 100px 0;
+
+  &__title {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    color: #252525;
+    margin-bottom: 30px;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #363A45;
+    margin-bottom: 10px;
+  }
+
+  &__item {
+    width: 133px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-green {
+      background: #F1DDAA;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      border: 0.3px solid #252525;
+    }
+    &-price {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      color: #252525;
+    }
+    &-input {
+      width: 98px;
+      height: 50px;
+      border: 0.5px solid #252525;
+
+      text-align: center;
+    }
+    &-trash {
+      color: #E0BEA2;
+    }
+  }
+  &__sum {
+    margin-top: 30px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #252525;
+  }
+  &__price {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #252525;
+  }
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

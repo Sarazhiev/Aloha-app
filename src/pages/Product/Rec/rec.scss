@@ -1,0 +1,13 @@
+.rec {
+  padding: 50px 0;
+  &__title {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    color: #252525;
+    margin-bottom: 20px;
+  }
+  &__name {
+    margin-top: 10px;
+  }
+}

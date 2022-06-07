@@ -1,0 +1,36 @@
+.personal {
+  &__title {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #252525;
+    margin: 20px 0;
+  }
+  &__inputs {
+    display: flex;
+    column-gap: 20px;
+  }
+  &__input {
+    width: 270px;
+    height: 50px;
+    border: 0.5px solid #252525;
+  }
+  &__order {
+    width: 560px;
+    height: 50px;
+    border: 0.5px solid #252525;
+  }
+  &__btn {
+    background: #E0BEA2;
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    border: none;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+}

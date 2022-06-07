@@ -1,0 +1,29 @@
+.coat {
+  padding: 100px 0;
+  &__content {
+    display: flex;
+    column-gap: 15px;
+    flex-wrap: wrap;
+    &-card {
+      width: calc(33.33333% - 10px)
+    }
+    &-img {
+      width: 100%;
+    }
+    &-title {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      color: #252525;
+      margin: 15px 0 5px;
+    }
+    &-price {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      color: #252525;
+    }
+  }
+}

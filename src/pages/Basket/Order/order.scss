@@ -1,0 +1,111 @@
+.order {
+  padding: 100px 0;
+
+  &__title {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    color: #252525;
+  }
+  &__text {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #252525;
+    margin: 30px 0 20px;
+  }
+  &__form {
+    display: flex;
+    column-gap: 20px;
+  }
+  &__inputs {
+    display: flex;
+    column-gap: 20px;
+
+
+  }
+  &__input {
+    display: flex;
+    margin-bottom: 20px;
+    width: 400px;
+    height: 50px;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 19px;
+    padding-left: 19px;
+    color: rgba(37, 37, 37, 0.5);
+    border: 0.5px solid #252525;
+  }
+  &__delivery {
+    display: flex;
+    column-gap: 20px;
+  }
+  &__item2 {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #252525;
+    margin-bottom: 20px;
+    display: flex;
+    column-gap: 10px;
+  }
+  &__inpt {
+    width: 820px;
+    height: 50px;
+    border: 0.5px solid #252525;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(37, 37, 37, 0.5);
+    padding-left: 19px;
+  }
+  &__login {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    color: #E0BEA2;
+    margin-bottom: 20px;
+  }
+  &__underline {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    margin-bottom: 20px;
+    color: #252525;
+  }
+  &__total {
+
+  }
+  &__subtitle {
+    display: flex;
+    column-gap: 9px;
+  }
+  &__btn {
+    width: 300px;
+    height: 50px;
+    background: #E0BEA2;
+    border: none;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 15px 0 ;
+    color: #FFFFFF;
+  }
+  &__agree {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #252525;
+  }
+  &__grn {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #252525;
+  }
+}

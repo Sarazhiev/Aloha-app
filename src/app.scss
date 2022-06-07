@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700;900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+  scroll-behavior: smooth;
+  font-family: 'Raleway', sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.burger {
+  top: 52px;
+  left: 50px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  z-index: 100;
+  cursor: pointer;
+
+  &_active {
+    .burger__line {
+      background: transparent;
+
+      &::before {
+        content: '';
+        width: 34px;
+        transform: rotate(45deg);
+        background: #E0BEA2;
+        top: 0;
+        transition: 0.5s;
+      }
+
+      &::after {
+        content: '';
+        width: 34px;
+        transform: rotate(-45deg);
+        background: #E0BEA2;
+        top: 0;
+        transition: 0.5s;
+      }
+    }
+  }
+
+  &__line {
+    width: 26px;
+    height: 4px;
+    background: #E0BEA2;
+    z-index: 10;
+    position: relative;
+    transition: .5s;
+
+
+    &::before {
+      content: '';
+      width: 34px;
+      height: 4px;
+      background: #E0BEA2;
+      position: absolute;
+      top: -10px;
+      left: 0;
+      transition: .5s;
+
+    }
+
+    &::after {
+      content: '';
+      width: 18px;
+      height: 4px;
+      background: #E0BEA2;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      transition: .5s;
+    }
+
+  }
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 50;
+  &_active {
+    display: flex;
+  }
+}
+
+
+@import "./Layout/Header/header";
+@import "./pages/Home/home";
+@import "./pages/Home/Category/category";
+@import "./pages/Home/First/first";
+@import "./Layout/Footer/footer";
+@import "./pages/Catalog/catalog";
+@import "./pages/Clothes/Coat/coat";
+@import "./pages/Product/product";
+@import "./pages/Product/Rec/rec";
+@import "pages/Basket/basket";
+@import "pages/Basket/Order/order";
+@import "pages/Profile/profile";
+@import "pages/Profile/History/history";
+@import "pages/Profile/PersonalData/personalData";
+@import "./pages/Register/register";
+@import "./pages/Favorites/favorites";

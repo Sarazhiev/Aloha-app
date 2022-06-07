@@ -1,0 +1,53 @@
+.history {
+  &__btns {
+    display: flex;
+    column-gap: 10px;
+  }
+  &__btn {
+    width: 228px;
+    height: 49px;
+    border: none;
+    &-active {
+      background: #E0BEA2;
+      color: #fff;
+    }
+  }
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 32px 0 20px;
+  }
+  &__item {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #252525;
+  }
+  &__item-price {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #252525;
+  }
+  &__item-color {
+    width: 24px;
+    height: 24px;
+    border: 0.3px solid #252525;
+    border-radius: 50%;
+    background: #F1DDAA;
+  }
+  &__about {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #252525;
+  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__about {
+    margin-bottom: 20px;
+  }
+}

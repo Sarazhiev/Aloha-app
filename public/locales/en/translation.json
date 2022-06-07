@@ -1,0 +1,180 @@
+{
+  "header": {
+    "link1": "Main",
+    "link2": "Shop",
+    "link3": "About brand",
+    "link4": "Contact"
+  },
+  "home": {
+    "new": {
+      "title": "New Arrivals this season",
+      "text" : "Refined combinations and velvet shades <br/> - that's what you've been looking for this <br/> season. observation time.",
+      "btn": "Open shop"
+    },
+    "collection": {
+      "title": "New collection",
+      "text1": "USA T-shirt",
+      "text2": "Glow swimsuit",
+      "text3": "Sweatshirt Sweet Shot",
+      "btn": "Open shop"
+    },
+    "important": {
+      "title": "What is important to us",
+      "text1": "Quality",
+      "text2": "Speed",
+      "text3": "Responsibility",
+      "info1": "Our professionals work on the best equipment for tailoring clothes of unparalleled quality.",
+      "info2": "Thanks to the well-established system at Womazing, we can sew up to 20 pieces of products in our own workshops",
+      "info3": "We care about people and the planet. Waste-free production and comfortable working conditions - all this is Womazing"
+    },
+    "team": {
+      "title": "The dream Team",
+      "text": "For each",
+      "info": "Every girl is unique. However, we are similar in a million little things.\n\nWomazing looks for these little things and creates beautiful things that emphasize the advantages of every girl.",
+      "more": "More about the brand"
+    }
+  },
+  "brands": {
+    "about": {
+      "title": "About brand",
+      "link1": "Main",
+      "link2": "About brand"
+    },
+    "idea": {
+      "title": "Idea and woman",
+      "text": "Womazing was founded in 2010 and has become one of the most successful companies in our country. Like many Italian firms, Womazing remains a family company, although none of the family members are fashion designers.\n\nWe follow a successful formula, using the services of well-known fashion designers to create our collections. The method has been described by fashion critic Colin McDowell as a form of design co-creation characteristic of a number of Italian prêt-a-porter companies."
+    },
+    "magic": {
+      "title": "The magic is in the details",
+      "text": "The first Womazing store was opened in a small town in the north of the country in 2010. The first collection consisted of two coats and a suit, which were copies of Parisian models.\n\nDespite the fact that the founder was a lawyer by training, her family has always been closely associated with sewing (the founder's great-grandmother made clothes for women, and her mother founded a professional school of cutting and sewing). The desire to produce clothes for the masses carried great promise, especially at a time when high fashion still dominated and the market for quality prêt-a-porter simply did not exist.",
+      "btn": "Go to the store"
+    }
+  },
+  "contacts": {
+    "crumbs": {
+      "title": "Contacts",
+      "link1": "Main",
+      "link2": "Contacts"
+    },
+    "info": {
+      "tel": "Phone",
+      "eMail": "E-mail",
+      "address": "Address",
+      "street": "Moscow, 3rd Builders street, 25"
+    },
+    "form": {
+      "title": "Write to us",
+      "name": "Name",
+      "eMail": "E-mail",
+      "phone": "Phone",
+      "message": "Message",
+      "btn": "Send",
+      "success": "Message sent successfully"
+    }
+  },
+  "basket": {
+    "title": "Basket",
+    "link1": "Main",
+    "link2": "Basket",
+    "product": "Product",
+    "size": "Size",
+    "color": "Color",
+    "price": "Price",
+    "quantity": "quantity",
+    "Total": "total",
+    "ticket": "Enter coupon",
+    "useTicket": "Apply Coupon",
+    "updateCart": "Empty the basket",
+    "subtotal": "Subtotal",
+    "sum": "total",
+    "checkout": "Checkout",
+    "basketText": "Your shopping cart is empty !!!"
+
+  },
+  "order": {
+    "title": "Order Received",
+    "link1": "Main",
+    "link2": "Checkout",
+    "link3": "Order Received",
+    "success": "Order successfully completed",
+    "contact": "We will contact you shortly!",
+    "btn": "Go to Main page"
+  },
+  "checkout": {
+    "title": "Ordering",
+    "link1": "Home",
+    "link2": "Ordering",
+    "buyerTitle": "Buyer data",
+    "buyerName": "Name",
+    "buyerMail": "E-mail",
+    "buyerPhone": "Phone",
+    "orderTitle": "Your order",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "productName": "Product",
+    "inTotal": "In Total",
+    "addressTitle": "Address of the recipient",
+    "country": "Country",
+    "city": "City",
+    "street": "Street",
+    "home": "Home",
+    "flat": "flat",
+    "comments": "Comments",
+    "payment": "Payment Methods",
+    "cash": "Cash payment",
+    "place": "Place an order",
+    "name": "Title",
+    "count": "Quantity",
+    "color": "color",
+    "size": "Size",
+    "price": "Price"
+  },
+  "shop": {
+    "sortTitle": "Sort by:",
+    "big": "To more",
+    "less": "to less",
+    "discount": "discount",
+    "title": "Shop",
+    "link1": "Main",
+    "link2": "Shop",
+    "all": "All",
+    "suit": "Sport-Suits",
+    "sweatshirt": "Sweatshirts",
+    "tshort": "T-Shorts",
+    "hoody": "hoodies",
+    "discountText": "There are no discounts for this category!"
+  },
+  "footer": {
+    "defense": "© All rights reserved <br/> Privacy Policy <br/> Public offer <br/>",
+    "suit": "Sport-Suit",
+    "sweatshirt": "Sweatshirt",
+    "tshort": "T-Short",
+    "hoodies": "Hoodies"
+  },
+  "profile": {
+    "title": "My account",
+    "btn1": "Order history",
+    "btn2": "Settings",
+    "info": "Personal data",
+      "change": "Change",
+    "cancel": "Cancel",
+    "login": "Login",
+    "phone": "Phone number",
+    "mail": "Mail",
+    "save": "Save Changes",
+    "password": "Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm password",
+    "subscribe": "subscriptions",
+    "receive": "Receive offers and promotions",
+    "profile": "Profile",
+    "name": "Name",
+    "email": "Email",
+    "tel": "Phone",
+    "country": "Country",
+    "city": "City",
+    "street": "Street",
+    "house": "House",
+    "flat": "Flat"
+  }
+}
