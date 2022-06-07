@@ -1,13 +1,19 @@
 import React from 'react';
-import {NavLink, Link} from "react-router-dom";
+import {NavLink, Link, useParams} from "react-router-dom";
 import {GoChevronRight} from 'react-icons/go'
 import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import img from './img/1.png'
 import img2 from './img/2.png'
 import img3 from './img/3.png'
 import img4 from './img/4.png'
+import {useSelector} from "react-redux";
 
 const Catalog = () => {
+
+    const clothes = useSelector(s => s.clothes.clothes );
+    const params = useParams();
+    console.log(params.category);
+
     return (
         <section className='catalog'>
             <div className="container">
@@ -20,23 +26,27 @@ const Catalog = () => {
                     <div className='catalog__content-left'>
                         <h3 className='catalog__content-title'>Каталог</h3>
                         <ul className='catalog__content-list'>
-                            <li className='catalog__content-item'>New</li>
+                            <li className='catalog__content-item'>
+                                <Link to={`/catalog/new`}>New</Link>
+                                </li>
                             <li className='catalog__content-item'>Bestsellers</li>
-                            <li className='catalog__content-item'>Верхняя одежда</li>
-                            <li className='catalog__content-item'>Шубы</li>
-                            <li className='catalog__content-item'>Тренчи</li>
-                            <Link to='/coat' className='catalog__content-item'>Пальто</Link>
-                            <li className='catalog__content-item'>Пуховики и жилеты</li>
-                            <li className='catalog__content-item'>Костюмы</li>
-                            <li className='catalog__content-item'>Жакеты</li>
-                            <li className='catalog__content-item'>Платья</li>
-                            <li className='catalog__content-item'>Рубашки и блузы</li>
-                            <li className='catalog__content-item'>Юбки</li>
-                            <li className='catalog__content-item'>Футболки и топы</li>
-                            <li className='catalog__content-item'>Аксессуары</li>
-                            <li className='catalog__content-item'>Sale</li>
-                            <li className='catalog__content-item'>Summer</li>
-                            <li className='catalog__content-item'>Посмотреть всё</li>
+                            {
+                                clothes && clothes
+                                    .filter((item, idx, arr) => arr.map(el => el.category).indexOf(item.category) === idx)
+                                    .map((item) => (
+                                        <li key={item.category} className='catalog__content-item'>
+                                            <Link to={`/catalog/${item.category}`}>{item.category}</Link>
+                                        </li>
+                                    ))
+
+                            }
+                            <li className='catalog__content-item'>
+                                <Link to={`/catalog/sale`}>Sale</Link>
+                                </li>
+                            <li className='catalog__content-item'>
+                                <Link to={`/catalog/all`}>Посмотреть всё</Link>
+                            </li>
+
                         </ul>
                     </div>
                     <div className='catalog__content-right'>
@@ -55,82 +65,39 @@ const Catalog = () => {
                             </select>
                         </div>
                         <div className='catalog__content-row'>
-                            <div className='catalog__content-card'>
-                                <Link className='catalog__content-link' to='/product'>
-                                <img className='catalog__content-img' src={img} alt=""/>
-                                </Link>
-                                <button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button>
-                                <p className='catalog__content-name'>Белая куртка</p>
-                                <p className='catalog__content-price'>2900 грн</p>
-                                <ul className='catalog__content-sizes'>
-                                    <li className='catalog__content-size'>XXS</li>
-                                    <li className='catalog__content-size'>XS</li>
-                                    <li className='catalog__content-size'>S</li>
-                                    <li className='catalog__content-size'>M</li>
-                                    <li className='catalog__content-size'>L</li>
-                                </ul>
-                                <ul className='catalog__content-colors'>
-                                    <li className='catalog__content-white'> </li>
-                                    <li className='catalog__content-blue'> </li>
-                                    <li className='catalog__content-yellow'> </li>
-                                </ul>
-                            </div>
-                            <div className='catalog__content-card'>
-                                <Link className='catalog__content-link' to='/product'>
-                                    <img className='catalog__content-img' src={img2} alt=""/>
-                                </Link>
-                                <button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button>
-                                <p className='catalog__content-name'>Синее пальто</p>
-                                <p className='catalog__content-price'>3150 грн</p>
-                                <ul className='catalog__content-sizes'>
-                                    <li className='catalog__content-size'>XS</li>
-                                    <li className='catalog__content-size'>M</li>
-                                    <li className='catalog__content-size'>L</li>
-                                </ul>
-                                <ul className='catalog__content-colors'>
-                                    <li className='catalog__content-white'></li>
-                                    <li className='catalog__content-blue'> </li>
-                                    <li className='catalog__content-yellow'> </li>
-                                </ul>
-                            </div>
-                            <div className='catalog__content-card'>
-                                <Link className='catalog__content-link' to='/product'>
-                                <img className='catalog__content-img' src={img3} alt=""/>
-                                </Link>
-                                <button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button>
-                                <p className='catalog__content-name'>Бежевая шуба</p>
-                                <p className='catalog__content-price'>4200 грн</p>
-                                <ul className='catalog__content-sizes'>
-                                    <li className='catalog__content-size'>XS</li>
-                                    <li className='catalog__content-size'>S</li>
-                                    <li className='catalog__content-size'>L</li>
-                                </ul>
-                                <ul className='catalog__content-colors'>
-                                    <li className='catalog__content-white'> </li>
-                                    <li className='catalog__content-blue'> </li>
-                                    <li className='catalog__content-yellow'> </li>
-                                </ul>
-                            </div>
-                            <div className='catalog__content-card'>
-                                <Link className='catalog__content-link' to='/product'>
-                                <img className='catalog__content-img' src={img4} alt=""/>
-                                </Link>
-                                <button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button>
-                                <p className='catalog__content-name'>Синяя парка</p>
-                                <p className='catalog__content-price'>2900 грн</p>
-                                <ul className='catalog__content-sizes'>
-                                    <li className='catalog__content-size'>XXS</li>
-                                    <li className='catalog__content-size'>XS</li>
-                                    <li className='catalog__content-size'>S</li>
-                                    <li className='catalog__content-size'>M</li>
-                                    <li className='catalog__content-size'>L</li>
-                                </ul>
-                                <ul className='catalog__content-colors'>
-                                    <li className='catalog__content-white'> </li>
-                                    <li className='catalog__content-blue'> </li>
-                                    <li className='catalog__content-yellow'> </li>
-                                </ul>
-                            </div>
+                            {
+                                clothes && clothes.filter((item, idx, array) => {
+                                    switch (params.category) {
+                                        case 'all' :  return item;
+                                        case 'new' : return idx > array.length - 5;
+                                        case 'sale' : return item.priceSale;
+                                        default:  return item.category === params.category
+                                    }
+                                }).map((item) => (
+                                    <div className='catalog__content-card'>
+                                        <Link className='catalog__content-link' to={`/product/${item.id}`}>
+                                            <img className='catalog__content-img' src={img} alt=""/>
+                                        </Link>
+                                        <button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button>
+                                        <p className='catalog__content-name'>{item.title}</p>
+                                        <p className='catalog__content-price'>{item.price} грн</p>
+                                        <ul className='catalog__content-sizes'>
+                                            {
+                                                item.size.map((size) => (
+                                                    <li className='catalog__content-size'>{size}</li>
+                                                ))
+                                            }
+                                        </ul>
+                                        <ul className='catalog__content-colors'>
+                                            {
+                                                item.colors.map((color) => (
+                                                    <li style={{background: color }} className='catalog__content-circle'> </li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>

@@ -36,17 +36,22 @@ const Header = () => {
                             <button className='header__nav-btn'>Ru</button>
                             <button className='header__nav-btn'>En</button>
                         <ul className='header__nav-list'>
-                            <NavLink to='' className='header__nav-item'><FiSearch/></NavLink>
-                            <NavLink to='/profile' className='header__nav-item header__nav-item2'><BiUser/><Link to='/login' className='header__nav-item2'>войти</Link></NavLink>
+                            <NavLink to='/' className='header__nav-item'><FiSearch/></NavLink>
+                            <span>
+                                <NavLink to='/profile' className='header__nav-item header__nav-item2'><BiUser/></NavLink>
+                                <Link to='/login' className='header__nav-item2'>войти</Link>
+                            </span>
+
 
                             <NavLink to='/favorites' className='header__nav-item'><MdOutlineFavoriteBorder/></NavLink>
                             <NavLink to='/basket' className='header__nav-item'><RiShoppingCart2Line/></NavLink>
                         </ul>
                     </div>
                     <ul  className={`header__list ${burger ? 'header__list_active' : ''}`}>
-                        <Link to='catalog' className='header__nav-items'>ПОСМОТРЕТЬ ВСЕ</Link>
+                        <Link to='catalog/all' className='header__nav-items'>ПОСМОТРЕТЬ ВСЕ</Link>
                         <li className='header__nav-items'>БЕСТСЕЛЛЕРЫ</li>
-                        <li className='header__nav-items'>НОВИНКИ</li>
+                        <li className='header__nav-items'>
+                            <Link to={`/catalog/new`}>НОВИНКИ</Link></li>
                         <li className='header__nav-items' >Мужчинам <button className='header__nav-arrow' onClick={() => setIsActive(!isActive)}>
                             {
                                 isActive ? <svg width="16" height="10" viewBox="0 0 16 10" fill="none"

@@ -1,26 +1,19 @@
 import React from 'react';
+import {Autoplay, Keyboard, Mousewheel, Navigation} from "swiper";
+import img1 from "../Category/Rectangle 7.png";
+import {useSelector} from "react-redux";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {Navigation, Pagination, Mousewheel, Keyboard, Autoplay} from "swiper";
-import img1 from './Rectangle 7.png'
-import img2 from './Rectangle 9.png'
-import img3 from './Rectangle 10.png'
-import img4 from './Rectangle 11.png'
-import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
-const Category = () => {
-
-    const clothes = useSelector(s => s.clothes.clothes.filter((item, idx, arr) => arr.map(el => el.category).indexOf(item.category) === idx))
-
+const NewClothes = () => {
+    const clothes = useSelector(s =>  s.clothes.clothes);
     return (
-
-        <section className='category'>
+        <section>
             <div className="container">
-                <h2 className='category__title'>Категории</h2>
-
+                <h2 className='category__title'>Новое поступление</h2>
                 <Swiper
                     slidesPerView={4}
                     spaceBetween={30}
@@ -40,21 +33,22 @@ const Category = () => {
                     className="mySwiper"
                 >
                     {
-                        clothes && clothes.map(item => (
+                        clothes && clothes.filter((item, idx, array) => idx > array.length - 5).map(item => (
                             <SwiperSlide key={item.id}>
                                 <div className='category__content'>
-                                    <Link className='catalog__content-link' to={`/catalog/${item.category}`}>
+                                    <Link className='catalog__content-link' to={`/product/${item.id}`}>
                                     <img className='category__img' src={img1} alt="img"/>
                                     </Link>
-                                    <p className='category__text'>{item.category}</p>
+                                    <p className='category__text'>{item.title}</p>
                                 </div>
                             </SwiperSlide>
                         ))
                     }
+
                 </Swiper>
             </div>
         </section>
     );
 };
 
-export default Category;
+export default NewClothes;
