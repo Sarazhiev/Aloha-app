@@ -12,7 +12,6 @@ const Catalog = () => {
 
     const clothes = useSelector(s => s.clothes.clothes );
     const params = useParams();
-    console.log(params.category);
 
     return (
         <section className='catalog'>

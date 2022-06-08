@@ -93,22 +93,27 @@ const Product = () => {
                         </Swiper>
                     </div>
                     {
-                        clothes.map(item => (
+                        clothes.filter(item => item.id === +params.id).map(item => (
                             <div className='product__right'>
-                                <p className='product__title'>Кремовое пальто</p>
-                                <p className='product__price'>  3150 грн</p>
+                                <p className='product__title'>{item.title}</p>
+                                <p className='product__price'>{item.price}</p>
+
                                 <ul className='product__list'>
-                                    <li className='product__white'></li>
-                                    <li className='product__blue'></li>
-                                    <li className='product__yellow'></li>
+                                    {
+                                        item.colors.map((color) => (
+                                            <li style={{background: color}} className='product__white'/>
+                                        ))
+                                    }
                                 </ul>
                                 <select className='product__select' name="1">
                                     <option value="1">Выберите размер</option>
-                                    <option value="1">XS</option>
-                                    <option value="1">S</option>
-                                    <option value="1">L</option>
-                                    <option value="1">M</option>
-                                    <option value="1">XL</option>
+                                    {
+                                        item.size.map((size) => (
+                                            <>
+                                                <option value="1">{size}</option>
+                                            </>
+                                        ))
+                                    }
                                 </select>
                                 <div className='product__btns'>
                                     <button className='product__btn1'>В КОРЗИНУ</button>
@@ -152,7 +157,8 @@ const Product = () => {
                                     }
                                 </p>
                             </div>
-                        ))
+                        )
+                        )
                     }
                 </div>
                 <Rec/>
