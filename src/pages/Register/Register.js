@@ -32,7 +32,7 @@ const Register = () => {
         })
             .then((res) => {
                 localStorage.setItem('user', JSON.stringify(res.data.user));
-                dispatch(registerUser({obj: res.data.user}))
+                dispatch(registerUser({obj: res.data.user}));
                 navigate('/')
             }).catch(() => alert('ошибка при регистрации'))
     };

@@ -37,7 +37,7 @@ const Header = () => {
                             <button className='header__nav-btn'>En</button>
                         <ul className='header__nav-list'>
                             <NavLink to='/' className='header__nav-item'><FiSearch/></NavLink>
-                            <span>
+                            <span style={{display: 'flex', columnGap: '10px'}}>
                                 <NavLink to='/profile' className='header__nav-item header__nav-item2'><BiUser/></NavLink>
                                 <Link to='/login' className='header__nav-item2'>войти</Link>
                             </span>

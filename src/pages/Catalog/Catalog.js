@@ -3,10 +3,8 @@ import {NavLink, Link, useParams} from "react-router-dom";
 import {GoChevronRight} from 'react-icons/go'
 import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import img from './img/1.png'
-import img2 from './img/2.png'
-import img3 from './img/3.png'
-import img4 from './img/4.png'
 import {useSelector} from "react-redux";
+import { motion, AnimatePresence } from "framer-motion"
 
 const Catalog = () => {
 
@@ -73,7 +71,13 @@ const Catalog = () => {
                                         default:  return item.category === params.category
                                     }
                                 }).map((item) => (
-                                    <div className='catalog__content-card'>
+                                    <AnimatePresence exitBeforeEnter onExitComplete presenceAffectsLayout >
+                                    <motion.div
+                                        initial={{ opacity: 0 , y: 100, x: 100}}
+                                        animate={{ opacity: 1 ,y: 0 , x: 0}}
+                                        exit={{ opacity: 0, y: -100, x: 100 }}
+                                        transition={{ duration: 0.6 }}
+                                        key={item.id} className='catalog__content-card'>
                                         <Link className='catalog__content-link' to={`/product/${item.id}`}>
                                             <img className='catalog__content-img' src={img} alt=""/>
                                         </Link>
@@ -94,7 +98,8 @@ const Catalog = () => {
                                                 ))
                                             }
                                         </ul>
-                                    </div>
+                                    </motion.div>
+                                    </AnimatePresence>
                                 ))
                             }
                         </div>
