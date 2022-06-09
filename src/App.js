@@ -14,6 +14,7 @@ import {useEffect} from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {getAll} from "./redux/reducers/clothes";
+import {registerUser} from "./redux/reducers/user";
 
 function App() {
 
@@ -21,8 +22,14 @@ function App() {
 
   useEffect(() => {
     axios('https://alohadatabase.herokuapp.com/clothes').then(({data}) => dispatch(getAll({arr: data})))
-  }, [])
+  }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem('user') !== null){
+      dispatch(registerUser({obj: JSON.parse(localStorage.getItem('user'))}))
+    }
+
+  }, []);
   return (
     <div className="App">
 

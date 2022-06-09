@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 import React from "react";
 
 
-const Slider = ({category, title, color}) => {
+const Slider = ({category, title, color, delay}) => {
     const clothes = useSelector(s =>  s.clothes.clothes);
     return (
         <section>
@@ -23,7 +23,7 @@ const Slider = ({category, title, color}) => {
                     }}
 
                     autoplay={{
-                        delay: 2500,
+                        delay: delay,
                         disableOnInteraction: false,
                     }}
                     loop={true}

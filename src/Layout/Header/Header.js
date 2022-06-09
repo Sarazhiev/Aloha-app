@@ -4,8 +4,12 @@ import {BiUser} from 'react-icons/bi'
 import {RiShoppingCart2Line} from 'react-icons/ri'
 import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import {NavLink, Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {logOutUser} from "../../redux/reducers/user";
 
 const Header = () => {
+    const user = useSelector((s) => s.user.user);
+    const dispatch = useDispatch();
     const [burger, setBurger] = useState(false);
     const [isActive, setIsActive] = useState(null);
     const [isActive2, setIsActive2] = useState(null);
@@ -37,10 +41,18 @@ const Header = () => {
                             <button className='header__nav-btn'>En</button>
                         <ul className='header__nav-list'>
                             <NavLink to='/' className='header__nav-item'><FiSearch/></NavLink>
-                            <span style={{display: 'flex', columnGap: '10px'}}>
-                                <NavLink to='/profile' className='header__nav-item header__nav-item2'><BiUser/></NavLink>
-                                <Link to='/login' className='header__nav-item2'>войти</Link>
-                            </span>
+
+                                {
+                                    user.email.length ?
+                                    <span style={{display: 'flex', columnGap: '10px'}}>
+                                <NavLink to='/profile' className='header__nav-item header__nav-item2'><BiUser/>{user.email}</NavLink>
+                                     <Link to='/login' className='header__nav-item2' onClick={() => {
+                                         localStorage.removeItem('user');
+                                         dispatch(logOutUser())
+                                     }}>  / Выйти</Link>
+                                       </span>
+                                        : <Link to='/login' className='header__nav-item2'>войти</Link>
+                                }
 
 
                             <NavLink to='/favorites' className='header__nav-item'><MdOutlineFavoriteBorder/></NavLink>

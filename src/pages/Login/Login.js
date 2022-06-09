@@ -1,19 +1,64 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useForm} from "react-hook-form";
+import axios from "axios";
+import {useDispatch} from "react-redux";
+import {registerUser} from "../../redux/reducers/user";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../../firebase/firebase";
+
 
 const Login = () => {
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const {
+        register,
+        reset,
+        handleSubmit
+    } = useForm()
+
+    // const addUser = (data) => {
+    //     axios.post('https://alohadatabase.herokuapp.com/login', data)
+    //         .then((res) => {
+    //             localStorage.setItem('access', JSON.stringify(res.data.accessToken));
+    //             localStorage.setItem('user', JSON.stringify(res.data.user));
+    //             dispatch(registerUser(res.data.user))
+    //             navigate('/')
+    //         })
+    // }
+
+    const addUser = (data) => {
+        signInWithEmailAndPassword(auth, data.email, data.password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                dispatch(registerUser({obj: user}))
+                localStorage.setItem('user', JSON.stringify(user))
+                reset();
+                navigate('/')
+                // ...
+            })
+            .catch((error) => console.log(`bad request ${error}`));
+    };
+
     return (
         <div>
             <div className='register'>
                 <div className="container">
-                    <div className='register__content'>
+                    <form className='register__content' onSubmit={handleSubmit(addUser)}>
                         <h2 className='register__title'>Авторизация</h2>
-                        <input className='register__input' placeholder='Ваш e-mail*' type="email"/>
-                        <input className='register__input' placeholder='Ваш пароль*' type="text"/>
+                        <input id='1' {...register('email', {
+                            required : 'Это поле обязательное *',
+                        })} className='register__input' type="email" placeholder='Введите email'/>
+                        <input {...register("password", {
+                            required : 'Это поле обязательное *',
+                        })} className='register__input' placeholder='Ваш пароль*' type="password"/>
                         <p className='register__question'>Нет аккаунта? <Link className='register__login' to='/register'>Регистрация</Link></p>
-                        <button className='register__btn'>Войти</button>
+                        <button type='submit' className='register__btn'>Войти</button>
                         <Link className='register__home' to='/'>Выйти на главную</Link>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

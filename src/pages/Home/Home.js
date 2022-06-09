@@ -12,10 +12,10 @@ const Home = () => {
             <New/>
             <Category/>
             <NewClothes/>
-            <Slider color={'rgba(194, 190, 162, 0.75)'} category={'tshort'} title='футболки'/>
-            <Slider color={'rgba(324, 180, 122, 0.95)'} category={'sportsuit'} title='Спортивки'/>
-            <Slider color={'rgba(424, 170, 152, 0.99)'} category={'hoody'} title='Худи'/>
-            <Slider color={'rgba(524, 200, 162, 0.95)'} category={'sweatshirt'} title='Свитшоты'/>
+            <Slider delay={2500} color={'rgba(194, 190, 162, 0.75)'} category={'tshort'} title='футболки'/>
+            <Slider delay={3000} color={'rgba(324, 180, 122, 0.95)'} category={'sportsuit'} title='Спортивки'/>
+            <Slider delay={2500} color={'rgba(424, 170, 152, 0.99)'} category={'hoody'} title='Худи'/>
+            <Slider delay={3000} color={'rgba(524, 200, 162, 0.95)'} category={'sweatshirt'} title='Свитшоты'/>
             <First/>
         </main>
     );

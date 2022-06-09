@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink, Link, useParams} from "react-router-dom";
 import {GoChevronRight} from 'react-icons/go'
 import {MdOutlineFavoriteBorder} from 'react-icons/md'
@@ -10,6 +10,7 @@ const Catalog = () => {
 
     const clothes = useSelector(s => s.clothes.clothes );
     const params = useParams();
+    const [sort, setSort] = useState('');
 
     return (
         <section className='catalog'>
@@ -49,16 +50,9 @@ const Catalog = () => {
                     <div className='catalog__content-right'>
                         <div className='catalog__content-selects'>
                             <select className='catalog__content-select' name="1">
-                                <option value="1">Размер</option>
-                            </select>
-                            <select className='catalog__content-select' name="1">
-                                <option value="1">Цвет</option>
-                            </select>
-                            <select className='catalog__content-select' name="1">
-                                <option value="1">Цена</option>
-                            </select>
-                            <select className='catalog__content-select' name="1">
-                                <option value="1">Сортировать по</option>
+                                <option value="1">Сортировать</option>
+                                <option value="2">К большему</option>
+                                <option value="3">К меньшему</option>
                             </select>
                         </div>
                         <div className='catalog__content-row'>
