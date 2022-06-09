@@ -15,6 +15,7 @@ import axios from "axios";
 import {useDispatch} from "react-redux";
 import {getAll} from "./redux/reducers/clothes";
 import {registerUser} from "./redux/reducers/user";
+import AdminPanel from "./pages/adminPanel/AdminPanel";
 
 function App() {
 
@@ -32,7 +33,6 @@ function App() {
   }, []);
   return (
     <div className="App">
-
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route path='' element={<Home/>}/>
@@ -42,6 +42,7 @@ function App() {
           <Route path='basket' element={<Basket/>}/>
           <Route path='profile' element={<Profile/>}/>
           <Route path='favorites' element={<Favorites/>}/>
+          <Route path='admin/*' element={<AdminPanel/>}/>
         </Route>
       {/*  <Route path='/auth' element={<Auth/>}/>*/}
       {/*  <Route path='/confirm' element={<Confirm/>}/>*/}

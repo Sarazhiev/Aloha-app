@@ -1,0 +1,36 @@
+
+
+.admin{
+  padding:  150px 0 150px;
+  display: flex;
+  &__aside{
+    width: 15%;
+    min-width: 120px;
+    padding: 40px 30px;
+    height: 600px;
+
+  }
+  &__content{
+    width: 85%;
+    padding: 0 70px;
+    height: 600px;
+  }
+  &__circle{
+    border: 0.3px solid #252525;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+  &__size{
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(37, 37, 37, 0.5);
+  }
+  &__clothes-list{
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
