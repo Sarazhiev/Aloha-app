@@ -5,7 +5,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     &-content {
       width: 50%;
       padding: 20px;
@@ -16,28 +15,7 @@
 
     }
 
-    &-size {
-      border: 1px solid #000000;
-      width: 41px;
-      height: 41px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 500;
-      font-size: 17px;
-      line-height: 140%;
-      letter-spacing: 0.02em;
-      color: #000000;
-      text-transform: uppercase;
-      transition: .3s;
-      cursor: pointer;
-      margin-bottom: 0;
-      &:hover , &_active {
-        color: #fff;
-        background: black;
-        transition: .3s;
-      }
-    }
+
     &-block {
       width: 500px;
       display: flex;
@@ -94,6 +72,32 @@
       }
     }
 
+  .create__content-size {
+    border: 1px solid #000000;
+    width: 41px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: #000000;
+    text-transform: uppercase;
+    transition: .3s;
+    cursor: pointer;
+    margin-bottom: 0;
+    &:hover , &_active {
+      color: #fff;
+      background: black;
+      transition: .3s;
+    }
+  }
+.create__size {
+    background: black;
+    color: white;
+  }
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;

@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import CreateColors from "./CreateColors";
+import CreateSizes from "./CreateSizes";
 
 const ClothesAdd = () => {
     const [colors, setColors] = useState([]);
+    const [sizes, setSizes] = useState([]);
 
     const [first, setFirst] = useState('');
     const [second, setSecond] = useState('');
@@ -19,7 +21,6 @@ const ClothesAdd = () => {
 
     return (
         <form className='create__form-content'>
-
             <div className='create__form-block'>
                 <label htmlFor="title">Название</label>
                 <input className='create__form-input'  type="text" id='title'/>
@@ -49,7 +50,7 @@ const ClothesAdd = () => {
             <div>
                 <div>
                     <ul className='create__form-colors'>
-                        <li>Выберите цвет :</li>
+                        <li>Выберите цвет : </li>
                         <CreateColors colors={colors} setColors={setColors} color='blue'/>
                         <CreateColors colors={colors} setColors={setColors} color='black'/>
                         <CreateColors colors={colors} setColors={setColors} color='white'/>
@@ -61,7 +62,12 @@ const ClothesAdd = () => {
             </div>
             <div>
                 <ul className='create__form-sizes'>
-
+                    <CreateSizes sizes={sizes} setSizes={setSizes} size='XS'/>
+                    <CreateSizes sizes={sizes} setSizes={setSizes} size='S'/>
+                    <CreateSizes sizes={sizes} setSizes={setSizes} size='M'/>
+                    <CreateSizes sizes={sizes} setSizes={setSizes} size='L'/>
+                    <CreateSizes sizes={sizes} setSizes={setSizes} size='XL'/>
+                    <CreateSizes sizes={sizes} setSizes={setSizes} size='XXL'/>
                 </ul>
             </div>
             <div className='create__form-block'>
