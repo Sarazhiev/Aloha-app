@@ -16,8 +16,13 @@ const Login = () => {
     const {
         register,
         reset,
-        handleSubmit
-    } = useForm()
+        handleSubmit,
+        formState: {
+            errors
+        },
+    } = useForm({
+        mode: 'onBlur'
+    });
 
     // const addUser = (data) => {
     //     axios.post('https://alohadatabase.herokuapp.com/login', data)
@@ -50,11 +55,17 @@ const Login = () => {
                     <form className='register__content' onSubmit={handleSubmit(addUser)}>
                         <h2 className='register__title'>Авторизация</h2>
                         <input id='1' {...register('email', {
-                            required : 'Это поле обязательное *',
+                            required: 'Это поле обязательное *',
                         })} className='register__input' type="email" placeholder='Введите email'/>
-                        <input {...register("password", {
-                            required : 'Это поле обязательное *',
-                        })} className='register__input' placeholder='Ваш пароль*' type="password"/>
+                        <span>{errors?.email?.message}</span>
+                        <input id='4' {...register('password', {
+                            required: "You must specify Procfile.js password",
+                            minLength: {
+                                value: 5,
+                                message: "Password must have at least 5 characters"
+                            }
+                        })} className="register__input" type='password' placeholder='Введите пароль'/>
+                        <span>{errors?.password?.message}</span>
                         <p className='register__question'>Нет аккаунта? <Link className='register__login' to='/register'>Регистрация</Link></p>
                         <button type='submit' className='register__btn'>Войти</button>
                         <Link className='register__home' to='/'>Выйти на главную</Link>

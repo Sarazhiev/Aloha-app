@@ -8,20 +8,21 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {Button} from "@mui/material";
+import {useNavigate} from 'react-router-dom'
 
 
 const columns = [
     { id: 'title', label: 'Title', minWidth: 170 },
-    { id: 'category', label: 'Category', minWidth: 100 },
+    { id: 'login', label: 'Login', minWidth: 100 },
     {
-        id: 'colors',
-        label: 'Colors',
+        id: 'number',
+        label: 'Number',
         minWidth: 170,
         align: 'right'
     },
     {
-        id: 'size',
-        label: 'Size',
+        id: 'email',
+        label: 'Email',
         minWidth: 170,
         align: 'right'
     },
@@ -37,23 +38,16 @@ const columns = [
 
 function createData(
     title,
-    category,
-    colors,
-    size,
+    login,
+    number,
+    email,
     price
 ) {
-    return { title, category, colors, size, price };
+    return { title,login, number, email, price };
 }
 
 const rows = [
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
+    createData('India', 'Nurs', +996500326320, 'Nurs@mail.ru', 200),
 
 ];
 
@@ -66,6 +60,8 @@ const Users = () => {
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
+
+    const navigate = useNavigate();
 
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
@@ -82,7 +78,7 @@ const Users = () => {
                                 Users
                             </TableCell>
                             <TableCell align="center" colSpan={1}>
-                                <Button style={{color : '#E0BEA2', borderColor: '#E0BEA2'}} variant="outlined" >Add</Button>
+                                <Button onClick={() => navigate('add')} style={{color : '#E0BEA2', borderColor: '#E0BEA2'}} variant="outlined" >Add</Button>
                             </TableCell>
                         </TableRow>
                         <TableRow>
@@ -110,13 +106,7 @@ const Users = () => {
                                                     {Array.isArray(value) ? <ul className='admin__clothes-list'>
                                                         {
                                                             value.map((item, idx) => {
-                                                                if (item === item.toLowerCase()){
-                                                                    return  <li style={{background: item }}  className='admin__circle' key={item + idx}/>
-                                                                } else {
-                                                                    return  <li className='admin__size' key={item + idx}>
-                                                                        {item}
-                                                                    </li>
-                                                                }
+                                                                return item
                                                         })}
                                                     </ul> : value}
                                                 </TableCell>

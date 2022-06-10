@@ -4,6 +4,7 @@ import Clothes from "./Clothes";
 import {Routes, Route, Navigate} from 'react-router-dom'
 import Users from "./Users";
 import ClothesAdd from "./ClothesAdd";
+import UsersAdd from "./UsersAdd";
 
 const AdminPanel = () => {
     const location = useLocation()
@@ -29,6 +30,7 @@ const AdminPanel = () => {
                     <Route path='clothes' element={<Clothes/>}/>
                     <Route path='users' element={<Users/>}/>
                     <Route path='clothes/add' element={<ClothesAdd/>}/>
+                    <Route path='users/add' element={<UsersAdd/>}/>
                 </Routes>
             </div>
         </section>

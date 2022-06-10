@@ -2,18 +2,20 @@ import React, {useRef} from 'react';
 import {NavLink, Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import InputMask from 'react-input-mask';
-import axios from "axios";
 import {useDispatch} from "react-redux";
 import {registerUser} from "../../redux/reducers/user";
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 import {auth, db} from "../../firebase/firebase";
 import {addDoc, collection} from "@firebase/firestore";
+
 
 
 const Register = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+
 
     const {
         register,
@@ -45,19 +47,15 @@ const Register = () => {
         createUserWithEmailAndPassword(auth, data.email, data.password)
             .then(async (userCredential) => {
                 const user = userCredential.user;
-                await addDoc(collection(db, 'users'), {
-                    ...user,
-                    orders: [],
-                    phone: '',
-                    gitl: [],
-                    login: ''
-                });
-                await dispatch(registerUser({obj: user}));
-                await localStorage.setItem('user', JSON.stringify(user));
+                await addDoc(collection(db, 'users'), {email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid})
+
+                await dispatch(registerUser({obj: {email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid}}));
+                await localStorage.setItem('user', JSON.stringify({email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid}));
                 await reset();
                 await navigate('/')
             })
             .catch((error) => console.log(`bad request ${error}`));
+
     };
 
 

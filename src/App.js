@@ -1,4 +1,6 @@
-import './app.scss'
+import {db} from "./firebase/firebase";
+import {collection, getDocs} from "@firebase/firestore";
+
 import {Route, Routes} from 'react-router-dom'
 import Layout from "./Layout/Layout";
 import Home from "./pages/Home/Home";
@@ -16,13 +18,22 @@ import {useDispatch} from "react-redux";
 import {getAll} from "./redux/reducers/clothes";
 import {registerUser} from "./redux/reducers/user";
 import AdminPanel from "./pages/adminPanel/AdminPanel";
+import './app.scss'
+
+
+
 
 function App() {
 
   const dispatch = useDispatch()
 
+
+
   useEffect(() => {
     axios('https://alohadatabase.herokuapp.com/clothes').then(({data}) => dispatch(getAll({arr: data})))
+
+    getDocs(collection(db,'users'))
+        .then((res) => console.log('asdasd', res.docs.map(el => ({...el.data(), id:el.id}) )))
   }, []);
 
   useEffect(() => {
