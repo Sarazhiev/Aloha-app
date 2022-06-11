@@ -130,6 +130,7 @@ const Header = () => {
                             }
                         </li>
                         <li className='header__nav-items'>Корпоративные заказы и оптом</li>
+                        <li className='header__nav-items'><Link to='/contact'>Контакты</Link></li>
                         <li className='header__nav-items'><Link to='/admin/users'>Админ панель</Link></li>
                     </ul>
 

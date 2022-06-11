@@ -19,6 +19,7 @@ import {getAll} from "./redux/reducers/clothes";
 import {registerUser} from "./redux/reducers/user";
 import AdminPanel from "./pages/adminPanel/AdminPanel";
 import './app.scss'
+import Contact from "./pages/Contact/Contact";
 
 
 
@@ -53,6 +54,7 @@ function App() {
           <Route path='basket' element={<Basket/>}/>
           <Route path='profile' element={<Profile/>}/>
           <Route path='favorites' element={<Favorites/>}/>
+          <Route path='contact' element={<Contact/>}/>
           <Route path='admin/*' element={<AdminPanel/>}/>
         </Route>
       {/*  <Route path='/auth' element={<Auth/>}/>*/}

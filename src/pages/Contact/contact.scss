@@ -1,0 +1,40 @@
+.contact {
+  padding: 100px 0;
+  &__title {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 23px;
+    color: #252525;
+    margin-bottom: 30px;
+  }
+  &__lists {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  &__item1 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #252525;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  &__item {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #252525;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  &__icon {
+    display: flex;
+    column-gap: 15px;
+  }
+  &__item2 {
+    cursor: pointer;
+    font-size: 22px;
+  }
+}
