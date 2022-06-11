@@ -7,6 +7,8 @@ import {registerUser} from "../../redux/reducers/user";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {auth, db} from "../../firebase/firebase";
 import {addDoc, collection} from "@firebase/firestore";
+import Google from "../LoginWithGoogle/Google";
+import {FcCellPhone} from 'react-icons/fc'
 
 
 
@@ -14,6 +16,7 @@ const Register = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
 
 
 
@@ -44,7 +47,7 @@ const Register = () => {
 
 
     const createUser = (data) => {
-        createUserWithEmailAndPassword(auth, data.email, data.password)
+        createUserWithEmailAndPassword(auth, data.email, data.password, data.phoneNumber)
             .then(async (userCredential) => {
                 const user = userCredential.user;
                 await addDoc(collection(db, 'users'), {email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid})
@@ -96,6 +99,12 @@ const Register = () => {
                     <p className='register__question'>уже есть аккаунт? <Link className='register__login'
                                                                               to='/login'>Войти</Link></p>
                     <button type='submit' className='register__btn'>ЗАРЕГИСТРИРОВАТЬСЯ</button>
+                    <h2 style={{marginTop: '20px'}} className='register__title'>Войдите через Google или телефон</h2>
+                    <div style={{display:"flex", alignItems:"center", columnGap: '10px', cursor: 'pointer'}}>
+                        <Google/>
+                        <Link to='/number' style={{fontSize: '30px'}}><FcCellPhone/></Link>
+                    </div>
+
                     <Link className='register__home' to='/'>Выйти на главную</Link>
                 </form>
             </div>

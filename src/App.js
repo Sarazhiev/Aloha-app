@@ -20,6 +20,7 @@ import {registerUser} from "./redux/reducers/user";
 import AdminPanel from "./pages/adminPanel/AdminPanel";
 import './app.scss'
 import Contact from "./pages/Contact/Contact";
+import PhoneNumber from "./pages/RegisterWithNumber/PhoneNumber";
 
 
 
@@ -56,9 +57,11 @@ function App() {
           <Route path='favorites' element={<Favorites/>}/>
           <Route path='contact' element={<Contact/>}/>
           <Route path='admin/*' element={<AdminPanel/>}/>
+
         </Route>
       {/*  <Route path='/auth' element={<Auth/>}/>*/}
       {/*  <Route path='/confirm' element={<Confirm/>}/>*/}
+        <Route path='/number' element={<PhoneNumber/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
       </Routes>

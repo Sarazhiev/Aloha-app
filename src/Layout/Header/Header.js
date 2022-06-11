@@ -13,6 +13,7 @@ const Header = () => {
     const [burger, setBurger] = useState(false);
     const [isActive, setIsActive] = useState(null);
     const [isActive2, setIsActive2] = useState(null);
+    console.log(user.phoneNumber);
     return (
         <header id='header' className='header'>
             <div className="container">
@@ -43,9 +44,9 @@ const Header = () => {
                             <NavLink to='/' className='header__nav-item'><FiSearch/></NavLink>
 
                                 {
-                                    user.email.length ?
+                                    user.email?.length || user.phoneNumber?.length ?
                                     <span style={{display: 'flex', columnGap: '10px'}}>
-                                <NavLink to='/profile' className='header__nav-item header__nav-item2'><BiUser/>{user.email}</NavLink>
+                                <NavLink to='/profile' className='header__nav-item header__nav-item2'><BiUser/>{user.email || user.phoneNumber}</NavLink>
                                      <Link to='/login' className='header__nav-item2' onClick={() => {
                                          localStorage.removeItem('user');
                                          dispatch(logOutUser())
