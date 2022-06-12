@@ -3,7 +3,7 @@ import {FiSearch} from 'react-icons/fi'
 import {BiUser} from 'react-icons/bi'
 import {RiShoppingCart2Line} from 'react-icons/ri'
 import {MdOutlineFavoriteBorder} from 'react-icons/md'
-import {NavLink, Link} from "react-router-dom";
+import {NavLink, Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logOutUser} from "../../redux/reducers/user";
 
@@ -13,6 +13,7 @@ const Header = () => {
     const [burger, setBurger] = useState(false);
     const [isActive, setIsActive] = useState(null);
     const [isActive2, setIsActive2] = useState(null);
+    const navigate = useNavigate()
     console.log(user.phoneNumber);
     return (
         <header id='header' className='header'>
@@ -41,8 +42,9 @@ const Header = () => {
                             <button className='header__nav-btn'>Ru</button>
                             <button className='header__nav-btn'>En</button>
                         <ul className='header__nav-list'>
-                            <NavLink to='/' className='header__nav-item'><FiSearch/></NavLink>
-
+                                        <label htmlFor="search" onClick={() => navigate('/catalog/all')}>
+                                            <FiSearch/>
+                                        </label>
                                 {
                                     user.email?.length || user.phoneNumber?.length ?
                                     <span style={{display: 'flex', columnGap: '10px'}}>
@@ -56,7 +58,7 @@ const Header = () => {
                                 }
 
 
-                            <NavLink to='/favorites' className='header__nav-item'><MdOutlineFavoriteBorder/></NavLink>
+                            <NavLink to='/favorites' className='header__nav-item'><MdOutlineFavoriteBorder/>{user.favorites && user.favorites.length}</NavLink>
                             <NavLink to='/basket' className='header__nav-item'><RiShoppingCart2Line/></NavLink>
                         </ul>
                     </div>

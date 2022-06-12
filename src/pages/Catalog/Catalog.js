@@ -3,10 +3,10 @@ import {NavLink, Link, useParams} from "react-router-dom";
 import {GoChevronRight} from 'react-icons/go'
 import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import img from './img/1.png'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { motion, AnimatePresence } from "framer-motion"
-import {collection, doc, getDocs, updateDoc} from "@firebase/firestore";
-import {db} from "../../firebase/firebase";
+import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
+
 
 const Catalog = () => {
 
@@ -14,18 +14,8 @@ const Catalog = () => {
     const clothes = useSelector(s => s.clothes.clothes );
     const params = useParams();
     const [sort, setSort] = useState('');
+    const [search, setSearch] = useState('')
 
-
-
-
-    const addFavoritesForUser =  (obj) => {
-        getDocs(collection(db,'users'))
-            .then((res) => {
-                console.log(res.docs.map(el => ({...el.data(), id:el.id}) ).find(item => item.email === user.email).id)
-                updateDoc(doc(db, 'users', res.docs.map(el => ({...el.data(), id:el.id}) ).find(item => item.email === user.email).id), obj)
-            })
-
-    };
 
     return (
         <section className='catalog'>
@@ -63,6 +53,8 @@ const Catalog = () => {
                         </ul>
                     </div>
                     <div className='catalog__content-right'>
+
+                        <input placeholder='search' id='search' value={search} onChange={(e) => setSearch(e.target.value)} type="search" style={{width:'100%', height: '50px'}}/>
                         <div className='catalog__content-selects'>
                             <select className='catalog__content-select' name="1">
                                 <option value="1">Сортировать</option>
@@ -72,7 +64,7 @@ const Catalog = () => {
                         </div>
                         <div className='catalog__content-row'>
                             {
-                                clothes && clothes.filter((item, idx, array) => {
+                                clothes && clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()) ).filter((item, idx, array) => {
                                     switch (params.category) {
                                         case 'all' :  return item;
                                         case 'new' : return idx > array.length - 5;
@@ -90,11 +82,7 @@ const Catalog = () => {
                                         <Link className='catalog__content-link' to={`/product/${item.id}`}>
                                             <img className='catalog__content-img' src={img} alt=""/>
                                         </Link>
-                                        <button className='catalog__content-fav' style={{color: user.favorites.findIndex(el => el.id === item.id ) >= 0 ? "tomato" : ''}} onClick={ () =>{
-                                          addFavoritesForUser( {
-                                            ...user,
-                                            favorites:  user.favorites.findIndex(el => el.id === item.id) >= 0 ? user.favorites.filter((el) => el.id !== item.id) : [...user.favorites, item]
-                                        })}}><MdOutlineFavoriteBorder/></button>
+                                        <BtnForFavorites item={item}/>
                                         <p className='catalog__content-name'>{item.title}</p>
                                         <p className='catalog__content-price'>{item.price} грн</p>
                                         <ul className='catalog__content-sizes'>

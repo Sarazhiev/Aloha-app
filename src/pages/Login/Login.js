@@ -4,9 +4,10 @@ import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {registerUser} from "../../redux/reducers/user";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from "../../firebase/firebase";
+import {auth, db} from "../../firebase/firebase";
 import Google from "../LoginWithGoogle/Google";
 import {FcCellPhone} from 'react-icons/fc'
+import {collection, doc, getDocs, updateDoc} from "@firebase/firestore";
 
 
 
@@ -38,14 +39,16 @@ const Login = () => {
 
     const addUser = (data) => {
         signInWithEmailAndPassword(auth, data.email, data.password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                dispatch(registerUser({obj: user}))
-                localStorage.setItem('user', JSON.stringify(user))
-                reset();
-                navigate('/')
-                // ...
+                await getDocs(collection(db,'users'))
+                    .then(async (res) => {
+                        await dispatch(registerUser({obj: res.docs.map(el => ({...el.data(), id:el.id}) ).find(item => item.email === user.email)}));
+                        await localStorage.setItem('user', JSON.stringify(res.docs.map(el => ({...el.data(), id:el.id}) ).find(item => item.email === user.email)));
+                        await reset();
+                        await navigate('/')
+                    })
             })
             .catch((error) => console.log(`bad request ${error}`));
     };
