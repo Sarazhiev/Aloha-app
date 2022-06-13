@@ -6,7 +6,7 @@ import {db} from "../../firebase/firebase";
 import {registerUser} from "../../redux/reducers/user";
 
 const BtnForFavorites = ({item}) => {
-    const user = useSelector(s => s.user.user)
+    const user = useSelector(s => s.user.user);
     const dispatch = useDispatch();
 
     const addFavoritesForUser =  (obj) => {

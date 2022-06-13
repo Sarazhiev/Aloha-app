@@ -30,16 +30,14 @@ const Product = () => {
                 <div className="catalog__crumbs">
                     <Link className="catalog__link" to='/'>Главная</Link>
                     >
-                    <Link className="catalog__link" to='/catalog'>Каталог</Link>
-                    >
-                    <Link to='/coat' className="catalog__link">Пальто</Link>
+                    <Link className="catalog__link" to='/catalog/all'>Каталог</Link>
                     >
                     <NavLink to='/product' className="catalog__link">Кремовое пальто</NavLink>
                 </div>
                 <div className='product__content'>
                     <div className='product__card'>
                         <Swiper
-                            spaceBetween={10}
+                            spaceBetween={50}
                             thumbs={{swiper: thumbsSwiper}}
                             modules={[FreeMode, Navigation, Thumbs]}
                             className="mySwiper2"

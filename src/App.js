@@ -6,7 +6,6 @@ import Layout from "./Layout/Layout";
 import Home from "./pages/Home/Home";
 import Catalog from "./pages/Catalog/Catalog";
 import Product from "./pages/Product/Product";
-import Coat from "./pages/Clothes/Coat/Coat";
 import Basket from "./pages/Basket/Basket";
 import Profile from "./pages/Profile/Profile";
 import Register from "./pages/Register/Register";
@@ -51,7 +50,6 @@ function App() {
           <Route path='' element={<Home/>}/>
           <Route path='catalog/:category' element={<Catalog/>}/>
           <Route path='product/:id' element={<Product/>}/>
-          <Route path='coat' element={<Coat/>}/>
           <Route path='basket' element={<Basket/>}/>
           <Route path='profile' element={<Profile/>}/>
           <Route path='favorites' element={<Favorites/>}/>

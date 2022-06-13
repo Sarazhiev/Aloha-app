@@ -1,3 +1,14 @@
 .favorites {
   padding: 100px 0;
+  &__info {
+    text-align: center;
+    margin: 0 auto;
+  }
+  &__title {
+    color: #E0BEA2;
+    margin-bottom: 30px;
+  }
+  &__img {
+    width: 100%;
+  }
 }

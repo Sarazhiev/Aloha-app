@@ -137,7 +137,8 @@ const Header = () => {
                         </li>
                         <li className='header__nav-items'>Корпоративные заказы и оптом</li>
                         <li className='header__nav-items'><NavLink className='header__nav-items' to='/contact'>Контакты</NavLink></li>
-                        <li className='header__nav-items'><NavLink className='header__nav-items' to='/admin/users'>Админ панель</NavLink></li>
+                        {user.email === 'admin@mail.ru' &&  <li className='header__nav-items'><NavLink className='header__nav-items' to='/admin/users'>Админ панель</NavLink></li> }
+
                     </ul>
 
                 </nav>
