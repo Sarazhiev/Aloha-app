@@ -11,9 +11,10 @@
     column-gap: 20px;
   }
   &__input {
-    width: 270px;
+    width: calc(33.33333% - 7px);
     height: 50px;
     border: 0.5px solid #252525;
+    padding-left: 15px;
   }
   &__order {
     width: 560px;

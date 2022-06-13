@@ -39,10 +39,10 @@ const Header = () => {
 
                     </Link>
                     <div className='header__nav-right'>
-                            <button className='header__nav-btn'>Ru</button>
-                            <button className='header__nav-btn'>En</button>
+                            {/*<button className='header__nav-btn'>Ru</button>*/}
+                            {/*<button className='header__nav-btn'>En</button>*/}
                         <ul className='header__nav-list'>
-                                        <label htmlFor="search" onClick={() => navigate('/catalog/all')}>
+                                        <label style={{fontSize: '25px', cursor: 'pointer'}} htmlFor="search" onClick={() => navigate('/catalog/all')}>
                                             <FiSearch/>
                                         </label>
                                 {
@@ -56,17 +56,20 @@ const Header = () => {
                                        </span>
                                         : <Link to='/login' className='header__nav-item2'>войти</Link>
                                 }
+                            {
+                                user.email?.length || user.phoneNumber?.length ?
+                                    <NavLink to='/favorites' className='header__nav-item'><MdOutlineFavoriteBorder/>{user.favorites && user.favorites.length}</NavLink>
+                                    : ''
+                            }
 
-
-                            <NavLink to='/favorites' className='header__nav-item'><MdOutlineFavoriteBorder/>{user.favorites && user.favorites.length}</NavLink>
                             <NavLink to='/basket' className='header__nav-item'><RiShoppingCart2Line/></NavLink>
                         </ul>
                     </div>
                     <ul  className={`header__list ${burger ? 'header__list_active' : ''}`}>
-                        <Link to='catalog/all' className='header__nav-items'>ПОСМОТРЕТЬ ВСЕ</Link>
+                        <NavLink to='catalog/all' className='header__nav-items'>ПОСМОТРЕТЬ ВСЕ</NavLink>
                         <li className='header__nav-items'>БЕСТСЕЛЛЕРЫ</li>
                         <li className='header__nav-items'>
-                            <Link to={`/catalog/new`}>НОВИНКИ</Link></li>
+                            <NavLink className='header__nav-items' to={`/catalog/new`}>НОВИНКИ</NavLink></li>
                         <li className='header__nav-items' >Мужчинам <button className='header__nav-arrow' onClick={() => setIsActive(!isActive)}>
                             {
                                 isActive ? <svg width="16" height="10" viewBox="0 0 16 10" fill="none"
@@ -133,8 +136,8 @@ const Header = () => {
                             }
                         </li>
                         <li className='header__nav-items'>Корпоративные заказы и оптом</li>
-                        <li className='header__nav-items'><Link to='/contact'>Контакты</Link></li>
-                        <li className='header__nav-items'><Link to='/admin/users'>Админ панель</Link></li>
+                        <li className='header__nav-items'><NavLink className='header__nav-items' to='/contact'>Контакты</NavLink></li>
+                        <li className='header__nav-items'><NavLink className='header__nav-items' to='/admin/users'>Админ панель</NavLink></li>
                     </ul>
 
                 </nav>

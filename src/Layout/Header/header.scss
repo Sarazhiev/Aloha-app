@@ -11,6 +11,9 @@
       font-size: 15px;
       cursor: pointer;
       color: black;
+      &.active {
+        color: #E0BEA2;
+      }
     }
     &-itm {
       list-style-type: disc;
@@ -47,6 +50,7 @@
     &-item {
       font-size: 23px;
       color: #E0BEA2;
+      cursor: pointer;
       &.active {
         color: tomato;
       }

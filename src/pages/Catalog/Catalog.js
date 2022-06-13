@@ -14,7 +14,7 @@ const Catalog = () => {
     const clothes = useSelector(s => s.clothes.clothes );
     const params = useParams();
     const [sort, setSort] = useState('');
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('');
 
 
     return (
@@ -30,7 +30,7 @@ const Catalog = () => {
                         <h3 className='catalog__content-title'>Каталог</h3>
                         <ul className='catalog__content-list'>
                             <li className='catalog__content-item'>
-                                <Link to={`/catalog/new`}>New</Link>
+                                <NavLink className='catalog__content-item' to={`/catalog/new`}>New</NavLink>
                                 </li>
                             <li className='catalog__content-item'>Bestsellers</li>
                             {
@@ -38,29 +38,37 @@ const Catalog = () => {
                                     .filter((item, idx, arr) => arr.map(el => el.category).indexOf(item.category) === idx)
                                     .map((item) => (
                                         <li key={item.category} className='catalog__content-item'>
-                                            <Link to={`/catalog/${item.category}`}>{item.category}</Link>
+                                            <NavLink className='catalog__content-item' to={`/catalog/${item.category}`}>{item.category}</NavLink>
                                         </li>
                                     ))
 
                             }
                             <li className='catalog__content-item'>
-                                <Link to={`/catalog/sale`}>Sale</Link>
+                                <NavLink className='catalog__content-item' to={`/catalog/sale`}>Sale</NavLink>
                                 </li>
                             <li className='catalog__content-item'>
-                                <Link to={`/catalog/all`}>Посмотреть всё</Link>
+                                <NavLink className='catalog__content-item' to={`/catalog/all`}>Посмотреть всё</NavLink>
                             </li>
 
                         </ul>
                     </div>
                     <div className='catalog__content-right'>
 
-                        <input placeholder='search' id='search' value={search} onChange={(e) => setSearch(e.target.value)} type="search" style={{width:'100%', height: '50px'}}/>
-                        <div className='catalog__content-selects'>
-                            <select className='catalog__content-select' name="1">
-                                <option value="1">Сортировать</option>
-                                <option value="2">К большему</option>
-                                <option value="3">К меньшему</option>
-                            </select>
+                        <input className='catalog__inputSearch' placeholder='search' id='search' value={search} onChange={(e) => setSearch(e.target.value)} type="search"/>
+                        <div className='shop__sort-type'>
+                            {sort
+                                ? <h3 className='catalog__info'>Сортировка : <span>{sort === 'big' ? 'к большему' : 'к меньшему'}</span></h3>
+                                : ''
+                            }
+                            <div className='catalog__sorts'>
+                                <button type='btn' className={`catalog__sort ${sort === 'big' ? 'active' : ''}`}
+                                        onClick={() => setSort('big' !== sort ? 'big' : '')}>К большему</button>
+                                <button type='btn' className={`catalog__sort ${sort === 'less' ? 'active' : ''}`}
+                                        onClick={() => setSort('less' !== sort ? 'less' : '')}>К меньшему</button>
+                            </div>
+
+
+
                         </div>
                         <div className='catalog__content-row'>
                             {
@@ -70,6 +78,12 @@ const Catalog = () => {
                                         case 'new' : return idx > array.length - 5;
                                         case 'sale' : return item.priceSale;
                                         default:  return item.category === params.category
+                                    }
+                                }).sort((a,b)=> {
+                                    if (sort === 'big') {
+                                        return(b.price) - ( a.price)
+                                    } else if (sort === 'less') {
+                                        return( a.price) - ( b.price)
                                     }
                                 }).map((item) => (
                                     <AnimatePresence exitBeforeEnter onExitComplete presenceAffectsLayout >
@@ -82,7 +96,9 @@ const Catalog = () => {
                                         <Link className='catalog__content-link' to={`/product/${item.id}`}>
                                             <img className='catalog__content-img' src={img} alt=""/>
                                         </Link>
-                                        <BtnForFavorites item={item}/>
+                                        {
+                                            user.email?.length || user.phoneNumber?.length ? <BtnForFavorites item={item}/> : ''
+                                        }
                                         <p className='catalog__content-name'>{item.title}</p>
                                         <p className='catalog__content-price'>{item.price} грн</p>
                                         <ul className='catalog__content-sizes'>
