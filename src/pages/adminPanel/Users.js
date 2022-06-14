@@ -12,7 +12,7 @@ import {useNavigate} from 'react-router-dom'
 
 
 const columns = [
-    { id: 'title', label: 'Title', minWidth: 170 },
+    { id: 'id', label: 'Id', minWidth: 170 },
     { id: 'login', label: 'Login', minWidth: 100 },
     {
         id: 'number',
@@ -25,29 +25,22 @@ const columns = [
         label: 'Email',
         minWidth: 170,
         align: 'right'
-    },
-    {
-        id: 'price',
-        label: 'Price',
-        minWidth: 170,
-        align: 'right'
-    },
+    }
 ];
 
 
 
 function createData(
-    title,
+    id,
     login,
     number,
-    email,
-    price
+    email
 ) {
-    return { title,login, number, email, price };
+    return { id,login, number, email };
 }
 
 const rows = [
-    createData('India', 'Nurs', +996500326320, 'Nurs@mail.ru', 200),
+    createData('1', 'Nurs', +996500326320, 'Nurs@mail.ru'),
 
 ];
 
@@ -76,9 +69,6 @@ const Users = () => {
                         <TableRow>
                             <TableCell align="center" colSpan={4}>
                                 Users
-                            </TableCell>
-                            <TableCell align="center" colSpan={1}>
-                                <Button onClick={() => navigate('add')} style={{color : '#E0BEA2', borderColor: '#E0BEA2'}} variant="outlined" >Add</Button>
                             </TableCell>
                         </TableRow>
                         <TableRow>

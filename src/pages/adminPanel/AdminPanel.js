@@ -4,7 +4,6 @@ import Clothes from "./Clothes";
 import {Routes, Route, Navigate} from 'react-router-dom'
 import Users from "./Users";
 import ClothesAdd from "./ClothesAdd";
-import UsersAdd from "./UsersAdd";
 
 const AdminPanel = () => {
     const location = useLocation()
@@ -16,12 +15,12 @@ const AdminPanel = () => {
             {location.pathname === '/admin' && <Navigate to='/admin/users'/>}
             <aside className='admin__aside'>
                 <ul>
-                    <li>
-                        <NavLink to='users'>Users</NavLink>
+                    <li className='admin__title'>
+                        <NavLink className='admin__title' to='users'>Users</NavLink>
 
                     </li>
-                    <li>
-                        <NavLink to='clothes'>Clothes</NavLink>
+                    <li className='admin__title'>
+                        <NavLink className='admin__title' to='clothes'>Clothes</NavLink>
                     </li>
                 </ul>
             </aside>
@@ -30,7 +29,6 @@ const AdminPanel = () => {
                     <Route path='clothes' element={<Clothes/>}/>
                     <Route path='users' element={<Users/>}/>
                     <Route path='clothes/add' element={<ClothesAdd/>}/>
-                    <Route path='users/add' element={<UsersAdd/>}/>
                 </Routes>
             </div>
         </section>
