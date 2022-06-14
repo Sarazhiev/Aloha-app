@@ -8,21 +8,25 @@ import img2 from './img/Rectangle 24.png'
 import img3 from './img/Rectangle 23.png'
 import img4 from './img/Rectangle 22.png'
 import img5 from './img/Rectangle 21.png'
-
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import {Link, NavLink, useParams} from "react-router-dom";
+import {Link, NavLink, useLocation, useParams} from "react-router-dom";
 import Rec from "./Rec/Rec";
 import {useSelector} from "react-redux";
+import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
 
 const Product = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [isActive, setIsActive] = useState(false);
+    const [color, setColor] = useState("black");
+    const [size, setSize] = useState('');
     const params = useParams();
     const clothes = useSelector(s =>  s.clothes.clothes);
+    const user = useSelector(s =>  s.user.user);
+    const location = useLocation();
+
     return (
 
         <section className='product'>
@@ -96,26 +100,29 @@ const Product = () => {
                                 <p className='product__title'>{item.title}</p>
                                 <p className='product__price'>{item.price}</p>
 
-                                <ul className='product__list'>
+                                <ul className='product__content-sizes'>
                                     {
-                                        item.colors.map((color) => (
-                                            <li style={{background: color}} className='product__white'/>
+                                        item.colors.map(item => (
+                                            <li key={item} onClick={() => setColor(item)} style={{background: item, border: '1px solid grey', cursor: 'pointer'}} className={`product__content-color ${item === color ? 'product__content-color_active' : ''}`}/>
                                         ))
                                     }
                                 </ul>
-                                <select className='product__select' name="1">
-                                    <option value="1">Выберите размер</option>
+
+                                <ul className='product__content-sizes'>
                                     {
-                                        item.size.map((size) => (
-                                            <>
-                                                <option value="1">{size}</option>
-                                            </>
+                                        item.size.map(item => (
+                                            <li key={item} onClick={() => setSize(item)} className={`product__content-size ${item === size ? 'product__content-size_active' : ''} `}>{item}</li>
                                         ))
                                     }
-                                </select>
+                                </ul>
                                 <div className='product__btns'>
                                     <button className='product__btn1'>В КОРЗИНУ</button>
-                                    <button className='product__btn2'><MdOutlineFavoriteBorder/> В ИЗБРАННОЕ</button>
+
+                                    {
+                                        user.email?.length || user.phoneNumber?.length ?
+                                            <BtnForFavorites item={item}/> : ''
+                                    }
+
                                 </div>
                                 <p className='product__info'>Подробности</p>
 

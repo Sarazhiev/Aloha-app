@@ -9,10 +9,14 @@ import img1 from "../../Home/Category/Rectangle 7.png";
 import img2 from "../../Home/Category/Rectangle 9.png";
 import img3 from "../../Home/Category/Rectangle 10.png";
 import img4 from "../../Home/Category/Rectangle 11.png";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 
 const Rec = () => {
+    const clothes = useSelector(s => s.clothes.clothes);
+    console.log(clothes)
+    const  params = useParams();
     return (
         <div className='rec'>
             <h3 className='rec__title'>Вам может понравиться</h3>
@@ -34,10 +38,20 @@ const Rec = () => {
                 modules={[Navigation, Mousewheel, Keyboard, Autoplay]}
                 className="mySwiper"
             >
-                <SwiperSlide><div className='category__content'><Link className='catalog__content-link' to='/product'><img className='category__img' src={img1} alt="img"/></Link><p className='rec__name'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, vel?</p><button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button></div></SwiperSlide>
-                <SwiperSlide><div className='category__content'><Link className='catalog__content-link' to='/product'><img className='category__img' src={img2} alt="img"/></Link><p className='rec__name'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, vel?</p><button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button></div></SwiperSlide>
-                <SwiperSlide><div className='category__content'><Link className='catalog__content-link' to='/product'><img className='category__img' src={img3} alt="img"/></Link><p className='rec__name'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, vel?</p><button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button></div></SwiperSlide>
-                <SwiperSlide><div className='category__content'><Link className='catalog__content-link' to='/product'><img className='category__img' src={img4} alt="img"/></Link><p className='rec__name'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, vel?</p><button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button></div></SwiperSlide>
+                {
+                    clothes.filter((item, idx) => item.category === idx).map((item) => (
+                        <SwiperSlide>
+                            <div className='category__content'>
+                                <Link className='catalog__content-link' to='/product'>
+                                    <img className='category__img' src={img1} alt="img"/>
+                                </Link>
+                                <p className='rec__name'>{item.title}</p>
+                                <button className='catalog__content-fav'><MdOutlineFavoriteBorder/></button>
+                            </div>
+                        </SwiperSlide>
+                    ))
+                }
+
             </Swiper>
         </div>
     );
