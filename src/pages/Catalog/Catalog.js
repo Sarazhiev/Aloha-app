@@ -1,21 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink, Link, useParams} from "react-router-dom";
 import {GoChevronRight} from 'react-icons/go'
-import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import img from './img/1.png'
 import {useDispatch, useSelector} from "react-redux";
 import {motion, AnimatePresence} from "framer-motion"
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
+import 'antd/dist/antd.css';
+import { Pagination } from 'antd';
 
 
 const Catalog = () => {
 
     const user = useSelector(s => s.user.user);
     const clothes = useSelector(s => s.clothes.clothes);
+    const [page, setPage] = useState(1);
+
     const params = useParams();
     const [sort, setSort] = useState('');
     const [search, setSearch] = useState('');
-
 
     return (
         <section className='catalog'>
@@ -23,7 +25,7 @@ const Catalog = () => {
                 <div className="catalog__crumbs">
                     <Link className="catalog__link" to='/'>Главная</Link>
                     <GoChevronRight/>
-                    <p className="catalog__link">Каталог</p>
+                    <span className="catalog__link">Каталог</span>
                 </div>
                 <div className='catalog__content'>
                     <div className='catalog__content-left'>
@@ -42,7 +44,6 @@ const Catalog = () => {
                                                      to={`/catalog/${item.category}`}>{item.category}</NavLink>
                                         </li>
                                     ))
-
                             }
                             <li className='catalog__content-item'>
                                 <NavLink className='catalog__content-item' to={`/catalog/sale`}>Sale</NavLink>
@@ -74,6 +75,7 @@ const Catalog = () => {
 
 
                         </div>
+
                         <div className='catalog__content-row'>
                             {
                                 clothes && clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).filter((item, idx, array) => {
@@ -93,7 +95,7 @@ const Catalog = () => {
                                     } else if (sort === 'less') {
                                         return (a.price) - (b.price)
                                     }
-                                }).map((item) => (
+                                }).filter((item, idx) => idx + 1 <= page * 9 && idx  >= page * 9 - 9).map((item) => (
                                     <AnimatePresence exitBeforeEnter onExitComplete presenceAffectsLayout>
                                         <motion.div
                                             initial={{opacity: 0, y: 100, x: 100}}
@@ -127,11 +129,42 @@ const Catalog = () => {
                                             </ul>
                                         </motion.div>
                                     </AnimatePresence>
+
                                 ))
                             }
+
                         </div>
                     </div>
                 </div>
+
+                {
+                    clothes.filter((item, idx, array) => {
+                        switch (params.category) {
+                            case 'all' :
+                                return item;
+                            case 'new' :
+                                return idx > array.length - 5;
+                            case 'sale' :
+                                return item.priceSale;
+                            default:
+                                return item.category === params.category
+                        }
+                    }).length > 9 ?
+                        <Pagination onChange={setPage} simple Current={page} total={clothes.filter((item, idx, array) => {
+                            switch (params.category) {
+                                case 'all' :
+                                    return item;
+                                case 'new' :
+                                    return idx > array.length - 5;
+                                case 'sale' :
+                                    return item.priceSale;
+                                default:
+                                    return item.category === params.category
+                            }
+                        }).length} pageSize={9} /> : ''
+                }
+
+
             </div>
 
         </section>
