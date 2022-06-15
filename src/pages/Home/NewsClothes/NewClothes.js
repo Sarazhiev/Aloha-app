@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import {Link} from "react-router-dom";
+import {animateScroll} from "react-scroll";
 
 const NewClothes = () => {
     const clothes = useSelector(s =>  s.clothes.clothes);
@@ -36,7 +37,10 @@ const NewClothes = () => {
                         clothes && clothes.filter((item, idx, array) => idx > array.length - 5).map(item => (
                             <SwiperSlide key={item.id}>
                                 <div className='category__content'>
-                                    <Link className='catalog__content-link' to={`/product/${item.id}`}>
+                                    <Link onClick={() => animateScroll.scrollToTop({
+                                        delay: 0,
+                                        duration: 0
+                                    })} className='catalog__content-link' to={`/product/${item.id}`}>
                                     <img className='category__img' src={img1} alt="img"/>
                                     </Link>
                                     <p className='category__text'>{item.title}</p>

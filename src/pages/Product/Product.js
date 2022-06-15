@@ -41,6 +41,11 @@ const Product = () => {
                 <div className='product__content'>
                     <div className='product__card'>
                         <Swiper
+                            style={{
+                                "--swiper-navigation-color": "#fff",
+                                "--swiper-pagination-color": "#fff",
+                            }}
+                            Mousewheel={false}
                             spaceBetween={50}
                             thumbs={{swiper: thumbsSwiper}}
                             modules={[FreeMode, Navigation, Thumbs]}
@@ -70,28 +75,26 @@ const Product = () => {
                             onSwiper={setThumbsSwiper}
                             spaceBetween={10}
                             slidesPerView={5}
+
                             freeMode={true}
                             watchSlidesProgress={true}
                             modules={[FreeMode, Navigation, Thumbs]}
-                            className="mySwiper swiper-nurs"
+                            className="mySwiper swiper-nurs product"
                         >
-                            <SwiperSlide>
+                            <div className='swiper__opacity'><SwiperSlide>
                                 <img src={img}/>
                             </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={img1}/>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={img2}/>
-                            </SwiperSlide> <SwiperSlide>
-                            <img src={img3}/>
-                        </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={img4}/>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={img5}/>
-                            </SwiperSlide>
+                                <SwiperSlide>
+                                    <img src={img1}/>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <img src={img2}/>
+                                </SwiperSlide> <SwiperSlide>
+                                    <img src={img3}/>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <img src={img4}/>
+                                </SwiperSlide></div>
                         </Swiper>
                     </div>
                     {
@@ -108,22 +111,33 @@ const Product = () => {
                                     }
                                 </ul>
 
-                                <ul className='product__content-sizes'>
+                                <ul style={{marginTop: '40px'}} className='product__content-sizes'>
                                     {
                                         item.size.map(item => (
                                             <li key={item} onClick={() => setSize(item)} className={`product__content-size ${item === size ? 'product__content-size_active' : ''} `}>{item}</li>
                                         ))
                                     }
                                 </ul>
+                                {
+                                    item.inStock ?
+                                        <p className='product__content-choose'>
+                                            В наличии : <span>{item.inStock}</span>
+                                        </p> :
+                                        <p className='product__content-choose'>
+                                            Нет в наличии !
+                                        </p>
+                                }
                                 <div className='product__btns'>
+                                    <input className='product__input' type="number"/>
                                     <button className='product__btn1'>В КОРЗИНУ</button>
 
-                                    {
-                                        user.email?.length || user.phoneNumber?.length ?
-                                            <BtnForFavorites item={item}/> : ''
-                                    }
+
 
                                 </div>
+                                {
+                                    user.email?.length || user.phoneNumber?.length ?
+                                        <BtnForFavorites product={true} item={item}/> : ''
+                                }
                                 <p className='product__info'>Подробности</p>
 
                                 <p className='product__save' onClick={() => setIsActive(!isActive)}>

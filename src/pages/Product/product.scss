@@ -38,7 +38,6 @@
       text-transform: uppercase;
       transition: .3s;
       cursor: pointer;
-      margin-bottom: 67px;
       &:hover , &_active {
         color: #fff;
         background: black;
@@ -104,9 +103,14 @@
     width: 530px;
     height: 50px;
   }
+  &__input {
+    width: 50px;
+    text-align: center;
+  }
   &__btns {
     display: flex;
-    column-gap: 20px;
+    column-gap: 10px;
+    margin-bottom: 20px;
   }
   &__btn1 {
     width: 255px;
@@ -120,7 +124,7 @@
     color: #FFFFFF;
   }
   &__btn2 {
-    width: 255px;
+    width: 310px;
     height: 50px;
     font-weight: 300;
     font-size: 16px;
@@ -144,13 +148,15 @@
     font-size: 16px;
     line-height: 19px;
     color: #252525;
+    text-align: center;
+    cursor: pointer;
   }
+
   &__descr {
     font-weight: 200;
     font-size: 14px;
     line-height: 25px;
     color: #252525;
-
   }
 
 }
@@ -240,5 +246,21 @@
   display: flex;
   flex-direction: column!important;
   row-gap: 5.5px;
+}
 
+.product.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+ .product.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

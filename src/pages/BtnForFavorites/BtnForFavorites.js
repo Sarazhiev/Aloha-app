@@ -6,7 +6,7 @@ import {db} from "../../firebase/firebase";
 import {registerUser} from "../../redux/reducers/user";
 import {useLocation} from "react-router-dom";
 
-const BtnForFavorites = ({item}) => {
+const BtnForFavorites = ({item, product}) => {
     const user = useSelector(s => s.user.user);
     const dispatch = useDispatch();
     const location = useLocation();
@@ -22,9 +22,9 @@ const BtnForFavorites = ({item}) => {
     return (
         <>
             {
-                location.pathname.includes('product')
+                product
                     ?
-                    <button className='product__btn2' style={{background: user.favorites.findIndex(el => el.id === item.id ) >= 0 ? "tomato" : '', color: user.favorites.findIndex(el => el.id === item.id ) >= 0 ? "white" : ''}} onClick={ () =>{
+                    <button className='product__btn2' style={{background: user.favorites.findIndex(el => el.id === item.id ) >= 0 ? "tomato" : '', color: user.favorites.findIndex(el => el.id === item.id ) >= 0 ? "white" : '', border: user.favorites.findIndex(el => el.id === item.id ) >= 0 ? "none" : ''}} onClick={ () =>{
                         addFavoritesForUser( {
                             ...user,
                             favorites:  user.favorites.findIndex(el => el.id === item.id) >= 0 ? user.favorites.filter((el) => el.id !== item.id) : [...user.favorites, item]

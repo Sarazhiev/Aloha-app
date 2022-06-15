@@ -102,7 +102,8 @@ const Register = () => {
                     <h2 style={{marginTop: '20px'}} className='register__title'>Войдите через Google или телефон</h2>
                     <div style={{display:"flex", alignItems:"center", columnGap: '10px', cursor: 'pointer'}}>
                         <Google/>
-                        <Link to='/number' style={{fontSize: '30px'}}><FcCellPhone/></Link>
+                        <p><Link to='/number' style={{fontSize: '30px'}}><FcCellPhone/></Link></p>
+
                     </div>
 
                     <Link className='register__home' to='/'>Выйти на главную</Link>

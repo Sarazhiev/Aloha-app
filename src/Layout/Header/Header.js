@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FiSearch} from 'react-icons/fi'
 import {BiUser} from 'react-icons/bi'
 import {RiShoppingCart2Line} from 'react-icons/ri'
 import {MdOutlineFavoriteBorder} from 'react-icons/md'
-import {NavLink, Link, useNavigate} from "react-router-dom";
+import {NavLink, Link, useNavigate, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logOutUser} from "../../redux/reducers/user";
 
@@ -13,8 +13,13 @@ const Header = () => {
     const [burger, setBurger] = useState(false);
     const [isActive, setIsActive] = useState(null);
     const [isActive2, setIsActive2] = useState(null);
-    const navigate = useNavigate()
-    console.log(user.phoneNumber);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        setBurger(false)
+    },[location.pathname]);
+
     return (
         <header id='header' className='header'>
             <div className="container">

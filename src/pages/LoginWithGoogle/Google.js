@@ -26,7 +26,7 @@ const Google = () => {
     };
 
     return (
-        <p onClick={createOrLoginUser} style={{fontSize: '25px'}}><FcGoogle/></p>
+        <p onClick={createOrLoginUser} style={{fontSize: '25px', display: 'flex'}}><FcGoogle/></p>
     );
 };
 

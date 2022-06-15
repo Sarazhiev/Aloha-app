@@ -7,6 +7,7 @@ import {motion, AnimatePresence} from "framer-motion"
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
 import 'antd/dist/antd.css';
 import { Pagination } from 'antd';
+import {animateScroll} from "react-scroll";
 
 
 const Catalog = () => {
@@ -32,7 +33,10 @@ const Catalog = () => {
                         <h3 className='catalog__content-title'>Каталог</h3>
                         <ul className='catalog__content-list'>
                             <li className='catalog__content-item'>
-                                <NavLink className='catalog__content-item' to={`/catalog/new`}>New</NavLink>
+                                <NavLink onClick={() => animateScroll.scrollToTop({
+                                    delay: 0,
+                                    duration: 0
+                                })} className='catalog__content-item' to={`/catalog/new`}>New</NavLink>
                             </li>
                             <li className='catalog__content-item'>Bestsellers</li>
                             {
@@ -40,16 +44,25 @@ const Catalog = () => {
                                     .filter((item, idx, arr) => arr.map(el => el.category).indexOf(item.category) === idx)
                                     .map((item) => (
                                         <li key={item.category} className='catalog__content-item'>
-                                            <NavLink className='catalog__content-item'
+                                            <NavLink onClick={() => animateScroll.scrollToTop({
+                                                delay: 0,
+                                                duration: 0
+                                            })} className='catalog__content-item'
                                                      to={`/catalog/${item.category}`}>{item.category}</NavLink>
                                         </li>
                                     ))
                             }
                             <li className='catalog__content-item'>
-                                <NavLink className='catalog__content-item' to={`/catalog/sale`}>Sale</NavLink>
+                                <NavLink onClick={() => animateScroll.scrollToTop({
+                                        delay: 0,
+                                        duration: 0
+                                    })} className='catalog__content-item' to={`/catalog/sale`}>Sale</NavLink>
                             </li>
                             <li className='catalog__content-item'>
-                                <NavLink className='catalog__content-item' to={`/catalog/all`}>Посмотреть всё</NavLink>
+                                <NavLink onClick={() => animateScroll.scrollToTop({
+                                        delay: 0,
+                                        duration: 0
+                                    })} className='catalog__content-item' to={`/catalog/all`}>Посмотреть всё</NavLink>
                             </li>
 
                         </ul>
@@ -127,12 +140,15 @@ const Catalog = () => {
                                             exit={{opacity: 0, y: -100, x: 100}}
                                             transition={{duration: 0.6}}
                                             key={item.id} className='catalog__content-card'>
-                                            <Link className='catalog__content-link' to={`/product/${item.id}`}>
+                                            <Link onClick={() => animateScroll.scrollToTop({
+                                                delay: 0,
+                                                duration: 0
+                                            })} className='catalog__content-link' to={`/product/${item.id}`}>
                                                 <img className='catalog__content-img' src={img} alt=""/>
                                             </Link>
                                             {
                                                 user.email?.length || user.phoneNumber?.length ?
-                                                    <BtnForFavorites item={item}/> : ''
+                                                    <BtnForFavorites item={item}/>  : ''
                                             }
                                             <p className='catalog__content-name'>{item.title}</p>
                                             <p className='catalog__content-price'>{item.price} грн</p>
@@ -153,7 +169,6 @@ const Catalog = () => {
                                             </ul>
                                         </motion.div>
                                     </AnimatePresence>
-
                                 ))
                             }
 

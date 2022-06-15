@@ -10,6 +10,7 @@ import img3 from './Rectangle 10.png'
 import img4 from './Rectangle 11.png'
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import {animateScroll} from "react-scroll";
 
 const Category = () => {
 
@@ -43,7 +44,10 @@ const Category = () => {
                         clothes && clothes.map(item => (
                             <SwiperSlide key={item.id}>
                                 <div className='category__content'>
-                                    <Link className='catalog__content-link' to={`/catalog/${item.category}`}>
+                                    <Link onClick={() => animateScroll.scrollToTop({
+                                        delay: 0,
+                                        duration: 0
+                                    })} className='catalog__content-link' to={`/catalog/${item.category}`}>
                                     <img className='category__img' src={img1} alt="img"/>
                                     </Link>
                                     <p className='category__text'>{item.category}</p>

@@ -6,9 +6,8 @@ import Users from "./Users";
 import ClothesAdd from "./ClothesAdd";
 
 const AdminPanel = () => {
-    const location = useLocation()
+    const location = useLocation();
 
-    console.log(location)
 
     return (
         <section className='admin'>
