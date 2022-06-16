@@ -124,7 +124,7 @@
     color: #FFFFFF;
   }
   &__btn2 {
-    width: 310px;
+    width: 315px;
     height: 50px;
     font-weight: 300;
     font-size: 16px;
@@ -135,14 +135,7 @@
     border: 1px solid #363A45;
     position: relative;
   }
-  &__info {
-    margin: 20px 0;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 19px;
-    color: #252525;
-  }
+
   &__save {
     font-weight: 300;
     font-size: 16px;
@@ -150,13 +143,19 @@
     color: #252525;
     text-align: center;
     cursor: pointer;
+    margin-top: 20px;
   }
 
   &__descr {
-    font-weight: 200;
+    font-weight: 500;
     font-size: 14px;
     line-height: 25px;
-    color: #252525;
+  }
+  &__safe1 {
+    margin-top: 10px;
+  }
+  &__safe {
+    color: black;
   }
 
 }
@@ -240,6 +239,8 @@
 .swiper-nurs.mySwiper{
   display: flex;
   flex-direction: column!important;
+  cursor: pointer;
+
 }
 
 .swiper-nurs.mySwiper .swiper-wrapper{
@@ -256,6 +257,7 @@
 
  .product.mySwiper .swiper-slide-thumb-active {
   opacity: 1;
+
 }
 
 .swiper-slide img {

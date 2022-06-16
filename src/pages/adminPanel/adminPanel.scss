@@ -1,28 +1,43 @@
 
 
 .admin{
-  padding:  150px 0 150px;
+  padding:  150px 0 0;
   display: flex;
   &__aside{
     width: 15%;
     min-width: 120px;
-    padding: 30px 30px;
-    height: 600px;
-    background: #E0BEA240;
+    padding: 17px 0;
+    background: #222d32;
     text-align: center;
   }
   &__title {
-    color: #363A45;
+    color: #FFFFFF80;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 15px;
-    &:hover, &.active{
-      color: #6F83A4;
+    position: relative;
+    &:hover{
+      color: #FFFFFF;
+      background: #FFFFFF80;
+    }
+
+  }
+  &__title2 {
+    color: #FFFFFF80;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    &:hover {
+      color: #E0BEA2;
+    }
+    &.active {
+      color: #FFFFFF;
     }
   }
   &__content{
     width: 85%;
-    height: 600px;
+    height: 500px
+
   }
   &__circle{
     border: 0.3px solid #252525;

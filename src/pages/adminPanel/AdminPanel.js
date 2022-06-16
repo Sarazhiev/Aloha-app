@@ -4,6 +4,8 @@ import Clothes from "./Clothes";
 import {Routes, Route, Navigate} from 'react-router-dom'
 import Users from "./Users";
 import ClothesAdd from "./ClothesAdd";
+import {AiOutlineUser} from 'react-icons/ai'
+import {GiClothes} from 'react-icons/gi'
 
 const AdminPanel = () => {
     const location = useLocation();
@@ -15,11 +17,11 @@ const AdminPanel = () => {
             <aside className='admin__aside'>
                 <ul>
                     <li className='admin__title'>
-                        <NavLink className='admin__title' to='users'>Users</NavLink>
+                        <NavLink className='admin__title2' to='users'><AiOutlineUser/> Users</NavLink>
 
                     </li>
                     <li className='admin__title'>
-                        <NavLink className='admin__title' to='clothes'>Clothes</NavLink>
+                        <NavLink className='admin__title2' to='clothes'><GiClothes/> Clothes</NavLink>
                     </li>
                 </ul>
             </aside>

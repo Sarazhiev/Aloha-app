@@ -8,6 +8,8 @@ import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
 import 'antd/dist/antd.css';
 import { Pagination } from 'antd';
 import {animateScroll} from "react-scroll";
+import {Select} from "@mui/material";
+import MultipleSelectCheckmarks from "./SelectForGenderClothes/Select";
 
 
 const Catalog = () => {
@@ -84,8 +86,8 @@ const Catalog = () => {
                                 <button type='btn' className={`catalog__sort ${sort === 'less' ? 'active' : ''}`}
                                         onClick={() => setSort('less' !== sort ? 'less' : '')}>К меньшему
                                 </button>
+                                <MultipleSelectCheckmarks/>
                             </div>
-
 
                         </div>
 
@@ -162,8 +164,8 @@ const Catalog = () => {
                                             <ul className='catalog__content-colors'>
                                                 {
                                                     item.colors.map((color) => (
-                                                        <li style={{background: color}}
-                                                            className='catalog__content-circle'></li>
+                                                        <li style={{background: color, border: color === 'white' ? '0.1px solid grey' : ''}}
+                                                            className='catalog__content-circle'> </li>
                                                     ))
                                                 }
                                             </ul>
