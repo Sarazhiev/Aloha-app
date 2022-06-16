@@ -14,6 +14,8 @@ import {FcCellPhone} from 'react-icons/fc'
 
 const Register = () => {
 
+
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -32,18 +34,7 @@ const Register = () => {
         mode: 'onBlur'
     });
 
-    // const registerUsers = (data) => {
-    //     axios.post('https://alohadatabase.herokuapp.com/register', {
-    //         ...data,
-    //         orders : [],
-    //         favorites : []
-    //     })
-    //         .then((res) => {
-    //             localStorage.setItem('user', JSON.stringify(res.data.user));
-    //             dispatch(registerUser({obj: res.data.user}));
-    //             navigate('/')
-    //         }).catch(() => alert('ошибка при регистрации'))
-    // };
+
 
 
     const createUser = (data) => {
@@ -96,8 +87,8 @@ const Register = () => {
                             value === password.current || "The password do not match"
                     })}/>
                     {errors?.confirmPwd && <p>{errors?.confirmPwd?.message}</p>}
-                    <p className='register__question'>уже есть аккаунт? <Link className='register__login'
-                                                                              to='/login'>Войти</Link></p>
+                    <p className='register__question'> <Link className='register__login'
+                                                                              to='/login'>уже есть аккаунт? Войти</Link></p>
                     <button type='submit' className='register__btn'>ЗАРЕГИСТРИРОВАТЬСЯ</button>
                     <h2 style={{marginTop: '20px'}} className='register__title'>Войдите через Google или телефон</h2>
                     <div style={{display:"flex", alignItems:"center", columnGap: '10px', cursor: 'pointer'}}>
@@ -105,7 +96,6 @@ const Register = () => {
                         <p><Link to='/number' style={{fontSize: '30px'}}><FcCellPhone/></Link></p>
 
                     </div>
-
                     <Link className='register__home' to='/'>Выйти на главную</Link>
                 </form>
             </div>

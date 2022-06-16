@@ -44,3 +44,31 @@
     color: #252525;
   }
 }
+@media (max-width: 767px) {
+  .first__input {
+    width: 400px;
+    height: 45px;
+  }
+  .first__btn {
+    width: 400px;
+    height: 45px;
+  }
+  .first__title {
+    font-weight: 300;
+    font-size: 25px;
+  }
+}
+@media (max-width: 425px) {
+  .first__input {
+    width: 250px;
+    height: 35px;
+  }
+  .first__btn {
+    width: 250px;
+    height: 35px;
+  }
+  .first__title {
+    font-weight: 300;
+    font-size: 20px;
+  }
+}

@@ -16,7 +16,7 @@ const Footer = () => {
                         <li className='footer__item2'>Программа лояльности</li>
                         <li className='footer__item2'>Ткани и уход</li>
                     </ul>
-                    <ul className='footer__list'>
+                    <ul className='footer__list footer__list2'>
                         <li className='footer__item'>О компании</li>
                         <li className='footer__item2'>О нас</li>
                         <li className='footer__item2'>Контакты</li>

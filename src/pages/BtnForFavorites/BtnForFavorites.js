@@ -1,5 +1,5 @@
 import React from 'react';
-import {MdOutlineFavoriteBorder} from "react-icons/md";
+import {MdOutlineFavoriteBorder, MdDoneOutline} from "react-icons/md";
 import {useDispatch, useSelector} from "react-redux";
 import {collection, doc, getDocs, updateDoc} from "@firebase/firestore";
 import {db} from "../../firebase/firebase";
@@ -28,7 +28,7 @@ const BtnForFavorites = ({item, product}) => {
                         addFavoritesForUser( {
                             ...user,
                             favorites:  user.favorites.findIndex(el => el.id === item.id) >= 0 ? user.favorites.filter((el) => el.id !== item.id) : [...user.favorites, item]
-                        })}}>Добавить в избранное</button>
+                        })}}>{user.favorites.findIndex(el => el.id === item.id ) >= 0 ? 'Добавлено в Избранное' : 'Добавить в избранное'} </button>
                     :
                     <button className='catalog__content-fav' style={{color: user.favorites.findIndex(el => el.id === item.id ) >= 0 ? "tomato" : ''}} onClick={ () =>{
                         addFavoritesForUser( {

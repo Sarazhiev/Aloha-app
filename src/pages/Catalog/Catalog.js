@@ -10,6 +10,7 @@ import { Pagination } from 'antd';
 import {animateScroll} from "react-scroll";
 import {Select} from "@mui/material";
 import MultipleSelectCheckmarks from "./SelectForGenderClothes/Select";
+import img2 from "../Favorites/empty.png";
 
 
 const Catalog = () => {
@@ -70,7 +71,6 @@ const Catalog = () => {
                         </ul>
                     </div>
                     <div className='catalog__content-right'>
-
                         <input className='catalog__inputSearch' placeholder='search' id='search' value={search}
                                onChange={(e) => setSearch(e.target.value)} type="search"/>
                         <div className='shop__sort-type'>
@@ -117,7 +117,8 @@ const Catalog = () => {
                         }).length}</p>
                         <div className='catalog__content-row'>
                             {
-                                clothes && clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).filter((item, idx, array) => {
+                                clothes && clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).length ?
+                                    clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).filter((item, idx, array) => {
                                     switch (params.category) {
                                         case 'all' :
                                             return item;
@@ -172,6 +173,10 @@ const Catalog = () => {
                                         </motion.div>
                                     </AnimatePresence>
                                 ))
+                                    : <div className='favorites__info'>
+                                        <h2 className='favorites__title'>Такого товара еще нет!</h2>
+                                        <img className='favorites__img' src={img2} alt=""/>
+                                    </div>
                             }
 
                         </div>

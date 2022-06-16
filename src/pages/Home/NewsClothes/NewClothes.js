@@ -17,11 +17,40 @@ const NewClothes = () => {
                 <h2 className='category__title'>Новое поступление</h2>
                 <Swiper
                     slidesPerView={4}
+                    speed={1000}
                     spaceBetween={30}
                     pagination={{
                         clickable: true,
                     }}
+                    breakpoints={{
+                        120: {
+                            slidesPerView: 1,
+                            spaceBetween: 20
+                        },
+                        350: {
+                            slidesPerView: 1,
+                            spaceBetween: 20
+                        },
+                        420: {
+                            slidesPerView: 1,
+                            spaceBetween: 20
+                        },
+                        // when window width is >= 480px
+                        567: {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
 
+                        // when window width is >= 640px
+                        767: {
+                            slidesPerView: 3,
+                            spaceBetween: 30
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 20
+                        }
+                    }}
                     autoplay={{
                         delay: 3500,
                         disableOnInteraction: false,

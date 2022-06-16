@@ -3,6 +3,10 @@
   position: absolute;
   width: 100%;
   z-index: 100;
+  &__sides {
+    display: flex;
+    column-gap: 100px;
+  }
   &__nav {
     display: flex;
     justify-content: space-between;
@@ -91,6 +95,36 @@
       background: #FFFFFF;
       box-shadow: 10px 10px 15px rgba(37, 37, 37, 0.07);
     }
+  }
+}
+.goTop {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: #E0BEA299;
+  color: #FFFFFF;
+  padding: 15px 20px;
+  display: none;
+  &:hover {
+    color: coral;
+  }
+  &_active {
+    display: block;
+  }
+}
+
+@media (max-width: 992px) {
+  .header__nav-name {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .header__sides {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .header__nav {
+    margin-bottom: 50px;
   }
 }
 

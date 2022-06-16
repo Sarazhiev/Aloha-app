@@ -25,7 +25,7 @@ const Favorites = () => {
                     {
                         favorites.length ? favorites.map((item) => (
                             <div className='catalog__content-card'>
-                                <Link className='catalog__content-link' to='/product'>
+                                <Link className='catalog__content-link' to={`/product/${item.id}`}>
                                     <img className='catalog__content-img' src={img} alt=""/>
                                 </Link>
                                 <BtnForFavorites item={item}/>

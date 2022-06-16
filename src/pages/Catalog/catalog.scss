@@ -1,6 +1,9 @@
 .catalog {
   padding: 100px 0;
-
+  &__empty {
+    margin: 0 auto;
+    font-size: 25px;
+  }
   &__crumbs {
     display: flex;
     align-items: center;
