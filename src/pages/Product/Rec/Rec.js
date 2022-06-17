@@ -25,6 +25,7 @@ const Rec = () => {
             <Swiper
                 slidesPerView={4}
                 spaceBetween={10}
+                speed={1000}
                 pagination={{
                     clickable: true,
                 }}

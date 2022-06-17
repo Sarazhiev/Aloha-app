@@ -80,12 +80,14 @@ const Catalog = () => {
                                 : ''
                             }
                             <div className='catalog__sorts'>
-                                <button type='btn' className={`catalog__sort ${sort === 'big' ? 'active' : ''}`}
-                                        onClick={() => setSort('big' !== sort ? 'big' : '')}>К большему
-                                </button>
-                                <button type='btn' className={`catalog__sort ${sort === 'less' ? 'active' : ''}`}
-                                        onClick={() => setSort('less' !== sort ? 'less' : '')}>К меньшему
-                                </button>
+                                <div className='catalog__sorts-left'>
+                                    <button type='btn' className={`catalog__sort ${sort === 'big' ? 'active' : ''}`}
+                                            onClick={() => setSort('big' !== sort ? 'big' : '')}>К большему
+                                    </button>
+                                    <button type='btn' className={`catalog__sort ${sort === 'less' ? 'active' : ''}`}
+                                            onClick={() => setSort('less' !== sort ? 'less' : '')}>К меньшему
+                                    </button>
+                                </div>
                                 <MultipleSelectCheckmarks/>
                             </div>
 

@@ -101,8 +101,13 @@ const Product = () => {
                         clothes.filter(item => item.id === +params.id).map(item => (
                             <div className='product__right'>
                                 <p className='product__title'>{item.title}</p>
-                                <p className='product__price'>{item.price}</p>
-
+                                <p className='product__price'>{item.priceSale
+                                    ? <>
+                                        <span style={{textDecoration: 'line-through'}}>{item.price}</span>
+                                        <span className='product__price-line'>-</span>
+                                        <span className='product__price-sale'>{item.priceSale} грн</span>
+                                    </>
+                                    : item.price}</p>
                                 <ul className='product__content-sizes'>
                                     {
                                         item.colors.map(item => (
