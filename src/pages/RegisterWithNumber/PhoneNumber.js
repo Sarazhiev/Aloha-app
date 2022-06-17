@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import {auth} from "../../firebase/firebase";
+import {auth, db} from "../../firebase/firebase";
 import {useDispatch} from "react-redux";
 import {registerUser} from "../../redux/reducers/user";
+import {addDoc, collection, getDocs} from "@firebase/firestore";
 
 const PhoneNumber = () => {
     const [phone, setPhone] = useState('');
@@ -11,6 +12,7 @@ const PhoneNumber = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const createOrLoginForNumber = () => {
+        console.log('номер')
         if (phone.length >= 12) {
             signInWithPhoneNumber(auth, phone,window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
                 'callback': (response) => {
@@ -34,9 +36,21 @@ const PhoneNumber = () => {
             confirmationResult.confirm(code).then((result) => {
                 // User signed in successfully.
                 const user = result.user;
-                dispatch(registerUser({obj: user}));
-                localStorage.setItem('user', JSON.stringify(user));
-                navigate('/')
+                getDocs(collection(db,'users'))
+                    .then( async (res) => {
+                        const addUser = async () => {
+                            await localStorage.setItem('user', JSON.stringify(res.docs.map(el => ({...el.data(), id:el.id}) ).find(item => item.phone === user.phoneNumber)));
+                            await dispatch(registerUser({obj: res.docs.map(el => ({...el.data(), id:el.id}) ).find(item => item.phone === user.phoneNumber)}));
+
+                            await navigate('/')
+                        }
+                        if (res.docs.map(el => ({...el.data(), id:el.id}) ).filter(item => item.phone === user.phoneNumber).length){
+                            await addUser()
+                        } else {
+                            await addDoc(collection(db, 'users'), {carts: [],email: '', phone: user.phoneNumber, orders: [], favorites: [], login: '', id : user.uid})
+                            await addUser()
+                        }
+                    })
             }).catch((error) => console.log(error));
         }
     };

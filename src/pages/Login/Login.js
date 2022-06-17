@@ -94,10 +94,10 @@ const Login = () => {
         <div>
             <div className='register'>
                 <div className="container">
-                    <form className='register__content' onSubmit={handleSubmit(addUser)}>
+                    <form className='register__content' autoComplete="new-password" onSubmit={handleSubmit(addUser)}>
                         <h2 className='register__title'>Авторизация</h2>
                         <label htmlFor="1">Email</label>
-                        <input id='1' {...register('email', {
+                        <input autoComplete="new-password"  id='1' {...register('email', {
                             required: 'Это поле обязательное *',
                         })} className='register__input' type="email" placeholder='Введите email'/>
                         <span>{errors?.email?.message}</span>
@@ -110,8 +110,9 @@ const Login = () => {
                         {/*})} className="register__input" type='password' placeholder='Введите пароль'/>*/}
                         {/*<span>{errors?.password?.message}</span>*/}
 
-                        <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+                        <InputLabel  htmlFor="filled-adornment-password">Password</InputLabel>
                         <FilledInput
+                            autoComplete="new-password"
                             style={{background: 'transparent', padding: '0 15px 15px', borderTopLeftRadius: '0', borderTopRightRadius: '0'}}
                             className="register__input"
                             {...register('password', {

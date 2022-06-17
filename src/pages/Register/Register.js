@@ -41,10 +41,10 @@ const Register = () => {
         createUserWithEmailAndPassword(auth, data.email, data.password, data.phoneNumber)
             .then(async (userCredential) => {
                 const user = userCredential.user;
-                await addDoc(collection(db, 'users'), {email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid})
+                await addDoc(collection(db, 'users'), {carts: [], email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid})
 
-                await dispatch(registerUser({obj: {email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid}}));
-                await localStorage.setItem('user', JSON.stringify({email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid}));
+                await dispatch(registerUser({obj: {carts: [],email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid}}));
+                await localStorage.setItem('user', JSON.stringify({carts: [],email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid}));
                 await reset();
                 await navigate('/')
             })
@@ -75,9 +75,9 @@ const Register = () => {
                     <span>{errors?.phone?.message}</span>
                     <input id='4' {...register('password', {
                         required: "You must specify Procfile.js password",
-                        minLength: {
-                            value: 5,
-                            message: "Password must have at least 5 characters"
+                        pattern: {
+                            value:/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g,
+                            message: 'Пароль должен содержать не менее 8 символов, заглавную букву, число!'
                         }
                     })} className="register__input" type='password' placeholder='Введите пароль'/>
                     <span>{errors?.password?.message}</span>

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import {BsWhatsapp, BsInstagram, BsTelegram} from 'react-icons/bs'
 import First from "../Home/First/First";
 import Map from "./Map/Map";
 
 const Contact = () => {
+
+    const [shop,setShop] = useState('3Affcffe495d5d0c9c3b9c2e225f33728d7eebf3f95a45cb12a6284c3769635d4a')
+
+
     return (
         <section className='contact'>
             <div className="container">
@@ -33,10 +37,13 @@ const Contact = () => {
                     </ul>
                     <ul className='contact__list'>
                         <li className='contact__item1'>Наш офис</li>
-                        <li className='contact__item'>г. Киев, улица Батумская, 18</li>
+                        <li className='contact__item' onClick={() => {
+                            console.log('asdasd')
+                            setShop('3Affcffe495d5d0c9c3b9c2e225f33728d7eebf3f95a45cb12a6284c3769635d4a')
+                        }}>г. Киев, улица Батумская, 18</li>
                     </ul>
                 </div>
-                <Map/>
+                <Map shop={shop} setShop={setShop}/>
                 <First/>
             </div>
         </section>
