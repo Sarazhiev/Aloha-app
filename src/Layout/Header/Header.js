@@ -42,7 +42,6 @@ const Header = () => {
                 <nav className='header__nav'>
                     <div className={`burger ${burger ? 'burger_active' : ''}`} onClick={() => setBurger(!burger)}>
                     <span className='burger__line'>
-
                     </span>
                     </div>
                     <div onClick={() => setBurger(false)} className={`overlay ${burger ? 'overlay_active' : ''}`}>

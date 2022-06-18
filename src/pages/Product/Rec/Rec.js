@@ -29,7 +29,35 @@ const Rec = () => {
                 pagination={{
                     clickable: true,
                 }}
+                breakpoints={{
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 20
+                    },
+                    350: {
+                        slidesPerView: 1,
+                        spaceBetween: 20
+                    },
+                    420: {
+                        slidesPerView: 1,
+                        spaceBetween: 20
+                    },
+                    // when window width is >= 480px
+                    620: {
+                        slidesPerView: 2,
+                        spaceBetween: 10
+                    },
 
+                    // when window width is >= 640px
+                    621: {
+                        slidesPerView: 3,
+                        spaceBetween: 40
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 20
+                    }
+                }}
                 autoplay={{
                     delay: 2500,
                     disableOnInteraction: false,

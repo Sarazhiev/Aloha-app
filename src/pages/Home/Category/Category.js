@@ -52,13 +52,13 @@ const Category = () => {
                             spaceBetween: 20
                         },
                         // when window width is >= 480px
-                        567: {
+                        620: {
                             slidesPerView: 2,
-                            spaceBetween: 20
+                            spaceBetween: 10
                         },
 
                         // when window width is >= 640px
-                        767: {
+                        621: {
                             slidesPerView: 3,
                             spaceBetween: 40
                         },

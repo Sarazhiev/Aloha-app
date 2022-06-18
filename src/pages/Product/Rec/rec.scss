@@ -11,3 +11,18 @@
     margin-top: 10px;
   }
 }
+@media (max-width: 992px) {
+  .rec {
+    padding: 50px 0 0;
+  }
+}
+@media (max-width: 767px) {
+  .rec {
+    padding: 230px 0 0;
+  }
+}
+@media (max-width: 576px) {
+  .rec {
+    padding: 78px 0 0;
+  }
+}

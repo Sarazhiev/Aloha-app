@@ -46,14 +46,14 @@
     }
   }
   &__card {
-    width: 90%;
+    width: 100%;
     display: flex;
     column-gap: 10px;
   }
   &__right {
     position: absolute;
     top: 200px;
-    right: 150px;
+    right: 130px;
     z-index: 100;
     width: 500px;
   }
@@ -207,6 +207,7 @@
 
 
 .swiper {
+  padding: 0;
   width: 100%;
   height: 300px;
   margin-left: auto;
@@ -275,4 +276,127 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+  .product__right {
+    right: -50px;
+  }
+}
+@media (max-width: 1100px) {
+  .product__right {
+    right: -50px;
+  }
+}
+@media (max-width: 1024px) {
+  .product__right {
+    right: -86px;
+  }
+}
+@media (max-width: 992px) {
+  .product__right {
+    right: -150px;
+    top: 168px;
+  }
+  .product__price {
+    font-size: 25px;
+  }
+  .product__price-sale {
+    font-size: 25px;
+  }
+  .product__right {
+    width: 300px;
+    right: 5px;
+  }
+  .product__content-sizes {
+    column-gap: 2px;
+  }
+  .product__content-color {
+    width: 35px;
+    height: 35px;
+  }
+  .product__content-size {
+    width: 35px;
+    height: 35px;
+  }
+  .product__content-color_active::before {
+    width: 34px;
+  }
+  .product__btn1 {
+    width: 165px;
+  }
+  .product__btn2 {
+    width: 226px;
+  }
+}
+@media (max-width: 767px) {
+  .product__right {
+    width: 218px;
+  }
+  .swiper-nurs.mySwiper {
+    display: none;
+  }
+  .product__card {
+    width: 55%;
+  }
+  .product__title {
+    font-size: 24px;
+  }
+  .product__price-sale {
+    font-size: 22px;
+  }
+  .product__input {
+    width: 40px;
+    height: 40px;
+  }
+  .product__btn1 {
+    width: 150px;
+    height: 41px;
+  }
+  .product__btn2 {
+    width: 200px;
+    height: 41px;
+    font-size: 12px;
+  }
+  .product__save {
+    display: none;
+  }
+}
+@media (max-width: 576px) {
+  .product__right {
+    width: 165px;
+  }
+  .product__title {
+    font-size: 20px;
+  }
+  .product__content-color {
+    width: 20px;
+    height: 20px;
+  }
+  .product__content-color_active::before {
+    width: 20px;
+  }
+  .product__content-size {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+  .product__price-sale {
+    font-size: 22px;
+  }
+  .product__input {
+    width: 40px;
+    height: 40px;
+  }
+  .product__btn1 {
+    width: 150px;
+    height: 41px;
+  }
+  .product__btn2 {
+    width: 165px;
+  }
+  .product__save {
+    display: none;
+  }
+
 }
