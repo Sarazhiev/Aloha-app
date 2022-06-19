@@ -31,7 +31,7 @@ const Contact = () => {
                         <li className='contact__item'>+38(067) 158 82 66</li>
                         <li className='contact__item'>+38(073) 226 39 81</li>
                     </ul>
-                    <ul className='contact__list'>
+                    <ul className='contact__list contact__list2'>
                         <li className='contact__item1'>По почте</li>
                         <li className='contact__item'>example@gmail.com</li>
                     </ul>

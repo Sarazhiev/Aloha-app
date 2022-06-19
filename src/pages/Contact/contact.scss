@@ -38,3 +38,38 @@
     font-size: 22px;
   }
 }
+
+@media (max-width: 992px) {
+  .contact__item1 {
+    font-size: 12px;
+  }
+  .contact__item {
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .contact__item1 {
+    font-size: 12px;
+  }
+  .contact__item {
+    font-size: 12px;
+  }
+  .contact__item2 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact__item1 {
+    font-size: 10px;
+  }
+  .contact__item {
+    font-size: 11px;
+  }
+  .contact__item2 {
+    font-size: 14px;
+  }
+  .contact__list2 {
+    display: none;
+  }
+}
