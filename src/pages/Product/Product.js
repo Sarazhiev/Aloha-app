@@ -14,8 +14,9 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import {Link, NavLink, useLocation, useParams} from "react-router-dom";
 import Rec from "./Rec/Rec";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
+import {addCart} from "../../redux/reducers/basket";
 
 const Product = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -27,6 +28,8 @@ const Product = () => {
     const user = useSelector(s =>  s.user.user);
     const location = useLocation();
     const [count, setCount] = useState(1);
+    const basket = useSelector(s => s.basket.basket)
+    const dispatch = useDispatch();
     return (
 
         <section className='product'>
@@ -134,7 +137,18 @@ const Product = () => {
                                 }
                                 <div className='product__btns'>
                                     <input className='product__input' style={{color: !item.inStock ? "grey" : "black"}} disabled={!item.inStock} min='1'  max={item.inStock} value={count} onChange={(e) => setCount(e.target.value >= item.inStock ? item.inStock : e.target.value)} type="number"/>
-                                    <button className='product__btn1'>В КОРЗИНУ</button>
+                                    <button className='product__btn1' type='button' onClick={ () => {
+                                     dispatch(addCart({
+                                            id: item.id,
+                                            title: item.title,
+                                            image: item.image,
+                                            color,
+                                            size,
+                                            count,
+                                            price: item.priceSale || item.price,
+                                            category: item.category}))
+
+                                    } }>В КОРЗИНУ</button>
                                 </div>
                                 {
                                     user.email?.length || user.phoneNumber?.length ?

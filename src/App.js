@@ -13,25 +13,26 @@ import Login from "./pages/Login/Login";
 import Favorites from "./pages/Favorites/Favorites";
 import {useEffect} from "react";
 import axios from "axios";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getAll} from "./redux/reducers/clothes";
 import {registerUser} from "./redux/reducers/user";
 import AdminPanel from "./pages/adminPanel/AdminPanel";
 import './app.scss'
 import Contact from "./pages/Contact/Contact";
 import PhoneNumber from "./pages/RegisterWithNumber/PhoneNumber";
+import {getFromLocalStorage} from './redux/reducers/basket'
 
 
 
 
 function App() {
 
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  const basket = useSelector(s => s.basket.basket);
 
 
   useEffect(() => {
-    axios('https://alohadatabase.herokuapp.com/clothes').then(({data}) => dispatch(getAll({arr: data})))
+    axios('https://alohadatabase.herokuapp.com/clothes').then(({data}) => dispatch(getAll({arr: data})));
 
     getDocs(collection(db,'users'))
         .then((res) => console.log('asdasd', res.docs.map(el => ({...el.data(), id:el.id}) )))
@@ -42,7 +43,16 @@ function App() {
       dispatch(registerUser({obj: JSON.parse(localStorage.getItem('user'))}))
     }
 
+    if (localStorage.getItem('basket') !== null){
+      dispatch(getFromLocalStorage({arr: JSON.parse(localStorage.getItem('basket'))}))
+    }
   }, []);
+
+
+
+  useEffect(() => {
+    localStorage.setItem('basket', JSON.stringify(basket))
+  },[basket]);
   return (
     <div className="App">
       <Routes>
@@ -55,10 +65,7 @@ function App() {
           <Route path='favorites' element={<Favorites/>}/>
           <Route path='contact' element={<Contact/>}/>
           <Route path='admin/*' element={<AdminPanel/>}/>
-
         </Route>
-      {/*  <Route path='/auth' element={<Auth/>}/>*/}
-      {/*  <Route path='/confirm' element={<Confirm/>}/>*/}
         <Route path='/number' element={<PhoneNumber/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>

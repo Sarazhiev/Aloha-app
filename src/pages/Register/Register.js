@@ -11,15 +11,11 @@ import Google from "../LoginWithGoogle/Google";
 import {FcCellPhone} from 'react-icons/fc'
 
 
-
 const Register = () => {
-
 
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-
 
 
     const {
@@ -35,16 +31,40 @@ const Register = () => {
     });
 
 
-
-
     const createUser = (data) => {
         createUserWithEmailAndPassword(auth, data.email, data.password, data.phoneNumber)
             .then(async (userCredential) => {
                 const user = userCredential.user;
-                await addDoc(collection(db, 'users'), {carts: [], email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid})
+                await addDoc(collection(db, 'users'), {
+                    carts: [],
+                    email: data.email,
+                    phone: data.phone,
+                    orders: [],
+                    favorites: [],
+                    login: data.login,
+                    id: user.uid
+                })
 
-                await dispatch(registerUser({obj: {carts: [],email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid}}));
-                await localStorage.setItem('user', JSON.stringify({carts: [],email: data.email, phone: data.phone, orders: [], favorites: [], login: data.login, id : user.uid}));
+                await dispatch(registerUser({
+                    obj: {
+                        carts: [],
+                        email: data.email,
+                        phone: data.phone,
+                        orders: [],
+                        favorites: [],
+                        login: data.login,
+                        id: user.uid
+                    }
+                }));
+                await localStorage.setItem('user', JSON.stringify({
+                    carts: [],
+                    email: data.email,
+                    phone: data.phone,
+                    orders: [],
+                    favorites: [],
+                    login: data.login,
+                    id: user.uid
+                }));
                 await reset();
                 await navigate('/')
             })
@@ -76,7 +96,7 @@ const Register = () => {
                     <input id='4' {...register('password', {
                         required: "You must specify Procfile.js password",
                         pattern: {
-                            value:/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g,
+                            value: /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g,
                             message: 'Пароль должен содержать не менее 8 символов, заглавную букву, число!'
                         }
                     })} className="register__input" type='password' placeholder='Введите пароль'/>
@@ -87,11 +107,11 @@ const Register = () => {
                             value === password.current || "The password do not match"
                     })}/>
                     {errors?.confirmPwd && <p>{errors?.confirmPwd?.message}</p>}
-                    <p className='register__question'> <Link className='register__login'
-                                                                              to='/login'>уже есть аккаунт? Войти</Link></p>
+                    <p className='register__question'><Link className='register__login'
+                                                            to='/login'>уже есть аккаунт? Войти</Link></p>
                     <button type='submit' className='register__btn'>ЗАРЕГИСТРИРОВАТЬСЯ</button>
                     <h2 style={{marginTop: '20px'}} className='register__title'>Войдите через Google или телефон</h2>
-                    <div style={{display:"flex", alignItems:"center", columnGap: '10px', cursor: 'pointer'}}>
+                    <div style={{display: "flex", alignItems: "center", columnGap: '10px', cursor: 'pointer'}}>
                         <Google/>
                         <p><Link to='/number' style={{fontSize: '30px'}}><FcCellPhone/></Link></p>
 

@@ -17,6 +17,7 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [y, setY] = useState(0);
+    const basket = useSelector(s =>s.basket.basket);
 
     useEffect(() => {
         setBurger(false)
@@ -86,7 +87,7 @@ const Header = () => {
                                         : ''
                                 }
 
-                                <NavLink to='/basket' className='header__nav-item'><RiShoppingCart2Line/></NavLink>
+                                <NavLink to='/basket' className='header__nav-item'><span><RiShoppingCart2Line/>{basket.length ? basket.length : ''}</span></NavLink>
                             </ul>
                         </div>
                     </div>

@@ -3,8 +3,13 @@ import {Link, NavLink} from "react-router-dom";
 import {FaTrashAlt} from 'react-icons/fa'
 import img from './Rectangle 10 (4).png'
 import Order from "./Order/Order";
+import {useDispatch, useSelector} from "react-redux"
+import {removeCart} from "../../redux/reducers/basket";
 
 const Basket = () => {
+    const basket = useSelector(s => s.basket.basket);
+    const dispatch = useDispatch();
+
     return (
         <div className='basket'>
             <div className="container">
@@ -15,15 +20,21 @@ const Basket = () => {
                 </div>
                 <h2 className='basket__title'>Ваш заказ</h2>
                 <div className='basket__content'>
-                    <ul className='basket__list'>
-                        <li><img className='basket__img' src={img} alt=""/></li>
-                        <li className='basket__item'>Кремовое пальто</li>
-                        <li className='basket__item basket__item-green'> </li>
-                        <li className='basket__item'>L</li>
-                        <li className='basket__item '><input className='basket__item-input' defaultValue='2' type="number"/></li>
-                        <li className='basket__item basket__item-price'>9450 грн</li>
-                        <li className='basket__item basket__item-trash'><FaTrashAlt/></li>
-                    </ul>
+                    {
+                        basket.map((item, idx) => (
+                            <ul className='basket__list'>
+                                <li><img className='basket__img' src={img} alt=""/></li>
+                                <li className='basket__item'>{item.title}</li>
+                                <li className='basket__item basket__item-green' style={{background: item.color}}/>
+                                <li className='basket__item'>{item.size}</li>
+                                <li className='basket__item '><input className='basket__item-input' value={item.count} type="number"/></li>
+                                <li className='basket__item basket__item-price'>{item.price}</li>
+                                <li className='basket__item basket__item-trash' onClick={() => dispatch(removeCart({arr: basket.filter((el) => {
+                                        return item.id !== el.id || item.color !== el.color || item.size !== el.size
+                                    })}))}><FaTrashAlt/></li>
+                            </ul>
+                        ))
+                    }
                     <h4 className='basket__sum'>К оплате: <span className='basket__price'>15250 грн</span> </h4>
                 </div>
                 <Order/>

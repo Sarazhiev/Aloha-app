@@ -1,13 +1,14 @@
 import {  configureStore  } from '@reduxjs/toolkit'
 import user from "./reducers/user"
 import clothes from "./reducers/clothes";
+import basket from './reducers/basket'
 
 
 const store = configureStore({
     reducer: {
         user,
-        clothes
-
+        clothes,
+        basket
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
