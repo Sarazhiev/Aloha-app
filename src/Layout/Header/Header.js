@@ -70,9 +70,9 @@ const Header = () => {
                                     <FiSearch/>
                                 </label>
                                 {
-                                    user.email?.length || user.phone?.length ?
+                                    user.email?.length || user.phoneNumber?.length ?
                                         <span style={{display: 'flex', columnGap: '10px'}}>
-                                <NavLink to='/profile' className='header__nav-item header__nav-item2 header__nav-item3'><BiUser/><span className='header__nav-name'>{user.email || user.phone}</span></NavLink>
+                                <NavLink to='/profile' className='header__nav-item header__nav-item2 header__nav-item3'><BiUser/><span className='header__nav-name'>{user.email || user.phoneNumber}</span></NavLink>
                                      <Link to='/login' className='header__nav-item2' onClick={() => {
                                          localStorage.removeItem('user');
                                          dispatch(logOutUser())
@@ -81,7 +81,7 @@ const Header = () => {
                                         : <Link to='/login' className='header__nav-item2'>войти</Link>
                                 }
                                 {
-                                    user.email?.length || user.phone?.length ?
+                                    user.email?.length || user.phoneNumber?.length ?
                                         <NavLink to='/favorites' className='header__nav-item'><MdOutlineFavoriteBorder/>{user.favorites && user.favorites.length}</NavLink>
                                         : ''
                                 }

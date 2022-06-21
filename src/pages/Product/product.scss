@@ -278,19 +278,9 @@
   object-fit: cover;
 }
 
-@media (max-width: 1200px) {
-  .product__right {
-    right: -50px;
-  }
-}
-@media (max-width: 1100px) {
-  .product__right {
-    right: -50px;
-  }
-}
 @media (max-width: 1024px) {
   .product__right {
-    right: -86px;
+    right: -125px;
   }
 }
 @media (max-width: 992px) {

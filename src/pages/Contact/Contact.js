@@ -38,7 +38,6 @@ const Contact = () => {
                     <ul className='contact__list'>
                         <li className='contact__item1'>Наш офис</li>
                         <li className='contact__item' onClick={() => {
-                            console.log('asdasd')
                             setShop('3Affcffe495d5d0c9c3b9c2e225f33728d7eebf3f95a45cb12a6284c3769635d4a')
                         }}>г. Киев, улица Батумская, 18</li>
                     </ul>

@@ -35,3 +35,17 @@
     color: #FFFFFF;
   }
 }
+@media (max-width: 767px) {
+  .personal {
+
+  }
+  .personal__inputs {
+    display: flex;
+    column-gap: 20px;
+    flex-direction: column;
+  }
+  .personal__input {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
