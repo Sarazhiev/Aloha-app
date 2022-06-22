@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Map = ({shop,setShop}) => {
+const Map = ({shop}) => {
 
     return (
         <div className='map__yandex'>

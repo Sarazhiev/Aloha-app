@@ -4,12 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {collection, doc, getDocs, updateDoc} from "@firebase/firestore";
 import {db} from "../../firebase/firebase";
 import {registerUser} from "../../redux/reducers/user";
-import {useLocation} from "react-router-dom";
 
 const BtnForFavorites = ({item, product}) => {
     const user = useSelector(s => s.user.user);
     const dispatch = useDispatch();
-    const location = useLocation();
     const addFavoritesForUser =  (obj) => {
         getDocs(collection(db,'users'))
             .then(async (res) => {

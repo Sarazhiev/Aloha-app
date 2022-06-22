@@ -4,19 +4,13 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 
 const Layout = () => {
-
-    const location = useLocation()
-
-    console.log(location)
+    const location = useLocation();
 
     return (
         <div>
             <Header/>
-
             <Outlet/>
-
             {!location.pathname.includes('/admin') &&  <Footer/>  }
-
         </div>
     );
 };

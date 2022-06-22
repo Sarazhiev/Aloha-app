@@ -6,12 +6,7 @@ const ClothesAdd = () => {
     const [colors, setColors] = useState([]);
     const [sizes, setSizes] = useState([]);
 
-    const [first, setFirst] = useState('');
-    const [second, setSecond] = useState('');
-    const [third, setThird] = useState('');
-    const [fourth, setFourth] = useState('');
-    const [fifth, setFifth] = useState('');
-    const [sixth, setSixth] = useState('');
+
     const [all, setAll] = useState([true, false,false,false,false,false,false]);
     const [more, setMore] = useState(0);
 

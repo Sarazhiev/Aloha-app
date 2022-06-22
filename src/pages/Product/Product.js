@@ -11,7 +11,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import {Link, NavLink, useLocation, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Rec from "./Rec/Rec";
 import {useDispatch, useSelector} from "react-redux";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
@@ -26,7 +26,6 @@ const Product = () => {
     const params = useParams();
     const clothes = useSelector(s => s.clothes.clothes);
     const user = useSelector(s => s.user.user);
-    const location = useLocation();
     const [count, setCount] = useState(1);
     const basket = useSelector(s => s.basket.basket);
     const dispatch = useDispatch();
