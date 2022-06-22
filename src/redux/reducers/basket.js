@@ -9,10 +9,17 @@ const userReducer = createSlice({
        addCart : (state, action) => {
            state.basket = [...state.basket, action.payload]
        },
+        addCartPlus : (state, action) => {
+           state.basket = action.payload.arr
+       },
+
         getFromLocalStorage : (state, action) => {
            state.basket = action.payload.arr
         },
         removeCart : (state, action) => {
+           state.basket = action.payload.arr
+        },
+        updateCart : (state, action) => {
            state.basket = action.payload.arr
         }
     }
@@ -20,4 +27,4 @@ const userReducer = createSlice({
 
 
 export default userReducer.reducer
-export const {addCart,getFromLocalStorage, removeCart} = userReducer.actions;
+export const {addCart,getFromLocalStorage, removeCart, updateCart,addCartPlus} = userReducer.actions;

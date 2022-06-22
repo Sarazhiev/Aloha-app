@@ -9,6 +9,7 @@ import {auth, db} from "../../firebase/firebase";
 import {addDoc, collection} from "@firebase/firestore";
 import Google from "../LoginWithGoogle/Google";
 import {FcCellPhone} from 'react-icons/fc'
+import axios from "../../axios";
 
 
 const Register = () => {
@@ -31,45 +32,13 @@ const Register = () => {
     });
 
 
-    const createUser = (data) => {
-        createUserWithEmailAndPassword(auth, data.email, data.password, data.phoneNumber)
-            .then(async (userCredential) => {
-                const user = userCredential.user;
-                await addDoc(collection(db, 'users'), {
-                    carts: [],
-                    email: data.email,
-                    phone: data.phone,
-                    orders: [],
-                    favorites: [],
-                    login: data.login,
-                    id: user.uid
-                })
-
-                await dispatch(registerUser({
-                    obj: {
-                        carts: [],
-                        email: data.email,
-                        phone: data.phone,
-                        orders: [],
-                        favorites: [],
-                        login: data.login,
-                        id: user.uid
-                    }
-                }));
-                await localStorage.setItem('user', JSON.stringify({
-                    carts: [],
-                    email: data.email,
-                    phone: data.phone,
-                    orders: [],
-                    favorites: [],
-                    login: data.login,
-                    id: user.uid
-                }));
-                await reset();
-                await navigate('/')
-            })
-            .catch((error) => console.log(`bad request ${error}`));
-
+    const createUser = ({confirmPwd, ...obj}) => {
+        axios.post('auth/register', obj).then( async ({data}) => {
+           await dispatch(registerUser({obj: data}))
+           await localStorage.setItem('user', JSON.stringify(data))
+           await reset();
+           await navigate('/')
+        })  .catch((error) => console.log(`bad request ${error}`));
     };
 
 

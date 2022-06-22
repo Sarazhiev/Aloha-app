@@ -1,6 +1,5 @@
 import React, {useRef, useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
-import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import {Autoplay, FreeMode, Keyboard, Mousewheel, Navigation, Thumbs} from "swiper";
 import img from './img/Rectangle 10 (3).png'
 import img1 from './img/Rectangle 25.png'
@@ -16,7 +15,8 @@ import {Link, NavLink, useLocation, useParams} from "react-router-dom";
 import Rec from "./Rec/Rec";
 import {useDispatch, useSelector} from "react-redux";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
-import {addCart} from "../../redux/reducers/basket";
+import {addCart, addCartPlus} from "../../redux/reducers/basket";
+import Crumbs from "../Crumbs/Crumbs";
 
 const Product = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -24,23 +24,17 @@ const Product = () => {
     const [color, setColor] = useState("black");
     const [size, setSize] = useState('');
     const params = useParams();
-    const clothes = useSelector(s =>  s.clothes.clothes);
-    const user = useSelector(s =>  s.user.user);
+    const clothes = useSelector(s => s.clothes.clothes);
+    const user = useSelector(s => s.user.user);
     const location = useLocation();
     const [count, setCount] = useState(1);
-    const basket = useSelector(s => s.basket.basket)
+    const basket = useSelector(s => s.basket.basket);
     const dispatch = useDispatch();
     return (
 
         <section className='product'>
             <div className="container">
-                <div className="catalog__crumbs">
-                    <Link className="catalog__link" to='/'>Главная</Link>
-                    >
-                    <Link className="catalog__link" to='/catalog/all'>Каталог</Link>
-                    >
-                    <NavLink to='/product' className="catalog__link">Кремовое пальто</NavLink>
-                </div>
+                <Crumbs title='Product'/>
                 <div className='product__content'>
                     <div className='product__card'>
                         <Swiper
@@ -52,7 +46,7 @@ const Product = () => {
                             spaceBetween={50}
                             thumbs={{swiper: thumbsSwiper}}
                             modules={[FreeMode, Navigation, Thumbs]}
-                            className="mySwiper2"
+                            className="mySwiper2 nurik"
                         >
                             <SwiperSlide>
                                 <img src={img}/>
@@ -102,58 +96,86 @@ const Product = () => {
                     </div>
                     {
                         clothes.filter(item => item.id === +params.id).map(item => (
-                            <div className='product__right'>
-                                <p className='product__title'>{item.title}</p>
-                                <p className='product__price'>{item.priceSale
-                                    ? <>
-                                        <span style={{textDecoration: 'line-through'}}>{item.price}</span>
-                                        <span className='product__price-line'>-</span>
-                                        <span className='product__price-sale'>{item.priceSale} грн</span>
-                                    </>
-                                    : item.price}</p>
-                                <ul className='product__content-sizes'>
-                                    {
-                                        item.colors.map(item => (
-                                            <li key={item} onClick={() => setColor(item)} style={{background: item, border: '1px solid grey', cursor: 'pointer'}} className={`product__content-color ${item === color ? 'product__content-color_active' : ''}`}/>
-                                        ))
-                                    }
-                                </ul>
+                                <div className='product__right'>
+                                    <p className='product__title'>{item.title}</p>
+                                    <p className='product__price'>{item.priceSale
+                                        ? <>
+                                            <span style={{textDecoration: 'line-through'}}>{item.price}</span>
+                                            <span className='product__price-line'>-</span>
+                                            <span className='product__price-sale'>{item.priceSale} грн</span>
+                                        </>
+                                        : item.price}</p>
+                                    <ul className='product__content-sizes'>
+                                        {
+                                            item.colors.map(item => (
+                                                <li key={item} onClick={() => setColor(item)}
+                                                    style={{background: item, border: '1px solid grey', cursor: 'pointer'}}
+                                                    className={`product__content-color ${item === color ? 'product__content-color_active' : ''}`}/>
+                                            ))
+                                        }
+                                    </ul>
 
-                                <ul style={{marginTop: '40px'}} className='product__content-sizes'>
+                                    <ul style={{marginTop: '40px'}} className='product__content-sizes'>
+                                        {
+                                            item.size.map(item => (
+                                                <li key={item} onClick={() => setSize(item)}
+                                                    className={`product__content-size ${item === size ? 'product__content-size_active' : ''} `}>{item}</li>
+                                            ))
+                                        }
+                                    </ul>
                                     {
-                                        item.size.map(item => (
-                                            <li key={item} onClick={() => setSize(item)} className={`product__content-size ${item === size ? 'product__content-size_active' : ''} `}>{item}</li>
-                                        ))
+                                        item.inStock ?
+                                            <p className='product__content-choose'>
+                                                В наличии : <span>{item.inStock}</span>
+                                            </p> :
+                                            <p className='product__content-choose'>
+                                                Нет в наличии !
+                                            </p>
                                     }
-                                </ul>
-                                {
-                                    item.inStock ?
-                                        <p className='product__content-choose'>
-                                            В наличии : <span>{item.inStock}</span>
-                                        </p> :
-                                        <p className='product__content-choose'>
-                                            Нет в наличии !
-                                        </p>
-                                }
-                                <div className='product__btns'>
-                                    <input className='product__input' style={{color: !item.inStock ? "grey" : "black"}} disabled={!item.inStock} min='1'  max={item.inStock} value={count} onChange={(e) => setCount(e.target.value >= item.inStock ? item.inStock : e.target.value)} type="number"/>
-                                    <button className='product__btn1' type='button' onClick={ () => {
-                                     dispatch(addCart({
-                                            id: item.id,
-                                            title: item.title,
-                                            image: item.image,
-                                            color,
-                                            size,
-                                            count,
-                                            price: item.priceSale || item.price,
-                                            category: item.category}))
+                                    <div className='product__btns'>
+                                        <input className='product__input' style={{color: !item.inStock ? "grey" : "black"}}
+                                               disabled={!item.inStock} min='1' max={item.inStock} value={count}
+                                               onChange={(e) => setCount(e.target.value >= item.inStock ? item.inStock : e.target.value)}
+                                               type="number"/>
+                                        {
+                                            // user.email?.length || user.phoneNumber?.length ?
+                                            <button style={{
+                                                background: basket.findIndex(el => el.id === item.id) >= 0 ? "tomato" : '',
+                                                color: basket.findIndex(el => el.id === item.id) >= 0 ? "white" : '',
+                                                border: basket.findIndex(el => el.id === item.id) >= 0 ? "none" : ''
+                                            }} className='product__btn1' type='button' onClick={() => {
+                                                let product = {
+                                                    id: item.id,
+                                                    title: item.title,
+                                                    image: item.image,
+                                                    color,
+                                                    size,
+                                                    count,
+                                                    price: item.priceSale || item.price,
+                                                    category: item.category
+                                                };
+                                                let idx = basket.findIndex(item => item.id === product.id && item.color === product.color && item.size === product.size);
+                                                if (idx >= 0) {
+                                                    dispatch(addCartPlus({arr:basket.map(item => {
+                                                            if (item.id === product.id && item.color === product.color && item.size === product.size) {
+                                                                return {...item, count: +item.count + +product.count}
+                                                            } else {
+                                                                return item
+                                                            }
+                                                        })}))
+                                                } else {
+                                                   dispatch(addCart(product))
+                                                }
 
-                                    } }>В КОРЗИНУ</button>
-                                </div>
-                                {
-                                    user.email?.length || user.phoneNumber?.length ?
-                                        <BtnForFavorites product={true} item={item}/> : ''
-                                }
+
+                                            }}>В КОРЗИНУ</button>
+
+                                        }
+                                    </div>
+                                    {
+                                        user.email?.length || user.phoneNumber?.length ?
+                                            <BtnForFavorites product={true} item={item}/> : ''
+                                    }
 
                                     <p className='product__save' onClick={() => setIsActive(!isActive)}>
                                         Состав и уход
@@ -179,9 +201,12 @@ const Product = () => {
                                         {
                                             isActive &&
                                             <ul className='product__descr'>
-                                                <li className='product__safe product__safe1'>Состав: 50% Шерсть, 50% Полиэстер</li>
+                                                <li className='product__safe product__safe1'>Состав: 50% Шерсть, 50%
+                                                    Полиэстер
+                                                </li>
                                                 <li className='product__safe'>Подкладка: 100% Полиэстер</li>
-                                                <li className='product__safe'>Утеплитель: 90% Пух, 10% Перо</li> <br/>
+                                                <li className='product__safe'>Утеплитель: 90% Пух, 10% Перо</li>
+                                                <br/>
                                                 <li className='product__safe'>- Не стирать</li>
                                                 <li className='product__safe'>- Гладить при температуре утюга до 110°C</li>
                                                 <li className='product__safe'>- Не отбеливать</li>
@@ -190,8 +215,8 @@ const Product = () => {
                                             </ul>
                                         }
                                     </p>
-                            </div>
-                        )
+                                </div>
+                            )
                         )
                     }
                 </div>

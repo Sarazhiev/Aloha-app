@@ -1,26 +1,17 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
-import {registerUser} from "../../redux/reducers/user";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {auth, db} from "../../firebase/firebase";
 import Google from "../LoginWithGoogle/Google";
 import {FcCellPhone} from 'react-icons/fc'
-import {collection, doc, getDocs, updateDoc} from "@firebase/firestore";
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
 import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import axios from "../../axios";
+import {registerUser} from "../../redux/reducers/user";
 
 
 const Login = () => {
@@ -75,19 +66,12 @@ const Login = () => {
 
 
     const addUser = (data) => {
-        signInWithEmailAndPassword(auth, data.email, data.password)
-            .then(async (userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                await getDocs(collection(db,'users'))
-                    .then(async (res) => {
-                        await dispatch(registerUser({obj: res.docs.map(el => ({...el.data(), id:el.id}) ).find(item => item.email === user.email)}));
-                        await localStorage.setItem('user', JSON.stringify(res.docs.map(el => ({...el.data(), id:el.id}) ).find(item => item.email === user.email)));
-                        await reset();
-                        await navigate('/')
-                    })
-            })
-            .catch((error) => console.log(`bad request ${error}`));
+        axios.post('/auth/login', data).then( async (res) => {
+            await dispatch(registerUser({obj: res.data}));
+            await localStorage.setItem('user', JSON.stringify(res.data));
+            await reset();
+            await navigate('/')
+        })
     };
 
     return (

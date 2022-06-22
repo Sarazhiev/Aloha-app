@@ -17,7 +17,6 @@ const BtnForFavorites = ({item, product}) => {
                 await localStorage.setItem('user', JSON.stringify(obj));
                 await updateDoc(doc(db, 'users', res.docs.map(el => ({...el.data(), id:el.id}) ).find(item => item.email === user.email).id), obj)
             })
-
     };
     return (
         <>
@@ -36,7 +35,6 @@ const BtnForFavorites = ({item, product}) => {
                             favorites:  user.favorites.findIndex(el => el.id === item.id) >= 0 ? user.favorites.filter((el) => el.id !== item.id) : [...user.favorites, item]
                         })}}><MdOutlineFavoriteBorder/></button>
             }
-
         </>
     );
 };
