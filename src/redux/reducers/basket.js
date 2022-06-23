@@ -12,7 +12,6 @@ const userReducer = createSlice({
         addCartPlus : (state, action) => {
            state.basket = action.payload.arr
        },
-
         getFromLocalStorage : (state, action) => {
            state.basket = action.payload.arr
         },

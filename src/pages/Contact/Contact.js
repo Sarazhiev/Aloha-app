@@ -3,6 +3,7 @@ import {Link, NavLink} from "react-router-dom";
 import {BsWhatsapp, BsInstagram, BsTelegram} from 'react-icons/bs'
 import First from "../Home/First/First";
 import Map from "./Map/Map";
+import Crumbs from "../Crumbs/Crumbs";
 
 const Contact = () => {
 
@@ -12,11 +13,7 @@ const Contact = () => {
     return (
         <section className='contact'>
             <div className="container">
-                <div className="catalog__crumbs">
-                    <Link className="catalog__link" to='/'>Главная</Link>
-                    >
-                    <NavLink to='/coat' className="catalog__link">Контакты</NavLink>
-                </div>
+                <Crumbs title='Контакты'/>
                 <h2 className='contact__title'>Связаться с нами</h2>
                 <div className='contact__lists'>
                     <ul className='contact__list'>

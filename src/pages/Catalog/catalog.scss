@@ -54,7 +54,6 @@
     font-size: 16px;
     line-height: 19px;
     color: #252525;
-
     &.active {
       color: #E0BEA2;
     }
@@ -208,7 +207,7 @@
     }
 
     &-link:hover::before {
-      z-index: 100;
+      z-index: 90;
       content: '→';
       position: absolute;
       top: 0;

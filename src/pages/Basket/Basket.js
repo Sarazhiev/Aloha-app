@@ -5,23 +5,31 @@ import Order from "./Order/Order";
 import {useSelector} from "react-redux"
 import img2 from "../Favorites/empty.png";
 import BasketContent from "./BasketContent";
+import Crumbs from "../Crumbs/Crumbs";
 
 const Basket = () => {
     const basket = useSelector(s => s.basket.basket);
+    console.log(basket)
 
 
     return (
         <div className='basket'>
             <div className="container">
-                <div className="catalog__crumbs">
-                    <Link className="catalog__link" to='/'>Главная</Link>
-                    >
-                    <NavLink to='/product' className="catalog__link">Корзина</NavLink>
-                </div>
+                <Crumbs title='Корзина'/>
                 {
                     basket.length ?
                     <>
-                        <h2 className='basket__title'>Ваш заказ</h2>
+                        <div className="basket__info">
+                            <h3 className="basket__info-title">Ваши заказы</h3>
+                            <ul className="basket__info-list">
+                                <li className="basket__info-item basket__info-item2">Цвет</li>
+                                <li className="basket__info-item basket__info-item2">Размер</li>
+                                <li className="basket__info-item basket__info-item2">Цена</li>
+                                <li className="basket__info-item basket__info-item2">Количество</li>
+                                <li className="basket__info-item basket__info-item2">Всего</li>
+                            </ul>
+                        </div>
+
 
                         <BasketContent basket={basket} img={img}/>
 

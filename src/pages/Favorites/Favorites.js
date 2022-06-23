@@ -5,6 +5,7 @@ import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import {useSelector} from "react-redux";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
 import img2 from './empty.png'
+import Crumbs from "../Crumbs/Crumbs";
 
 const Favorites = () => {
 
@@ -15,11 +16,7 @@ const Favorites = () => {
     return (
         <div className='favorites'>
             <div className="container">
-                <div className="catalog__crumbs">
-                    <Link className="catalog__link" to='/'>Главная</Link>
-                    >
-                    <NavLink className="catalog__link" to='/favorites'>Избранное</NavLink>
-                </div>
+                <Crumbs title='Избранное'/>
                 <div className='catalog__content-row'>
 
                     {

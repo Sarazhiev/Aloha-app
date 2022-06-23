@@ -1,6 +1,5 @@
 import {db} from "./firebase/firebase";
 import {collection, getDocs} from "@firebase/firestore";
-
 import {Route, Routes} from 'react-router-dom'
 import Layout from "./Layout/Layout";
 import Home from "./pages/Home/Home";
@@ -33,7 +32,8 @@ function App() {
 
 
   useEffect(() => {
-    axios('https://alohadatabase.herokuapp.com/clothes').then(({data}) => dispatch(getAll({arr: data})));
+    axios('https://alohadatabase.herokuapp.com/clothes')
+        .then(({data}) => dispatch(getAll({arr: data})));
 
 
     getDocs(collection(db,'users'))

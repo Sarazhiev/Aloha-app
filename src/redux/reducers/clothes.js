@@ -8,7 +8,7 @@ const userReducer = createSlice({
     reducers: {
         getAll : (state, action) => {
             state.clothes = action.payload.arr
-        },
+        }
     }
 });
 

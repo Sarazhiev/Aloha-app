@@ -1,28 +1,17 @@
-import React, {useRef, useState} from "react";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Autoplay, FreeMode, Keyboard, Mousewheel, Navigation, Thumbs} from "swiper";
-import img from './img/Rectangle 10 (3).png'
-import img1 from './img/Rectangle 25.png'
-import img2 from './img/Rectangle 24.png'
-import img3 from './img/Rectangle 23.png'
-import img4 from './img/Rectangle 22.png'
-import img5 from './img/Rectangle 21.png'
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import {useParams} from "react-router-dom";
+import React, {useState} from "react";
+import {Link, useParams} from "react-router-dom";
 import Rec from "./Rec/Rec";
 import {useDispatch, useSelector} from "react-redux";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
-import {addCart, addCartPlus} from "../../redux/reducers/basket";
-import Crumbs from "../Crumbs/Crumbs";
+import ProductCard from "./ProductCard";
+import ProductBtns from "./ProductBtns";
+import ProductSize from "./ProductSize";
+import ProductColors from "./ProductColors";
 
 const Product = () => {
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [isActive, setIsActive] = useState(false);
     const [color, setColor] = useState("black");
-    const [size, setSize] = useState('');
+    const [size, setSize] = useState('xl');
     const params = useParams();
     const clothes = useSelector(s => s.clothes.clothes);
     const user = useSelector(s => s.user.user);
@@ -33,66 +22,16 @@ const Product = () => {
 
         <section className='product'>
             <div className="container">
-                <Crumbs title='Product'/>
+                <div className="catalog__crumbs">
+                    <Link className="catalog__link" to='/'>Главная</Link>
+                    >
+                    <Link className="catalog__link" to='/catalog/all'>Каталог</Link>
+                    >
+                    <span className="catalog__link">Product</span>
+                </div>
+
                 <div className='product__content'>
-                    <div className='product__card'>
-                        <Swiper
-                            style={{
-                                "--swiper-navigation-color": "#fff",
-                                "--swiper-pagination-color": "#fff",
-                            }}
-                            Mousewheel={false}
-                            spaceBetween={50}
-                            thumbs={{swiper: thumbsSwiper}}
-                            modules={[FreeMode, Navigation, Thumbs]}
-                            className="mySwiper2 nurik"
-                        >
-                            <SwiperSlide>
-                                <img src={img}/>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={img1}/>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={img2}/>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={img3}/>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={img4}/>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={img5}/>
-                            </SwiperSlide>
-
-                        </Swiper>
-                        <Swiper
-                            onSwiper={setThumbsSwiper}
-                            spaceBetween={10}
-                            slidesPerView={5}
-
-                            freeMode={true}
-                            watchSlidesProgress={true}
-                            modules={[FreeMode, Navigation, Thumbs]}
-                            className="mySwiper swiper-nurs product"
-                        >
-                            <div className='swiper__opacity'><SwiperSlide>
-                                <img src={img}/>
-                            </SwiperSlide>
-                                <SwiperSlide>
-                                    <img src={img1}/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img src={img2}/>
-                                </SwiperSlide> <SwiperSlide>
-                                    <img src={img3}/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img src={img4}/>
-                                </SwiperSlide></div>
-                        </Swiper>
-                    </div>
+                    <ProductCard/>
                     {
                         clothes.filter(item => item.id === +params.id).map(item => (
                                 <div className='product__right'>
@@ -104,24 +43,9 @@ const Product = () => {
                                             <span className='product__price-sale'>{item.priceSale} грн</span>
                                         </>
                                         : item.price}</p>
-                                    <ul className='product__content-sizes'>
-                                        {
-                                            item.colors.map(item => (
-                                                <li key={item} onClick={() => setColor(item)}
-                                                    style={{background: item, border: '1px solid grey', cursor: 'pointer'}}
-                                                    className={`product__content-color ${item === color ? 'product__content-color_active' : ''}`}/>
-                                            ))
-                                        }
-                                    </ul>
+                                    <ProductColors item={item} color={color} setColor={setColor}/>
 
-                                    <ul style={{marginTop: '40px'}} className='product__content-sizes'>
-                                        {
-                                            item.size.map(item => (
-                                                <li key={item} onClick={() => setSize(item)}
-                                                    className={`product__content-size ${item === size ? 'product__content-size_active' : ''} `}>{item}</li>
-                                            ))
-                                        }
-                                    </ul>
+                                    <ProductSize item={item} setSize={setSize} size={size}/>
                                     {
                                         item.inStock ?
                                             <p className='product__content-choose'>
@@ -131,46 +55,7 @@ const Product = () => {
                                                 Нет в наличии !
                                             </p>
                                     }
-                                    <div className='product__btns'>
-                                        <input className='product__input' style={{color: !item.inStock ? "grey" : "black"}}
-                                               disabled={!item.inStock} min='1' max={item.inStock} value={count}
-                                               onChange={(e) => setCount(e.target.value >= item.inStock ? item.inStock : e.target.value)}
-                                               type="number"/>
-                                        {
-                                            // user.email?.length || user.phoneNumber?.length ?
-                                            <button style={{
-                                                background: basket.findIndex(el => el.id === item.id) >= 0 ? "tomato" : '',
-                                                color: basket.findIndex(el => el.id === item.id) >= 0 ? "white" : '',
-                                                border: basket.findIndex(el => el.id === item.id) >= 0 ? "none" : ''
-                                            }} className='product__btn1' type='button' onClick={() => {
-                                                let product = {
-                                                    id: item.id,
-                                                    title: item.title,
-                                                    image: item.image,
-                                                    color,
-                                                    size,
-                                                    count,
-                                                    price: item.priceSale || item.price,
-                                                    category: item.category
-                                                };
-                                                let idx = basket.findIndex(item => item.id === product.id && item.color === product.color && item.size === product.size);
-                                                if (idx >= 0) {
-                                                    dispatch(addCartPlus({arr:basket.map(item => {
-                                                            if (item.id === product.id && item.color === product.color && item.size === product.size) {
-                                                                return {...item, count: +item.count + +product.count}
-                                                            } else {
-                                                                return item
-                                                            }
-                                                        })}))
-                                                } else {
-                                                   dispatch(addCart(product))
-                                                }
-
-
-                                            }}>В КОРЗИНУ</button>
-
-                                        }
-                                    </div>
+                                    <ProductBtns item={item} basket={basket} color={color} dispatch={dispatch} count={count} setCount={setCount} size={size}/>
                                     {
                                         user.email?.length || user.phoneNumber?.length ?
                                             <BtnForFavorites product={true} item={item}/> : ''

@@ -1,7 +1,9 @@
 import React from 'react';
 import {removeCart} from "../../redux/reducers/basket";
 import {FaTrashAlt} from 'react-icons/fa'
+
 import {useDispatch} from "react-redux";
+import BasketProduct from "./BasketProduct";
 
 
 const BasketContent = ({basket, img}) => {
@@ -9,21 +11,15 @@ const BasketContent = ({basket, img}) => {
     return (
         <div className='basket__content'>
             {
-                basket.map((item, idx) => (
-                    <ul className='basket__list'>
-                        <li><img className='basket__img' src={img} alt=""/></li>
-                        <li className='basket__item'>{item.title}</li>
-                        <li className='basket__item basket__item-green' style={{background: item.color}}/>
-                        <li className='basket__item'>{item.size}</li>
-                        <li className='basket__item '><input className='basket__item-input' value={item.count} type="number"/></li>
-                        <li className='basket__item basket__item-price'>{item.price}</li>
-                        <li className='basket__item basket__item-trash' onClick={() => dispatch(removeCart({arr: basket.filter((el) => {
-                                return item.id !== el.id || item.color !== el.color || item.size !== el.size
-                            })}))}><FaTrashAlt/></li>
-                    </ul>
+                basket.map((item) => (
+                  <BasketProduct item={item} basket={basket} img={img}/>
+
                 ))
             }
-            <h4 className='basket__sum'>К оплате: <span className='basket__price'>15250 грн</span> </h4>
+            <div className='basket__under'>
+                <button className='basket__clear' onClick={() => dispatch(removeCart({arr: basket = []}))}>Очистить корзину <span className='basket__trash' ><FaTrashAlt/></span></button>
+                <h4 className='basket__sum'>К оплате: <span className='basket__price'>{basket.reduce((acc, rec) => acc + rec.count * rec.price, 0)}</span> </h4>
+            </div>
         </div>
     );
 };
