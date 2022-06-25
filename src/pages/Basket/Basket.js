@@ -9,7 +9,6 @@ import Crumbs from "../Crumbs/Crumbs";
 
 const Basket = () => {
     const basket = useSelector(s => s.basket.basket);
-    console.log(basket)
 
 
     return (

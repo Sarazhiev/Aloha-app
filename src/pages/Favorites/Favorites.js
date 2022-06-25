@@ -6,13 +6,11 @@ import {useSelector} from "react-redux";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
 import img2 from './empty.png'
 import Crumbs from "../Crumbs/Crumbs";
+import FavoritesSkeleton from "../../Components/FavoritesSkeleton";
 
 const Favorites = () => {
 
     const favorites = useSelector(s => s.user.user.favorites);
-
-
-
     return (
         <div className='favorites'>
             <div className="container">
@@ -20,7 +18,9 @@ const Favorites = () => {
                 <div className='catalog__content-row'>
 
                     {
-                        favorites && favorites.length ? favorites.map((item) => (
+                        !favorites ?  Array(10).fill(null).map(() => (
+                            <FavoritesSkeleton/>
+                        )) : favorites.length ? favorites.map((item) => (
                             <div className='catalog__content-card'>
                                 <Link className='catalog__content-link' to={`/product/${item.id}`}>
                                     <img className='catalog__content-img' src={img} alt=""/>
@@ -49,8 +49,6 @@ const Favorites = () => {
                                 <img className='favorites__img' src={img2} alt=""/>
                             </div>
                     }
-
-
 
                 </div>
             </div>
