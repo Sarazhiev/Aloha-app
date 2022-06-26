@@ -20,6 +20,7 @@ import './app.scss'
 import Contact from "./pages/Contact/Contact";
 import PhoneNumber from "./pages/RegisterWithNumber/PhoneNumber";
 import {getFromLocalStorage} from './redux/reducers/basket'
+import NotFound from "./pages/NotFound/NotFound";
 
 
 
@@ -70,6 +71,7 @@ function App() {
         <Route path='/number' element={<PhoneNumber/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/*' element={<NotFound/>}/>
       </Routes>
     </div>
   );
