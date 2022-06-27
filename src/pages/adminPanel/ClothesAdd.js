@@ -1,47 +1,80 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import CreateColors from "./CreateColors";
 import CreateSizes from "./CreateSizes";
+import axios from "../../axios";
+import ClothesAddBtn from "./ClothesAddBtn";
+import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const ClothesAdd = () => {
-    const [colors, setColors] = useState([]);
+
+    const {
+        register,
+        reset,
+        handleSubmit
+    } = useForm()
+
+    const navigate = useNavigate()
+
+    const [colors, setColors] = useState('');
     const [sizes, setSizes] = useState([]);
+    const [images, setImages] = useState([])
+    const [loading, setLoading] = useState(false)
 
+    const [image1, setImage1] = useState('')
+    const [image2, setImage2] = useState('')
+    const [image3, setImage3] = useState('')
+    const [image4, setImage4] = useState('')
+    const [image5, setImage5] = useState('')
 
-    const [all, setAll] = useState([true, false,false,false,false,false,false]);
-    const [more, setMore] = useState(0);
+    const addClothe = (data) => {
+        try {
+            setLoading(true)
+            axios.post('/clothes', {
+                ...data,
+                colors,
+                sizes,
+                images
+            }).then(() => {
+                setLoading(false)
+                navigate('/admin/clothes')
+                toast("Продукт успешно создан")
+                reset()
+            }).catch(() => {
+                toast("Ошибка при создании продукта")
+            })
+        } catch (err) {
+            toast("Ошибка при создании продукта")
+        }
+    }
 
-    useEffect(() => {
-        setAll(all.map((item,idx) => idx === more ? true : item ))
-    },[more]);
+    useEffect( () => {
+         setImages([image1,image2,image3,image4, image5])
+    }, [image1,image2,image3,image4, image5])
+
 
     return (
-        <form className='create__form-content'>
+        <form className='create__form-content' onSubmit={handleSubmit(addClothe)}>
             <div className='create__form-block'>
                 <label htmlFor="title">Название</label>
-                <input className='create__form-input'  type="text" id='title'/>
+                <input {...register('title')} className='create__form-input'  type="text" id='title'/>
             </div>
             <div className='create__form-block'>
                 <label htmlFor="price">Цена</label>
-                <input className='create__form-input'  type="number" id='price'/>
+                <input {...register('price')} className='create__form-input'  type="number" id='price'/>
             </div>
             <div className='create__form-block'>
                 <label htmlFor="inStock">Количество</label>
-                <input className='create__form-input'  type="number" id='inStock'/>
+                <input {...register('inStock')} className='create__form-input'  type="number" id='inStock'/>
             </div>
-            <ul className='create__form-block'>
-                {all.map((item) => {
-                    return item && (
-                        <li>
-                            <label htmlFor="image">Картинка</label>
-                            <input  type="file" id='image'/>
-                        </li>
-                    )
-                })}
+            <ul style={{display:"flex", flexDirection:"column", rowGap:"10px"}} className='create__form-block'>
+                        <ClothesAddBtn images={image1} setImages={setImage1} num={1}/>
+                        <ClothesAddBtn images={image2} setImages={setImage2} num={2}/>
+                        <ClothesAddBtn images={image3} setImages={setImage3} num={3}/>
+                        <ClothesAddBtn images={image4} setImages={setImage4} num={4}/>
+                        <ClothesAddBtn images={image5} setImages={setImage5} num={5}/>
             </ul>
-
-
-
-
             <div>
                 <div>
                     <ul className='create__form-colors'>
@@ -67,7 +100,7 @@ const ClothesAdd = () => {
             </div>
             <div className='create__form-block'>
                 <label htmlFor="category">Категория</label>
-                <select className='create__form-select'  id='category'>
+                <select {...register('category')} className='create__form-select'  id='category'>
                     <option>hoody</option>
                     <option>sportsuit</option>
                     <option>sweatshirt</option>

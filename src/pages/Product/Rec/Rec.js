@@ -70,8 +70,8 @@ const Rec = () => {
                 className="mySwiper"
             >
                 {
-                  clothes &&  clothes.filter((item, idx) => item.category === clothes.find(el => el.id == params.id).category && item.id != params.id).map((item) => (
-                        <SwiperSlide key={item.id}>
+                  clothes &&  clothes.filter((item, idx) => item.category === clothes.find(el => el._id == params.id).category && item._id != params.id).map((item) => (
+                        <SwiperSlide key={item._id}>
                             <div className='category__content'>
                                 <Link className='catalog__content-link' to={`/product/${item.id}`} onClick={() => animateScroll.scrollToTop({
                                     delay: 0,

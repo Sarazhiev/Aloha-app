@@ -9,6 +9,9 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import axios from "../../axios";
+import {toast} from "react-toastify";
 
 
 const columns = [
@@ -32,6 +35,12 @@ const columns = [
         minWidth: 170,
         align: 'right'
     },
+    {
+        id: 'action',
+        label: 'Action',
+        minWidth: 170,
+        align: 'right'
+    },
 ];
 
 
@@ -41,28 +50,20 @@ function createData(
     category,
     colors,
     size,
-    price
+    price,
+    action,
+    id
+
 ) {
-    return { title, category, colors, size, price };
+    return { title, category, colors, size, price,  action,id };
 }
-
-const rows = [
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-    createData('India', 'IN', ['red', 'black', 'white'], ['S', 'M', 'L', 'XL'], 200),
-
-];
 
 
 
 const Clothes = () => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [clothes, setClothes] = useState([])
 
     const navigate = useNavigate()
 
@@ -70,18 +71,33 @@ const Clothes = () => {
         setPage(newPage);
     };
 
+    useEffect(() => {
+        axios('/clothes').then(({data}) => setClothes(data))
+
+    },[])
+
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
 
+    const handleDeleteClothes = (id) => {
+
+        axios.delete(`/clothes/${id}`)
+            .then(() => {
+                toast("Товар удален!")
+            }).catch(() => {
+                toast("Ошибка при удалении !")
+        })
+    }
+
     return (
         <Paper sx={{ width: '100%' }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer >
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center" colSpan={4}>
+                            <TableCell align="center" colSpan={5}>
                                 Clothes
                             </TableCell>
                             <TableCell align="center" colSpan={1}>
@@ -89,9 +105,9 @@ const Clothes = () => {
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            {columns.map((column) => (
+                            {columns.map((column, idx) => (
                                 <TableCell
-                                    key={column.id}
+                                    key={idx}
                                     align={column.align}
                                     style={{ top: 57, minWidth: column.minWidth }}
                                 >
@@ -101,27 +117,30 @@ const Clothes = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows
+                        {clothes && clothes.map((item) => createData(item.title, item.category, item.colors, item.sizes, item.price,'action',item._id))
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => {
+                                console.log(row)
                                 return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                                        {columns.map((column) => {
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                                        {columns.map((column , idx) => {
                                             const value = row[column.id];
                                             return (
-                                                <TableCell key={column.id} align={column.align}>
+                                                <TableCell key={value + idx} align={column.align}>
                                                     {Array.isArray(value) ? <ul className='admin__clothes-list'>
                                                         {
                                                             value.map((item, idx) => {
-                                                                if (item === item.toLowerCase()){
-                                                                    return  <li style={{background: item }}  className='admin__circle' key={item + idx}/>
-                                                                } else {
                                                                     return  <li className='admin__size' key={item + idx}>
                                                                         {item}
                                                                     </li>
-                                                                }
                                                         })}
-                                                    </ul> : value}
+                                                    </ul> : idx === 2 ? <div  align={column.align}>
+                                                        <div style={{background: value }}  className='admin__circle' />
+                                                    </div>  : value === 'action' ?  <div>
+                                                        <button type='button'>Update</button>
+                                                        <button type='button'
+                                                                onClick={() => handleDeleteClothes(row.id)} >Delete</button>
+                                                    </div> : value}
                                                 </TableCell>
                                             );
                                         })}
@@ -134,7 +153,7 @@ const Clothes = () => {
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={rows.length}
+                count={clothes.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

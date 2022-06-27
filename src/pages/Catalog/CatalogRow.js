@@ -29,42 +29,41 @@ const CatalogRow = ({clothes, sort, params, page, user, search}) => {
                             return (a.price) - (b.price)
                         }
                     }).filter((item, idx) => idx + 1 <= page * 9 && idx  >= page * 9 - 9).map((item) => (
-                        <AnimatePresence exitBeforeEnter onExitComplete presenceAffectsLayout>
-                            <motion.div
-                                initial={{opacity: 0, y: 100, x: 100}}
-                                animate={{opacity: 1, y: 0, x: 0}}
-                                exit={{opacity: 0, y: -100, x: 100}}
-                                transition={{duration: 0.6}}
-                                key={item.id} className='catalog__content-card'>
-                                <Link onClick={() => animateScroll.scrollToTop({
-                                    delay: 0,
-                                    duration: 0
-                                })} className='catalog__content-link' to={`/product/${item.id}`}>
-                                    <img className='catalog__content-img' src={img} alt=""/>
-                                </Link>
-                                {
-                                    user.email?.length || user.phoneNumber?.length ?
-                                        <BtnForFavorites item={item}/>  : ''
-                                }
-                                <p className='catalog__content-name'>{item.title}</p>
-                                <p className='catalog__content-price'>{item.price} грн</p>
-                                <ul className='catalog__content-sizes'>
+                        <React.Fragment key={item._id}>
+                            <AnimatePresence   exitBeforeEnter onExitComplete presenceAffectsLayout>
+                                <motion.div
+                                    initial={{opacity: 0, y: 100, x: 100}}
+                                    animate={{opacity: 1, y: 0, x: 0}}
+                                    exit={{opacity: 0, y: -100, x: 100}}
+                                    transition={{duration: 0.6}}
+                                    className='catalog__content-card'>
+                                    <Link onClick={() => animateScroll.scrollToTop({
+                                        delay: 0,
+                                        duration: 0
+                                    })} className='catalog__content-link' to={`/product/${item._id}`}>
+                                        <img className='catalog__content-img' src={`http://localhost:4444${item.images[0]}`} alt=""/>
+                                    </Link>
                                     {
-                                        item.size.map((size) => (
-                                            <li className='catalog__content-size'>{size}</li>
-                                        ))
+                                        user.email?.length || user.phoneNumber?.length ?
+                                            <BtnForFavorites item={item}/>  : ''
                                     }
-                                </ul>
-                                <ul className='catalog__content-colors'>
-                                    {
-                                        item.colors.map((color) => (
-                                            <li style={{background: color, border: color === 'white' ? '0.1px solid grey' : ''}}
-                                                className='catalog__content-circle'> </li>
-                                        ))
-                                    }
-                                </ul>
-                            </motion.div>
-                        </AnimatePresence>
+                                    <p className='catalog__content-name'>{item.title}</p>
+                                    <p className='catalog__content-price'>{item.price} грн</p>
+                                    <ul className='catalog__content-sizes'>
+                                        {
+                                            item.sizes.map((size) => (
+                                                <li key={size} className='catalog__content-size'>{size}</li>
+                                            ))
+                                        }
+                                    </ul>
+                                    <ul className='catalog__content-colors'>
+                                        <li  style={{background: item.colors, border: item.colors === 'white' ? '0.1px solid grey' : ''}}
+                                             className='catalog__content-circle'> </li>
+                                    </ul>
+                                </motion.div>
+                            </AnimatePresence>
+                        </React.Fragment>
+
                     ))
                     : <div className='favorites__info'>
                         <h2 className='favorites__title'>Такого товара еще нет!</h2>

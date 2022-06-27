@@ -16,10 +16,11 @@ const BasketProduct = ({img,item,basket}) => {
             <li className='basket__item basket__item-green' style={{background: item.color}}/>
             <li className='basket__item'>{item.size}</li>
             <li className='basket__item basket__item-price'>{item.price}</li>
-            <li className='basket__item '><input className='basket__item-input' min='1' value={item.count} type="number" onChange={(e)=> {
+            <li className='basket__item '>
+                <input className='basket__item-input' min='1'  value={count} type="number" onChange={(e)=> {
                 setCount(e.target.value >= item.inStock ? item.inStock : e.target.value)
             } }/></li>
-            <li className='basket__item basket__item-price'>{basket.reduce((acc, rec) => acc + rec.count * rec.price, 0)}</li>
+            <li className='basket__item basket__item-price'>{item.price * item.count}</li>
 
         </ul>
     );

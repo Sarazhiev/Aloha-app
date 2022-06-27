@@ -7,7 +7,7 @@ const PaginationAndRoutes = ({clothes, setPage, page, params}) => {
             {
                 clothes.filter((item, idx, array) => {
                     switch (params.category) {
-                        case 'all' :
+                        case 'all' :    
                             return item;
                         case 'new' :
                             return idx > array.length - 5;

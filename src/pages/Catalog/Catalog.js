@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Link, useParams} from "react-router-dom";
-import {GoChevronRight} from 'react-icons/go'
 import {useSelector} from "react-redux";
 import 'antd/dist/antd.css';
 import CatalogList from "./CatalogList";

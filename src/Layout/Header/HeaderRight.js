@@ -14,8 +14,6 @@ const HeaderRight = ({user}) => {
 
     return (
         <div className='header__nav-right'>
-            {/*<button className='header__nav-btn'>Ru</button>*/}
-            {/*<button className='header__nav-btn'>En</button>*/}
             <ul className='header__nav-list'>
                 <label style={{fontSize: '25px', cursor: 'pointer'}} htmlFor="search" onClick={() => navigate('/catalog/all')}>
                     <FiSearch/>

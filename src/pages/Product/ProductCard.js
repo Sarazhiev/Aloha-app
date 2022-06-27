@@ -11,7 +11,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-const ProductCard = () => {
+const ProductCard = ({product}) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     return (
         <div className='product__card'>
@@ -20,31 +20,17 @@ const ProductCard = () => {
                     "--swiper-navigation-color": "#fff",
                     "--swiper-pagination-color": "#fff",
                 }}
-                Mousewheel={false}
                 spaceBetween={50}
                 thumbs={{swiper: thumbsSwiper}}
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper2 nurik"
             >
-                <SwiperSlide>
-                    <img src={img}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={img1}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={img2}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={img3}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={img4}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={img5}/>
-                </SwiperSlide>
+                {product.images.filter((url) => url.length).map((url, idx) => (
+                    <SwiperSlide key={idx}>
+                        <img src={`http://localhost:4444${url}`} alt={url} />
+                    </SwiperSlide>
 
+                ))}
             </Swiper>
             <Swiper
                 onSwiper={setThumbsSwiper}
@@ -56,20 +42,13 @@ const ProductCard = () => {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper swiper-nurs product"
             >
-                <div className='swiper__opacity'><SwiperSlide>
-                    <img src={img}/>
-                </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={img1}/>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={img2}/>
-                    </SwiperSlide> <SwiperSlide>
-                        <img src={img3}/>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={img4}/>
-                    </SwiperSlide></div>
+                <div className='swiper__opacity'>
+                    {product.images.filter((url) => url.length).map((url, idx) => (
+                        <SwiperSlide key={idx}>
+                            <img src={`http://localhost:4444${url}`} alt={url} />
+                        </SwiperSlide>
+                    ))}
+                </div>
             </Swiper>
         </div>
     );

@@ -11,7 +11,7 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Favorites from "./pages/Favorites/Favorites";
 import {useEffect} from "react";
-import axios from "axios";
+import axios from "./axios";
 import {useDispatch, useSelector} from "react-redux";
 import {getAll} from "./redux/reducers/clothes";
 import {registerUser} from "./redux/reducers/user";
@@ -25,17 +25,15 @@ import NotFound from "./pages/NotFound/NotFound";
 
 
 
-
 function App() {
 
   const dispatch = useDispatch();
   const basket = useSelector(s => s.basket.basket);
 
 
-  useEffect(() => {
-    axios('https://alohadatabase.herokuapp.com/clothes')
-        .then(({data}) => dispatch(getAll({arr: data})));
 
+  useEffect(() => {
+     axios('/clothes').then(({data}) => dispatch(getAll({arr: data})))
     getDocs(collection(db,'users'))
         .then((res) => console.log('asdasd', res.docs.map(el => ({...el.data(), id:el.id}) )))
   }, []);
@@ -49,8 +47,6 @@ function App() {
       dispatch(getFromLocalStorage({arr: JSON.parse(localStorage.getItem('basket'))}))
     }
   }, []);
-
-
 
   useEffect(() => {
     localStorage.setItem('basket', JSON.stringify(basket))

@@ -40,7 +40,7 @@ const CatalogRight = ({clothes, page, params}) => {
                                 duration: 0
                             })} className='catalog__content-item' to={`/catalog/new`}>New</NavLink>
                         </li>
-                        <li className='catalog__content-item'>Bestsellers</li>
+                        <li  className='catalog__content-item'>Bestsellers</li>
                         {
                             clothes && clothes
                                 .filter((item, idx, arr) => arr.map(el => el.category).indexOf(item.category) === idx)

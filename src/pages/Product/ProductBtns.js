@@ -1,7 +1,12 @@
 import React from 'react';
 import {addCart, addCartPlus} from "../../redux/reducers/basket";
+import {toast, ToastContainer} from "react-toastify";
+import Toastify from "../../Components/Toastify/Toastify";
 
 const ProductBtns = ({item, count, setCount, basket, color, size, dispatch}) => {
+    const notify = () => toast("Добавлено в Корзину!");
+
+
     return (
         <div className='product__btns'>
             <input className='product__input' style={{color: !item.inStock ? "grey" : "black"}}
@@ -15,6 +20,7 @@ const ProductBtns = ({item, count, setCount, basket, color, size, dispatch}) => 
                     color: basket.findIndex(el => el.id === item.id) >= 0 ? "white" : '',
                     border: basket.findIndex(el => el.id === item.id) >= 0 ? "none" : ''
                 }} className='product__btn1' type='button' onClick={() => {
+                    notify();
                     let product = {
                         id: item.id,
                         title: item.title,
@@ -39,9 +45,20 @@ const ProductBtns = ({item, count, setCount, basket, color, size, dispatch}) => 
                     }
 
 
-                }}>В КОРЗИНУ</button>
+                }} >В КОРЗИНУ</button>
 
             }
+            <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };
