@@ -20,6 +20,9 @@
       color: #FFFFFF;
       background: #FFFFFF80;
     }
+    &.active {
+      color: #FFFFFF;
+    }
 
   }
   &__title2 {
@@ -33,6 +36,7 @@
     &.active {
       color: #FFFFFF;
     }
+
   }
   &__content{
     width: 85%;
@@ -56,5 +60,8 @@
     column-gap: 5px;
     align-items: center;
     justify-content: flex-end;
+  }
+  &__btn {
+
   }
 }

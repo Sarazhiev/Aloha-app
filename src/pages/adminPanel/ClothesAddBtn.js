@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import axios from "../../axios";
+import {Button} from "@mui/material";
 
 const ClothesAddBtn = ({images,setImages, num}) => {
 
@@ -21,7 +22,9 @@ const ClothesAddBtn = ({images,setImages, num}) => {
 
     return (
         <li>
-            <button onClick={() => image.current.click()} type='button'>Загрузить картинку {num}</button>
+            <Button onClick={() => image.current.click()} type='button' style={{marginRight: '5px'}} variant="contained" color="success">
+                Загрузить картинку {num}
+            </Button>
             <input ref={image}  hidden  type="file" onChange={handleChangeImage1} id='image'/>
             {
                 images && (

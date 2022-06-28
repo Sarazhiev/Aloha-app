@@ -12,6 +12,7 @@
       display: flex;
       flex-direction: column;
       row-gap: 20px;
+      margin: 0 auto;
 
     }
 
@@ -53,6 +54,19 @@
     &-sizes {
       display: flex;
       column-gap: 10px;
+    }
+    &-gender {
+      display: flex;
+      column-gap: 15px;
+      align-items: center;
+    }
+    &-title {
+      display: contents;
+    }
+    &-inpt {
+      display: flex;
+      column-gap: 5px;
+      align-items: center;
     }
   }
   .create__content-color {

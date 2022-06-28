@@ -68,7 +68,7 @@ const ClothesAdd = () => {
                 <label htmlFor="inStock">Количество</label>
                 <input {...register('inStock')} className='create__form-input'  type="number" id='inStock'/>
             </div>
-            <ul style={{display:"flex", flexDirection:"column", rowGap:"10px"}} className='create__form-block'>
+            <ul style={{display:"flex", flexDirection:"column", rowGap:"10px", alignItems: "flex-start"}} className='create__form-block'>
                         <ClothesAddBtn images={image1} setImages={setImage1} num={1}/>
                         <ClothesAddBtn images={image2} setImages={setImage2} num={2}/>
                         <ClothesAddBtn images={image3} setImages={setImage3} num={3}/>
@@ -90,6 +90,7 @@ const ClothesAdd = () => {
             </div>
             <div>
                 <ul className='create__form-sizes'>
+                    <li>Выбрать размер :</li>
                     <CreateSizes sizes={sizes} setSizes={setSizes} size='XS'/>
                     <CreateSizes sizes={sizes} setSizes={setSizes} size='S'/>
                     <CreateSizes sizes={sizes} setSizes={setSizes} size='M'/>
@@ -97,6 +98,21 @@ const ClothesAdd = () => {
                     <CreateSizes sizes={sizes} setSizes={setSizes} size='XL'/>
                     <CreateSizes sizes={sizes} setSizes={setSizes} size='XXL'/>
                 </ul>
+            </div>
+            <div className='create__form-gender'>
+                <p className='create__form-title'>Товар для :</p>
+                <div className='create__form-inpt'>
+                    <input type="radio" id='man' name='gender'/>
+                    <label htmlFor="man">Для мужчин</label>
+                </div>
+                <div className='create__form-inpt'>
+                    <input type="radio" id='woman' name='gender'/>
+                    <label htmlFor="woman">Для женщин</label>
+                </div>
+                <div className='create__form-inpt'>
+                    <input type="radio" id='uni' name='gender'/>
+                    <label htmlFor="uni">Унисекс</label>
+                </div>
             </div>
             <div className='create__form-block'>
                 <label htmlFor="category">Категория</label>

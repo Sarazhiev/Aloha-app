@@ -17,13 +17,11 @@ const AdminPanel = () => {
             {location.pathname === '/admin' && <Navigate to='/admin/users'/>}
             <aside className='admin__aside'>
                 <ul>
-                    <li className='admin__title'>
-                        <NavLink className='admin__title2' to='users'><AiOutlineUser/> Users</NavLink>
 
-                    </li>
-                    <li className='admin__title'>
-                        <NavLink className='admin__title2' to='clothes'><GiClothes/> Clothes</NavLink>
-                    </li>
+                        <NavLink className='admin__title2' to='users'><li className='admin__title'> <AiOutlineUser/> Users </li></NavLink>
+
+                        <NavLink className='admin__title2' to='clothes'><li className='admin__title'> <GiClothes/> Clothes  </li></NavLink>
+
                 </ul>
             </aside>
             <div className='admin__content'>
