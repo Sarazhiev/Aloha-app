@@ -2,7 +2,8 @@ import * as React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
-export default function Variants() {
+
+const FavoritesSkeleton = () => {
     return (
         <Stack spacing={1}>
             <Skeleton variant="rectangular" width={370} height={400} />
@@ -16,4 +17,6 @@ export default function Variants() {
             </div>
         </Stack>
     );
-}
+};
+
+export default FavoritesSkeleton;

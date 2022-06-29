@@ -22,7 +22,7 @@ const ClothesAddBtn = ({images,setImages, num}) => {
 
     return (
         <li>
-            <Button onClick={() => image.current.click()} type='button' style={{marginRight: '5px'}} variant="contained" color="success">
+            <Button onClick={() => image.current.click()} type='button' variant="contained" color="success">
                 Загрузить картинку {num}
             </Button>
             <input ref={image}  hidden  type="file" onChange={handleChangeImage1} id='image'/>

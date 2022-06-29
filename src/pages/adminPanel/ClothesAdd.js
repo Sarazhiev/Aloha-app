@@ -13,13 +13,13 @@ const ClothesAdd = () => {
         register,
         reset,
         handleSubmit
-    } = useForm()
+    } = useForm();
 
     const navigate = useNavigate()
 
     const [colors, setColors] = useState('');
     const [sizes, setSizes] = useState([]);
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(false)
 
     const [image1, setImage1] = useState('')
@@ -35,7 +35,7 @@ const ClothesAdd = () => {
                 ...data,
                 colors,
                 sizes,
-                images
+                images,
             }).then(() => {
                 setLoading(false)
                 navigate('/admin/clothes')
@@ -102,15 +102,15 @@ const ClothesAdd = () => {
             <div className='create__form-gender'>
                 <p className='create__form-title'>Товар для :</p>
                 <div className='create__form-inpt'>
-                    <input type="radio" id='man' name='gender'/>
+                    <input {...register('gender')} type="radio" id='man' name='gender'/>
                     <label htmlFor="man">Для мужчин</label>
                 </div>
                 <div className='create__form-inpt'>
-                    <input type="radio" id='woman' name='gender'/>
+                    <input {...register('gender')} type="radio" id='woman' name='gender'/>
                     <label htmlFor="woman">Для женщин</label>
                 </div>
                 <div className='create__form-inpt'>
-                    <input type="radio" id='uni' name='gender'/>
+                    <input {...register('gender')} type="radio" id='uni' name='gender'/>
                     <label htmlFor="uni">Унисекс</label>
                 </div>
             </div>
