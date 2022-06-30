@@ -64,14 +64,14 @@ const Slider = ({category, title, color, delay}) => {
                     className="mySwiper"
                 >
                     {
-                        clothes && clothes.filter((item) => item.category === category).map(item => (
-                            <SwiperSlide key={item.id}>
+                        clothes && clothes.filter((item) => item.category === category).map((item, idx) => (
+                            <SwiperSlide key={idx}>
                                 <div className='category__content'>
                                     <Link onClick={() => animateScroll.scrollToTop({
                                         delay: 0,
                                         duration: 0
-                                    })} className='catalog__content-link' to={`/product/${item.id}`}>
-                                    <img className='category__img' src={img1} alt="img"/>
+                                    })} className='catalog__content-link' to={`/product/${item._id}`}>
+                                    <img className='category__img' src={`http://localhost:4444${item.images[0]}`} alt="img"/>
                                     </Link>
                                     <p style={{background: color }} className='category__text'>{item.title}</p>
                                 </div>

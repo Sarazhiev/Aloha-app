@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink ,Link} from "react-router-dom";
 
 
 const HeaderList = ({burger, user}) => {
@@ -30,7 +30,7 @@ const HeaderList = ({burger, user}) => {
             </button>
                 {
                     isActive && <ul className='header__nav-lists'>
-                        <li className='header__nav-itm'>Посмотреть все</li>
+                        <li className='header__nav-itm'><Link to='catalog/man'>Посмотреть все</Link></li>
                         <li className='header__nav-itm'>Худи</li>
                         <li className='header__nav-itm'>Свитшоты</li>
                         <li className='header__nav-itm'>Футболки</li>
@@ -63,7 +63,7 @@ const HeaderList = ({burger, user}) => {
 
                 {
                     isActive2 && <ul className='header__nav-lists'>
-                        <li className='header__nav-itm'>Посмотреть все</li>
+                        <li className='header__nav-itm'><Link to='catalog/woman'>Посмотреть все</Link></li>
                         <li className='header__nav-itm'>Худи</li>
                         <li className='header__nav-itm'>Свитшоты</li>
                         <li className='header__nav-itm'>Футболки</li>

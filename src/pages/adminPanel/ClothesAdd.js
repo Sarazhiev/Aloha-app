@@ -13,13 +13,13 @@ const ClothesAdd = () => {
         register,
         reset,
         handleSubmit
-    } = useForm();
+    } = useForm()
 
     const navigate = useNavigate()
 
     const [colors, setColors] = useState('');
     const [sizes, setSizes] = useState([]);
-    const [images, setImages] = useState([]);
+    const [images, setImages] = useState([])
     const [loading, setLoading] = useState(false)
 
     const [image1, setImage1] = useState('')
@@ -35,7 +35,7 @@ const ClothesAdd = () => {
                 ...data,
                 colors,
                 sizes,
-                images,
+                images
             }).then(() => {
                 setLoading(false)
                 navigate('/admin/clothes')
@@ -50,7 +50,7 @@ const ClothesAdd = () => {
     }
 
     useEffect( () => {
-         setImages([image1,image2,image3,image4, image5])
+        setImages([image1,image2,image3,image4, image5])
     }, [image1,image2,image3,image4, image5])
 
 
@@ -69,11 +69,11 @@ const ClothesAdd = () => {
                 <input {...register('inStock')} className='create__form-input'  type="number" id='inStock'/>
             </div>
             <ul style={{display:"flex", flexDirection:"column", rowGap:"10px", alignItems: "flex-start"}} className='create__form-block'>
-                        <ClothesAddBtn images={image1} setImages={setImage1} num={1}/>
-                        <ClothesAddBtn images={image2} setImages={setImage2} num={2}/>
-                        <ClothesAddBtn images={image3} setImages={setImage3} num={3}/>
-                        <ClothesAddBtn images={image4} setImages={setImage4} num={4}/>
-                        <ClothesAddBtn images={image5} setImages={setImage5} num={5}/>
+                <ClothesAddBtn images={image1} setImages={setImage1} num={1}/>
+                <ClothesAddBtn images={image2} setImages={setImage2} num={2}/>
+                <ClothesAddBtn images={image3} setImages={setImage3} num={3}/>
+                <ClothesAddBtn images={image4} setImages={setImage4} num={4}/>
+                <ClothesAddBtn images={image5} setImages={setImage5} num={5}/>
             </ul>
             <div>
                 <div>
@@ -102,15 +102,15 @@ const ClothesAdd = () => {
             <div className='create__form-gender'>
                 <p className='create__form-title'>Товар для :</p>
                 <div className='create__form-inpt'>
-                    <input {...register('gender')} type="radio" id='man' name='gender'/>
+                    <input {...register('gender')} value='man' type="radio" id='man' />
                     <label htmlFor="man">Для мужчин</label>
                 </div>
                 <div className='create__form-inpt'>
-                    <input {...register('gender')} type="radio" id='woman' name='gender'/>
+                    <input {...register('gender')} value='woman' type="radio" id='woman'/>
                     <label htmlFor="woman">Для женщин</label>
                 </div>
                 <div className='create__form-inpt'>
-                    <input {...register('gender')} type="radio" id='uni' name='gender'/>
+                    <input {...register('gender')} value='uni' type="radio" id='uni' />
                     <label htmlFor="uni">Унисекс</label>
                 </div>
             </div>

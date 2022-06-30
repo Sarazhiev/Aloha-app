@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import {animateScroll} from "react-scroll";
-import MultipleSelectCheckmarks from "./SelectForGenderClothes/Select";
 import {useSelector} from "react-redux";
 import CatalogRow from "./CatalogRow";
 import CatalogClothesLenght from "./CatalogClothesLenght";
+import Select from "./SelectForGenderClothes/Select";
 
 const CatalogRight = ({clothes, page, params}) => {
+    const [status, setStatus] = useState('all');
     const user = useSelector(s => s.user.user);
     const [isActive] = useState(null);
     const [sort, setSort] = useState('');
@@ -85,14 +86,14 @@ const CatalogRight = ({clothes, page, params}) => {
                                 onClick={() => setSort('less' !== sort ? 'less' : '')}>К меньшему
                         </button>
                     </div>
-                    <MultipleSelectCheckmarks/>
+                    <Select setStatus={setStatus}/>
                 </div>
 
             </div>
 
 
             <CatalogClothesLenght clothes={clothes} page={page} params={params}/>
-            <CatalogRow page={page} params={params} clothes={clothes} user={user} sort={sort} search={search}/>
+            <CatalogRow status={status} page={page} params={params} clothes={clothes} user={user} sort={sort} search={search}/>
         </div>
     );
 };

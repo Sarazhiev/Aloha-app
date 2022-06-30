@@ -10,6 +10,10 @@ const CatalogClothesLenght = ({clothes, page, params}) => {
                     return idx > array.length - 5;
                 case 'sale' :
                     return item.priceSale;
+                case 'man' :
+                    return item.gender === 'man';
+                case 'woman' :
+                    return item.gender === 'woman';
                 default:
                     return item.category === params.category
             }
@@ -21,6 +25,10 @@ const CatalogClothesLenght = ({clothes, page, params}) => {
                     return idx > array.length - 5;
                 case 'sale' :
                     return item.priceSale;
+                case 'man' :
+                    return item.gender === 'man';
+                case 'woman' :
+                    return item.gender === 'woman';
                 default:
                     return item.category === params.category
             }

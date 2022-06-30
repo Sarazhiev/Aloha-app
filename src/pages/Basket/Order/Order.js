@@ -1,20 +1,53 @@
 import React from 'react';
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import axios from "../../../axios";
+import {registerUser} from "../../../redux/reducers/user";
+import {useNavigate} from "react-router-dom";
+import {removeCart} from "../../../redux/reducers/basket";
+import {toISOStringWithTimezone} from "../../../formatDate";
 
 const Order = () => {
+
+    const user = useSelector((s) => s.user.user )
+    const basket = useSelector(s => s.basket.basket)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const {
+        register,
+        reset,
+        handleSubmit
+    } = useForm()
+
+
+    const handleOrders = (data) => {
+        axios.patch(`users/${user._id}`, {...data,  time : toISOStringWithTimezone(new Date()), orders: basket, price: basket.reduce((acc, rec) => acc + rec.count * rec.price, 0), status: 'pending'})
+            .then(async (res) => {
+                await localStorage.setItem('user', JSON.stringify(res.data))
+                await dispatch(registerUser({obj: res.data}));
+                await dispatch(removeCart({arr:  []}))
+                await reset()
+                await navigate('/')
+            })
+
+        axios.post('/users', data).then()
+    }
+
     return (
         <div className='order'>
             <h2 className='order__title'>Оформление заказа</h2>
             <p className='order__text'>Персональные данные:</p>
-            <form className='order__form'>
+            <form className='order__form' onSubmit={handleSubmit(handleOrders)}>
                 <div className='order__left'>
                     <div className='order__inputs'>
                         <div>
-                            <input className='order__input' placeholder='Ваше имя*' type="text"/>
-                            <input className='order__input' placeholder='Ваша фамилия*' type="text"/>
+                            <input {...register("name")} className='order__input' placeholder='Ваше имя*' type="text"/>
+                            <input {...register("surname")} className='order__input' placeholder='Ваша фамилия*' type="text"/>
                         </div>
                         <div>
-                            <input className='order__input' placeholder='Ваш e-mail*' type="email"/>
-                            <input className='order__input' placeholder='Ваш телефон*' type="number"/>
+                            <input {...register("email")} defaultValue={user.email} className='order__input' placeholder='Ваш e-mail*' type="email"/>
+                            <input {...register("phone")} defaultValue={user.phone} className='order__input' placeholder='Ваш телефон*' type="tel"/>
                         </div>
 
                     </div>
@@ -62,7 +95,7 @@ const Order = () => {
                             <ul className='order__sub'>
                                 <li className='order__grn'>По тарифам перевозчика</li>
                                 <li className='order__grn'>-69 грн</li>
-                                <li className='order__grn'>15250 грн</li>
+                                <li className='order__grn'>{basket.reduce((acc, rec) => acc + rec.count * rec.price, 0)}</li>
                             </ul>
                         </div>
                         <button className='order__btn' type='submit'>ОФОРМИТЬ ЗАКАЗ</button>

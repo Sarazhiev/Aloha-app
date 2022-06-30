@@ -10,6 +10,7 @@ import ProductColors from "./ProductColors";
 
 import Toastify from "../../Components/Toastify/Toastify";
 import axios from "../../axios";
+import FavoritesSkeleton from "../../Components/FavoritesSkeleton";
 
 
 const Product = () => {
@@ -22,11 +23,16 @@ const Product = () => {
     const [count, setCount] = useState(1);
     const basket = useSelector(s => s.basket.basket);
     const dispatch = useDispatch();
-    const [product, setProduct] = useState()
+    const [product, setProduct] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        axios(`/clothes/${params.id}`).then(({data}) => setProduct(data))
-    }, [])
+        axios(`/clothes/${params.id}`).then(({data}) => {
+            setProduct(data)
+            setIsLoading(true)
+        })
+
+    }, []);
 
 
 
@@ -42,12 +48,13 @@ const Product = () => {
                     <span className="catalog__link">Product</span>
                 </div>
 
-                <div className='product__content'>
-                    { product  &&
-                        <>
-                    <ProductCard product={product}/>
-
-                        <div className='product__right'>
+                <div className='product__content' style={{minHeight: '800px'}}>
+                    { isLoading  ? (
+                            <ProductCard product={product} isLoading={isLoading}/>
+                        ) : <FavoritesSkeleton/>
+                    }
+                    {
+                        product && <div className='product__right'>
                             <p className='product__title'>{product.title}</p>
                             <p className='product__price'>{product.priceSale
                                 ? <>
@@ -58,7 +65,7 @@ const Product = () => {
                                 : product.price}</p>
                             {/*<ProductColors item={item} color={color} setColor={setColor}/>*/}
 
-                             <ProductSize product={product} setSize={setSize} size={size}/>
+                            <ProductSize product={product} setSize={setSize} size={size}/>
                             {
                                 product.inStock ?
                                     <p className='product__content-choose'>
@@ -114,7 +121,7 @@ const Product = () => {
                                 }
                             </p>
                         </div>
-                        </>
+
                     }
 
                 </div>

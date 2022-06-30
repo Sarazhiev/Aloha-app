@@ -6,6 +6,7 @@ import CatalogList from "./CatalogList";
 import CatalogRight from "./CatalogRight";
 import PaginationAndRoutes from "./PaginationAndRoutes";
 import Crumbs from "../Crumbs/Crumbs";
+import FavoritesSkeleton from "../../Components/FavoritesSkeleton";
 
 
 

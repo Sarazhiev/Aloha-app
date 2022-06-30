@@ -7,12 +7,11 @@ import img2 from './empty.png'
 import Crumbs from "../Crumbs/Crumbs";
 
 
+
 const Favorites = () => {
 
     const favorites = useSelector(s => s.user.user.favorites);
-
-
-
+    const [loaded, setLoaded] = useState(false)
 
 
 
@@ -22,28 +21,27 @@ const Favorites = () => {
                 <Crumbs title='Избранное'/>
                 <div className='catalog__content-row'>
 
+
+
                     {
                         favorites && favorites.length ? favorites.map((item) => (
-                                <div className='catalog__content-card'>
-                                    <Link className='catalog__content-link' to={`/product/${item.id}`}>
-                                        <img className='catalog__content-img' src={img} alt=""/>
+                                <div className='catalog__content-card' key={item._id}>
+                                    <Link className='catalog__content-link' to={`/product/${item._id}`}>
+                                        {!loaded && <div style={{height:'400px', width: "100%", background:"gray"}}></div>}
+                                        <img className='catalog__content-img' src={`http://localhost:4444${item.images[0]}`} alt="" onLoad={() => setLoaded(true)}/>
                                     </Link>
                                     <BtnForFavorites item={item}/>
                                     <p className='catalog__content-name'>{item.title}</p>
                                     <p className='catalog__content-price'>{item.price} грн</p>
                                     <ul className='catalog__content-sizes'>
                                         {
-                                            item.size.map((size) => (
-                                                <li className='catalog__content-size'>{size}</li>
+                                            item.sizes.map((size) => (
+                                                <li className='catalog__content-size' key={size}>{size}</li>
                                             ))
                                         }
                                     </ul>
                                     <ul className='catalog__content-colors'>
-                                        {
-                                            item.colors.map((color) => (
-                                                <li style={{background: color }} className='catalog__content-circle'> </li>
-                                            ))
-                                        }
+                                                <li style={{background: item.colors }} className='catalog__content-circle'> </li>
                                     </ul>
                                 </div>
                             )) :

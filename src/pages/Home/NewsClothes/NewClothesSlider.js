@@ -59,13 +59,13 @@ const NewClothesSlider = ({clothes}) => {
         >
             {
                 clothes && clothes.filter((item, idx, array) => idx > array.length - 5).map(item => (
-                    <SwiperSlide key={item.id}>
+                    <SwiperSlide key={item.id + item.title}>
                         <div className='category__content'>
                             <Link onClick={() => animateScroll.scrollToTop({
                                 delay: 0,
                                 duration: 0
-                            })} className='catalog__content-link' to={`/product/${item.id}`}>
-                                <img className='category__img' src={img1} alt="img"/>
+                            })} className='catalog__content-link' to={`/product/${item._id}`}>
+                                <img className='category__img' src={`http://localhost:4444${item.images[0]}`} alt="img"/>
                             </Link>
                             <p className='category__text'>{item.title}</p>
                         </div>

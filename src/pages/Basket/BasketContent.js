@@ -12,12 +12,15 @@ const BasketContent = ({basket, img}) => {
         <div className='basket__content'>
             {
                 basket.map((item) => (
-                  <BasketProduct item={item} basket={basket} img={img}/>
+                    <React.Fragment key={item._id + item.size}>
+                        <BasketProduct item={item} basket={basket} img={img}/>
+                    </React.Fragment>
+
 
                 ))
             }
             <div className='basket__under'>
-                <button className='basket__clear' onClick={() => dispatch(removeCart({arr: basket = []}))}>Очистить корзину <span className='basket__trash' ><FaTrashAlt/></span></button>
+                <button className='basket__clear' onClick={() => dispatch(removeCart({arr:  []}))}>Очистить корзину <span className='basket__trash' ><FaTrashAlt/></span></button>
                 <h4 className='basket__sum'>К оплате: <span className='basket__price'>{basket.reduce((acc, rec) => acc + rec.count * rec.price, 0)}</span> </h4>
             </div>
         </div>

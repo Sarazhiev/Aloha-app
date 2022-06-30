@@ -2,7 +2,6 @@ import React from 'react';
 import {Autoplay, Keyboard, Mousewheel, Navigation} from "swiper";
 import {Link} from "react-router-dom";
 import {animateScroll} from "react-scroll";
-import img1 from "./Rectangle 7.png";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -60,13 +59,13 @@ const CategorySlider = ({clothes}) => {
         >
             {
                 clothes && clothes.map(item => (
-                    <SwiperSlide key={item.id}>
+                    <SwiperSlide key={item.category}>
                         <div className='category__content'>
                             <Link onClick={() => animateScroll.scrollToTop({
                                 delay: 0,
                                 duration: 0
                             })} className='catalog__content-link' to={`/catalog/${item.category}`}>
-                                <img className='category__img' src={img1} alt="img"/>
+                                <img className='category__img' src={`http://localhost:4444${item.images[0]}`} alt="img"/>
                             </Link>
                             <p className='category__text'>{item.category}</p>
                         </div>

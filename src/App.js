@@ -34,8 +34,7 @@ function App() {
 
   useEffect(() => {
      axios('/clothes').then(({data}) => dispatch(getAll({arr: data})))
-    getDocs(collection(db,'users'))
-        .then((res) => console.log('asdasd', res.docs.map(el => ({...el.data(), id:el.id}) )))
+
   }, []);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {AnimatePresence, motion} from "framer-motion";
 import {Link} from "react-router-dom";
 import {animateScroll} from "react-scroll";
@@ -6,12 +6,13 @@ import img from "./img/1.png";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
 import img2 from "../Favorites/empty.png";
 
-const CatalogRow = ({clothes, sort, params, page, user, search}) => {
+const CatalogRow = ({clothes, sort, params, page, user, search, status}) => {
+
     return (
         <div className='catalog__content-row'>
             {
                 clothes && clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).length ?
-                    clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).filter((item, idx, array) => {
+                    clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).filter(item => status === 'all' ? item : status === 'man' ? item.gender === 'man' : status === 'woman' ? item.gender === 'woman' : '').filter((item, idx, array) => {
                         switch (params.category) {
                             case 'all' :
                                 return item;
@@ -19,6 +20,10 @@ const CatalogRow = ({clothes, sort, params, page, user, search}) => {
                                 return idx > array.length - 5;
                             case 'sale' :
                                 return item.priceSale;
+                            case 'man' :
+                                return item.gender === 'man';
+                            case 'woman' :
+                                return item.gender === 'woman';
                             default:
                                 return item.category === params.category
                         }

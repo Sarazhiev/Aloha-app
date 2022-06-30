@@ -14,6 +14,8 @@ import axios from "../../axios";
 import {toast} from "react-toastify";
 import Stack from '@mui/material/Stack';
 import Button2 from '@mui/material/Button';
+import {useDispatch, useSelector} from "react-redux";
+import {getAll} from "../../redux/reducers/clothes";
 
 
 const columns = [
@@ -65,18 +67,20 @@ function createData(
 const Clothes = () => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [clothes, setClothes] = useState([])
+    const clothes = useSelector(s => s.clothes.clothes)
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
 
-    useEffect(() => {
-        axios('/clothes').then(({data}) => setClothes(data))
 
-    },[])
+        useEffect(() => {
+            axios('/clothes').then(({data}) => dispatch(getAll({arr: data})))
+        }, []);
+
 
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
@@ -88,6 +92,7 @@ const Clothes = () => {
         axios.delete(`/clothes/${id}`)
             .then(() => {
                 toast("Товар удален!")
+                axios('/clothes').then(({data}) => dispatch(getAll({arr: data})))
             }).catch(() => {
                 toast("Ошибка при удалении !")
         })
@@ -122,7 +127,6 @@ const Clothes = () => {
                         {clothes && clothes.map((item) => createData(item.title, item.category, item.colors, item.sizes, item.price,'action',item._id))
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => {
-                                console.log(row)
                                 return (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                         {columns.map((column , idx) => {

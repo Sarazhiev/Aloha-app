@@ -9,7 +9,6 @@ import CategorySlider from "./CategorySlider";
 const Category = () => {
 
     const clothes = useSelector(s => s.clothes.clothes.filter((item, idx, arr) => arr.map(el => el.category).indexOf(item.category) === idx))
-
     return (
 
         <section className='category'>

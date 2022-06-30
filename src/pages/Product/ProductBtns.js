@@ -16,25 +16,26 @@ const ProductBtns = ({item, count, setCount, basket, color, size, dispatch}) => 
             {
                 // user.email?.length || user.phoneNumber?.length ?
                 <button style={{
-                    background: basket.findIndex(el => el.id === item.id) >= 0 ? "tomato" : '',
-                    color: basket.findIndex(el => el.id === item.id) >= 0 ? "white" : '',
-                    border: basket.findIndex(el => el.id === item.id) >= 0 ? "none" : ''
+                    background: basket.findIndex(el => el._id === item._id) >= 0 ? "tomato" : '',
+                    color: basket.findIndex(el => el._id === item._id) >= 0 ? "white" : '',
+                    border: basket.findIndex(el => el._id === item._id) >= 0 ? "none" : ''
                 }} className='product__btn1' type='button' onClick={() => {
                     notify();
                     let product = {
-                        id: item.id,
+                        _id: item._id,
                         title: item.title,
                         image: item.image,
+                        inStock: item.inStock,
                         color,
                         size,
                         count,
                         price: item.priceSale || item.price,
                         category: item.category
                     };
-                    let idx = basket.findIndex(item => item.id === product.id && item.color === product.color && item.size === product.size);
+                    let idx = basket.findIndex(item => item._id === product._id && item.color === product.color && item.size === product.size);
                     if (idx >= 0) {
                         dispatch(addCartPlus({arr:basket.map(item => {
-                                if (item.id === product.id && item.color === product.color && item.size === product.size) {
+                                if (item._id === product._id && item.color === product.color && item.size === product.size) {
                                     return {...item, count: +item.count + +product.count}
                                 } else {
                                     return item
