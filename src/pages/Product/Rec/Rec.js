@@ -4,11 +4,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import {Navigation, Pagination, Mousewheel, Keyboard, Autoplay} from "swiper";
-import {MdOutlineFavoriteBorder} from 'react-icons/md'
-import img1 from "../../Home/Category/Rectangle 7.png";
-import img2 from "../../Home/Category/Rectangle 9.png";
-import img3 from "../../Home/Category/Rectangle 10.png";
-import img4 from "../../Home/Category/Rectangle 11.png";
 import {Link, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {animateScroll} from 'react-scroll'
@@ -70,14 +65,14 @@ const Rec = () => {
                 className="mySwiper"
             >
                 {
-                  clothes &&  clothes.filter((item, idx) => item.category === clothes.find(el => el._id == params.id).category && item._id != params.id).map((item) => (
+                  clothes &&  clothes.filter((item) => item.category === clothes.find(el => el._id == params.id).category && item._id != params.id).map((item) => (
                         <SwiperSlide key={item._id}>
                             <div className='category__content'>
-                                <Link className='catalog__content-link' to={`/product/${item.id}`} onClick={() => animateScroll.scrollToTop({
+                                <Link className='catalog__content-link' to={`/product/${item._id}`} onClick={() => animateScroll.scrollToTop({
                                     delay: 0,
                                     duration: 0
                                 })}>
-                                    <img className='category__img' src={img1} alt="img"/>
+                                    <img className='category__img' src={`http://localhost:4444${item.images[0]}`} alt="img"/>
                                 </Link>
                                 <p className='rec__name'>{item.title}</p>
                                 <p>{item.price}</p>

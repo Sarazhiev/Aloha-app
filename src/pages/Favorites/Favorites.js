@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useParams} from "react-router-dom";
 import img from "../Catalog/img/1.png";
 import {useSelector} from "react-redux";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
@@ -9,9 +9,9 @@ import Crumbs from "../Crumbs/Crumbs";
 
 
 const Favorites = () => {
-
     const favorites = useSelector(s => s.user.user.favorites);
-    const [loaded, setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false);
+
 
 
 
@@ -20,7 +20,6 @@ const Favorites = () => {
             <div className="container">
                 <Crumbs title='Избранное'/>
                 <div className='catalog__content-row'>
-
 
 
                     {
@@ -41,7 +40,7 @@ const Favorites = () => {
                                         }
                                     </ul>
                                     <ul className='catalog__content-colors'>
-                                                <li style={{background: item.colors }} className='catalog__content-circle'> </li>
+                                        <li style={{background: item.colors }} className='catalog__content-circle'> </li>
                                     </ul>
                                 </div>
                             )) :

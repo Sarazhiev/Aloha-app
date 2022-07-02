@@ -22,6 +22,7 @@ const AdminPanel = () => {
 
                         <NavLink className='admin__title2' to='clothes'><li className='admin__title'> <GiClothes/> Clothes  </li></NavLink>
 
+
                 </ul>
             </aside>
             <div className='admin__content'>

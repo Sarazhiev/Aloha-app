@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
 import {FreeMode, Navigation, Thumbs} from "swiper";
 import img from "./img/Rectangle 10 (3).png";
-import img1 from "./img/Rectangle 25.png";
-import img2 from "./img/Rectangle 24.png";
-import img3 from "./img/Rectangle 23.png";
-import img4 from "./img/Rectangle 22.png";
-import img5 from "./img/Rectangle 21.png";
+
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -15,7 +11,7 @@ const  ProductCard = ({product}) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [loaded, setLoaded] = useState(false)
 
-
+    console.log(product)
     return (
         <div className='product__card'>
             <Swiper
@@ -50,7 +46,7 @@ const  ProductCard = ({product}) => {
                     {product.images.filter((url) => url.length).map((url, idx) => (
                         <SwiperSlide key={idx}>
                             {!loaded && <div style={{height:'200px', width: "102px", background:"gray"}}></div>}
-                            <img src={`http://localhost:4444${url}`} alt={url} />
+                            <img src={`http://localhost:4444${url}`} alt={url} onLoad={() => setLoaded(true)}/>
                         </SwiperSlide>
                     ))}
                 </div>

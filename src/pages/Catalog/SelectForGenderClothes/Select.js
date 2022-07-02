@@ -1,12 +1,19 @@
 import React, {useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
-const Select = ({setStatus}) => {
+const Select = () => {
+
     const navigate = useNavigate();
     return (
         <>
         <select onChange={(e) => {
-            setStatus(e.target.value)
+            if (e.target.value === 'man') {
+                navigate('../catalog/man')
+            } else if (e.target.value === 'woman') {
+                navigate('../catalog/woman')
+            } else {
+                navigate('../catalog/all')
+            }
         }} name="clothes" id="gender">
                 <option value="all">Все</option>
                 <option value="man">Для мужчин</option>

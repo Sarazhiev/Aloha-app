@@ -4,7 +4,6 @@ import {useSelector} from "react-redux";
 
 const PersonalData = () => {
     const user = useSelector(s => s.user.user);
-    console.log(user)
     return (
         <div className='personal'>
             <div className="container">
@@ -12,19 +11,19 @@ const PersonalData = () => {
                 <div className='personal__inputs'>
 
                     {
-                        user.login && <input className='personal__input' type="text" defaultValue={user.login}/>
+                        user.login && <input className='personal__input' type="text" disabled defaultValue={user.login}/>
                     }
 
                     {
-                        user.email && <input className='personal__input' type="text" defaultValue={user.email}/>
+                        user.email && <input className='personal__input' type="text" disabled defaultValue={user.email}/>
                     }
 
                     {
-                        user.phone && <input className='personal__input' type="email" defaultValue={user.phone}/>
+                        user.phone && <input className='personal__input' type="email" disabled defaultValue={user.phone}/>
                     }
 
                     {
-                        user.phoneNumber && <input className='personal__input' type="email" defaultValue={user.phoneNumber}/>
+                        user.phoneNumber && <input className='personal__input' type="email" disabled defaultValue={user.phoneNumber}/>
                     }
 
                 </div>

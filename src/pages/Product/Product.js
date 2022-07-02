@@ -6,11 +6,9 @@ import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
 import ProductCard from "./ProductCard";
 import ProductBtns from "./ProductBtns";
 import ProductSize from "./ProductSize";
-import ProductColors from "./ProductColors";
 
-import Toastify from "../../Components/Toastify/Toastify";
 import axios from "../../axios";
-import FavoritesSkeleton from "../../Components/FavoritesSkeleton";
+import ProductSkeleton from "../../Components/Skeleton/ProductSkeleton";
 
 
 const Product = () => {
@@ -28,11 +26,11 @@ const Product = () => {
 
     useEffect(() => {
         axios(`/clothes/${params.id}`).then(({data}) => {
-            setProduct(data)
+            setProduct(data);
             setIsLoading(true)
         })
 
-    }, []);
+    }, [params]);
 
 
 
@@ -51,7 +49,7 @@ const Product = () => {
                 <div className='product__content' style={{minHeight: '800px'}}>
                     { isLoading  ? (
                             <ProductCard product={product} isLoading={isLoading}/>
-                        ) : <FavoritesSkeleton/>
+                        ) : <ProductSkeleton/>
                     }
                     {
                         product && <div className='product__right'>

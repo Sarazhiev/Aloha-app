@@ -6,13 +6,12 @@ import img from "./img/1.png";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
 import img2 from "../Favorites/empty.png";
 
-const CatalogRow = ({clothes, sort, params, page, user, search, status}) => {
-
+const CatalogRow = ({clothes, sort, params, page, user, search}) => {
     return (
         <div className='catalog__content-row'>
             {
                 clothes && clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).length ?
-                    clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).filter(item => status === 'all' ? item : status === 'man' ? item.gender === 'man' : status === 'woman' ? item.gender === 'woman' : '').filter((item, idx, array) => {
+                    clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).filter((item, idx, array) => {
                         switch (params.category) {
                             case 'all' :
                                 return item;

@@ -86,7 +86,7 @@ const CatalogRight = ({clothes, page, params}) => {
                                 onClick={() => setSort('less' !== sort ? 'less' : '')}>К меньшему
                         </button>
                     </div>
-                    <Select setStatus={setStatus}/>
+                    <Select/>
                 </div>
 
             </div>
