@@ -1,19 +1,15 @@
-import React, {useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {changeStatus} from "../../../redux/reducers/clothes";
 
 const Select = () => {
 
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const status = useSelector(s => s.clothes.status)
     return (
         <>
-        <select onChange={(e) => {
-            if (e.target.value === 'man') {
-                navigate('../catalog/man')
-            } else if (e.target.value === 'woman') {
-                navigate('../catalog/woman')
-            } else {
-                navigate('../catalog/all')
-            }
+        <select value={status} onChange={(e) => {
+            dispatch(changeStatus(e.target.value))
         }} name="clothes" id="gender">
                 <option value="all">Все</option>
                 <option value="man">Для мужчин</option>

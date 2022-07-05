@@ -5,13 +5,27 @@ import {animateScroll} from "react-scroll";
 import img from "./img/1.png";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
 import img2 from "../Favorites/empty.png";
+import {useSelector} from "react-redux";
 
 const CatalogRow = ({clothes, sort, params, page, user, search}) => {
+
+    const status = useSelector(s => s.clothes.status)
+
     return (
         <div className='catalog__content-row'>
             {
                 clothes && clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).length ?
-                    clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())).filter((item, idx, array) => {
+                    clothes.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
+                        .filter((item) => {
+                            switch (status){
+                                case 'man':
+                                    return item.gender === 'man'
+                                case 'woman':
+                                    return item.gender === 'woman'
+                                default :
+                                    return item
+                            }
+                        }).filter((item, idx, array) => {
                         switch (params.category) {
                             case 'all' :
                                 return item;
@@ -19,10 +33,6 @@ const CatalogRow = ({clothes, sort, params, page, user, search}) => {
                                 return idx > array.length - 5;
                             case 'sale' :
                                 return item.priceSale;
-                            case 'man' :
-                                return item.gender === 'man';
-                            case 'woman' :
-                                return item.gender === 'woman';
                             default:
                                 return item.category === params.category
                         }

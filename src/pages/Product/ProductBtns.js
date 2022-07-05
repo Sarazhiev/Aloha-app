@@ -24,7 +24,7 @@ const ProductBtns = ({item, count, setCount, basket, color, size, dispatch}) => 
                     let product = {
                         _id: item._id,
                         title: item.title,
-                        image: item.image,
+                        image: item.images[0],
                         inStock: item.inStock,
                         color,
                         size,

@@ -1,10 +1,13 @@
 import React,{useState} from 'react';
 import {NavLink ,Link} from "react-router-dom";
+import {changeStatus} from "../../redux/reducers/clothes";
+import {useDispatch} from "react-redux";
 
 
 const HeaderList = ({burger, user}) => {
     const [isActive, setIsActive] = useState(null);
     const [isActive2, setIsActive2] = useState(null);
+    const dispatch = useDispatch();
     return (
         <ul  className={`header__list ${burger ? 'header__list_active' : ''}`}>
             <NavLink to='catalog/all' className='header__nav-items'>ПОСМОТРЕТЬ ВСЕ</NavLink>
@@ -30,10 +33,10 @@ const HeaderList = ({burger, user}) => {
             </button>
                 {
                     isActive && <ul className='header__nav-lists'>
-                        <li className='header__nav-itm'><Link to='catalog/man'>Посмотреть все</Link></li>
-                        <li className='header__nav-itm'>Худи</li>
-                        <li className='header__nav-itm'>Свитшоты</li>
-                        <li className='header__nav-itm'>Футболки</li>
+                        <li className='header__nav-itm'><Link to='catalog/all' onClick={() => dispatch(changeStatus('man'))}>Посмотреть все</Link></li>
+                        <li className='header__nav-itm'><Link to='catalog/hoody' onClick={() => dispatch(changeStatus('man'))}>Худи</Link></li>
+                        <li className='header__nav-itm'><Link to='catalog/sweatshirt' onClick={() => dispatch(changeStatus('man'))}>Свитшоты</Link></li>
+                        <li className='header__nav-itm'><Link to='catalog/tshort' onClick={() => dispatch(changeStatus('man'))}>Футболки</Link></li>
                         <li className='header__nav-itm'>Штаны</li>
                         <li className='header__nav-itm'>Рубашки</li>
                         <li className='header__nav-itm'>Куртки</li>
@@ -63,10 +66,10 @@ const HeaderList = ({burger, user}) => {
 
                 {
                     isActive2 && <ul className='header__nav-lists'>
-                        <li className='header__nav-itm'><Link to='catalog/woman'>Посмотреть все</Link></li>
-                        <li className='header__nav-itm'>Худи</li>
-                        <li className='header__nav-itm'>Свитшоты</li>
-                        <li className='header__nav-itm'>Футболки</li>
+                        <li className='header__nav-itm'><Link to='catalog/all' onClick={() =>   dispatch(changeStatus('woman'))}>Посмотреть все</Link></li>
+                        <li className='header__nav-itm'><Link to='catalog/hoody' onClick={() => dispatch(changeStatus('woman'))}>Худи</Link></li>
+                        <li className='header__nav-itm'><Link to='catalog/sweatshirt' onClick={() => dispatch(changeStatus('woman'))}>Свитшоты</Link></li>
+                        <li className='header__nav-itm'><Link to='catalog/tshort' onClick={() => dispatch(changeStatus('woman'))}>Футболки</Link></li>
                         <li className='header__nav-itm'>Штаны</li>
                         <li className='header__nav-itm'>Рубашки</li>
                         <li className='header__nav-itm'>Куртки</li>
@@ -79,7 +82,6 @@ const HeaderList = ({burger, user}) => {
             <li className='header__nav-items'>Корпоративные заказы и оптом</li>
             <li className='header__nav-items'><NavLink className='header__nav-items' to='/contact'>Контакты</NavLink></li>
             {user.email === 'admin@mail.ru' &&  <li className='header__nav-items'><NavLink className='header__nav-items' to='/admin/users'>Админ панель</NavLink></li> }
-
         </ul>
     );
 };

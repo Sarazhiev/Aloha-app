@@ -11,16 +11,21 @@ const BtnForFavorites = ({item, product}) => {
     const user = useSelector(s => s.user.user);
     const dispatch = useDispatch();
     const addFavoritesForUser =  (obj) => {
-        axios.patch(`/users/favorites/${user._id}` , obj)
+        axios.patch(`/users/favorites/${user._id}` , {favorites: obj.favorites})
             .then((res) =>{
                 dispatch(registerUser({obj: res.data}));
                 localStorage.setItem('user', JSON.stringify(res.data));
-                notify()
+                if (obj.status === 'del'){
+                    toast("Удалено их Избранных!")
+                } else {
+                    toast("Добавлено в Избранное!")
+                }
+
             })
             .catch((err) => console.log(err))
 
     };
-    const notify = () => toast("Добавлено в Избранное!");
+
 
     return (
         <>
@@ -28,16 +33,21 @@ const BtnForFavorites = ({item, product}) => {
                 product
                     ?
                     <button className='product__btn2' style={{background: user.favorites.findIndex(el => el._id === item._id ) >= 0 ? "tomato" : '', color: user.favorites.findIndex(el => el._id === item._id ) >= 0 ? "white" : '', border: user.favorites.findIndex(el => el._id === item._id ) >= 0 ? "none" : ''}} onClick={ () =>{
-
                         addFavoritesForUser( {
-                            favorites:  user.favorites.findIndex(el => el._id === item._id) >= 0 ? user.favorites.filter((el) => el.id !== item.id) : [...user.favorites, item]
-                        })}}>{user.favorites.findIndex(el => el._id === item._id ) >= 0 ? 'Добавлено в Избранное' : 'Добавить в избранное'} </button>
+                            favorites:  user.favorites.findIndex(el => el._id === item._id) >= 0 ? user.favorites.filter((el) => el.id !== item.id) : [...user.favorites, item],
+                            status: user.favorites.findIndex(el => el._id === item._id) >= 0 ? 'del' : 'add'
+                        })
+
+                    }}>{user.favorites.findIndex(el => el._id === item._id ) >= 0 ? 'Добавлено в Избранное' : 'Добавить в избранное'} </button>
 
                     :
                     <button className='catalog__content-fav' style={{color: user.favorites.findIndex(el => el._id === item._id ) >= 0 ? "tomato" : ''}} onClick={ () =>{
                         addFavoritesForUser( {
-                            favorites:  user.favorites.findIndex(el => el._id === item._id) >= 0 ? user.favorites.filter((el) => el._id !== item._id) : [...user.favorites, item]
-                        })}}><MdOutlineFavoriteBorder/></button>
+                            favorites:  user.favorites.findIndex(el => el._id === item._id) >= 0 ? user.favorites.filter((el) => el._id !== item._id) : [...user.favorites, item],
+                            status: user.favorites.findIndex(el => el._id === item._id) >= 0 ? 'del' : 'add'
+                        })
+
+                    }}><MdOutlineFavoriteBorder/></button>
             }
             <ToastContainer
                 position="bottom-left"

@@ -27,12 +27,16 @@ const History = () => {
                 {
                     tab === 1
                         ?
-
-                        user.orders.map(item => (
+                        user && user.orders.map(item => (
                             <HistoryList user={user}  item={item}/>
                         ))
                         :
-                        <PersonalData/>
+                        tab === 2
+                            ?
+                            <PersonalData/>
+                            :
+                            ''
+
                 }
 
 

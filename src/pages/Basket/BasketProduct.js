@@ -10,12 +10,13 @@ const BasketProduct = ({img,item,basket}) => {
         localStorage.setItem('basket', JSON.stringify(basket))
     }, [basket])
 
+    console.log(item)
     return (
         <ul className='basket__list'>
             <li className='basket__item basket__item-trash' onClick={() => dispatch(removeCart({arr: basket.filter((el) => {
                     return item._id !== el._id || item.color !== el.color || item.size !== el.size
                 })}))}><FaTrashAlt/></li>
-            <li><img className='basket__img' src={img} alt=""/></li>
+            <li><img className='basket__img' src={`http://localhost:4444${item.image}`} style={{width: '100px'}} alt=""/></li>
             <li className='basket__item'>{item.title}</li>
             <li className='basket__item basket__item-green' style={{background: item.color}}/>
             <li className='basket__item'>{item.size}</li>

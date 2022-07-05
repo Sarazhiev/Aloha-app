@@ -1,11 +1,22 @@
 import React from 'react';
 import {Pagination} from "antd";
+import {useSelector} from "react-redux";
 
 const PaginationAndRoutes = ({clothes, setPage, page, params}) => {
+    const status = useSelector(s => s.clothes.status)
     return (
         <>
             {
-                clothes.filter((item, idx, array) => {
+                clothes.filter((item) => {
+                    switch (status){
+                        case 'man':
+                            return item.gender === 'man'
+                        case 'woman':
+                            return item.gender === 'woman'
+                        default :
+                            return item
+                    }
+                }).filter((item, idx, array) => {
                     switch (params.category) {
                         case 'all' :    
                             return item;
@@ -17,7 +28,16 @@ const PaginationAndRoutes = ({clothes, setPage, page, params}) => {
                             return item.category === params.category
                     }
                 }).length > 9 ?
-                    <Pagination onChange={setPage} simple Current={page} total={clothes.filter((item, idx, array) => {
+                    <Pagination onChange={setPage} simple Current={page} total={clothes.filter((item) => {
+                        switch (status){
+                            case 'man':
+                                return item.gender === 'man'
+                            case 'woman':
+                                return item.gender === 'woman'
+                            default :
+                                return item
+                        }
+                    }).filter((item, idx, array) => {
                         switch (params.category) {
                             case 'all' :
                                 return item;

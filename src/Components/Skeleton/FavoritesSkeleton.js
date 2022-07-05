@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 const FavoritesSkeleton = () => {
     return (
         <Stack spacing={1} >
-            <div className='catalog__content-row'>
+            <div  className='product__right'>
                 <div className='catalog__content-card'>
                     <Skeleton  variant="rectangular" width={355} height={532} style={{background: 'darkgrey', marginBottom: '10px'}} />
                     <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', rowGap: '5px'}}>

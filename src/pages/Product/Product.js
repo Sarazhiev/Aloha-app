@@ -9,6 +9,7 @@ import ProductSize from "./ProductSize";
 
 import axios from "../../axios";
 import ProductSkeleton from "../../Components/Skeleton/ProductSkeleton";
+import ProductRightSkeleton from "../../Components/Skeleton/ProductRightSkeleton";
 
 
 const Product = () => {
@@ -51,8 +52,9 @@ const Product = () => {
                             <ProductCard product={product} isLoading={isLoading}/>
                         ) : <ProductSkeleton/>
                     }
-                    {
-                        product && <div className='product__right'>
+                    {   isLoading ?
+                        product &&
+                            <div className='product__right'>
                             <p className='product__title'>{product.title}</p>
                             <p className='product__price'>{product.priceSale
                                 ? <>
@@ -119,6 +121,7 @@ const Product = () => {
                                 }
                             </p>
                         </div>
+                        : <ProductRightSkeleton/>
 
                     }
 
