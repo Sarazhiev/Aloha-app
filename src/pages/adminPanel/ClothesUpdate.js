@@ -7,18 +7,13 @@ import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 
-const ClothesAdd = () => {
+const ClothesUpdate = () => {
 
     const {
         register,
         reset,
-        handleSubmit,
-        formState: {
-            errors
-        },
-    } = useForm({
-        mode: 'onBlur'
-    });
+        handleSubmit
+    } = useForm()
 
     const navigate = useNavigate()
 
@@ -44,43 +39,34 @@ const ClothesAdd = () => {
             }).then(() => {
                 setLoading(false)
                 navigate('/admin/clothes')
-                toast("Продукт успешно создан")
+                toast("Продукт успешно изменён");
                 reset()
             }).catch(() => {
-                toast("Ошибка при создании продукта")
+                toast("Ошибка при изменении продукта")
             })
         } catch (err) {
-            toast("Ошибка при создании продукта")
+            toast("Ошибка при изменении продукта")
         }
     }
 
     useEffect( () => {
         setImages([image1,image2,image3,image4, image5])
-    }, [image1,image2,image3,image4, image5])
+    }, [image1,image2,image3,image4, image5]);
 
 
     return (
         <form className='create__form-content' onSubmit={handleSubmit(addClothe)}>
             <div className='create__form-block'>
-                <label className='create__form-label' htmlFor="title">Название</label>
-                <input {...register('title', {
-                    required: 'Это поле обязательное *',
-                })} className='create__form-input'  type="text" id='title'/>
-                <span>{errors?.title?.message}</span>
+                <label htmlFor="title">Название</label>
+                <input {...register('title')} className='create__form-input'  type="text" id='title'/>
             </div>
             <div className='create__form-block'>
-                <label className='create__form-label' htmlFor="price">Цена</label>
-                <input {...register('price', {
-                    required: 'Это поле обязательное *',
-                })} className='create__form-input'  type="number" id='price'/>
-                <span>{errors?.price?.message}</span>
+                <label htmlFor="price">Цена</label>
+                <input {...register('price')} className='create__form-input'  type="number" id='price'/>
             </div>
             <div className='create__form-block'>
-                <label className='create__form-label' htmlFor="inStock">Количество</label>
-                <input {...register('inStock', {
-                    required: 'Это поле обязательное *',
-                })} className='create__form-input'  type="number" id='inStock'/>
-                <span>{errors?.inStock?.message}</span>
+                <label htmlFor="inStock">Количество</label>
+                <input {...register('inStock')} className='create__form-input'  type="number" id='inStock'/>
             </div>
             <ul style={{display:"flex", flexDirection:"column", rowGap:"10px", alignItems: "flex-start"}} className='create__form-block'>
                 <ClothesAddBtn images={image1} setImages={setImage1} num={1}/>
@@ -130,18 +116,16 @@ const ClothesAdd = () => {
             </div>
             <div className='create__form-block'>
                 <label htmlFor="category">Категория</label>
-                <select {...register('category', {
-                    required: 'Это поле обязательное *',
-                })} className='create__form-select'  id='category'>
+                <select {...register('category')} className='create__form-select'  id='category'>
                     <option>hoody</option>
                     <option>sportsuit</option>
                     <option>sweatshirt</option>
                     <option>tshort</option>
                 </select>
             </div>
-            <button className='create__form-btn' type='submit'>Создать</button>
+            <button className='create__form-btn' type='submit'>Изменить</button>
         </form>
     );
 };
 
-export default ClothesAdd;
+export default ClothesUpdate;

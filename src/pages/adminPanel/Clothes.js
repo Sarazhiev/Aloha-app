@@ -143,7 +143,7 @@ const Clothes = () => {
                                                     </ul> : idx === 2 ? <div  align={column.align}>
                                                         <div style={{background: value }}  className='admin__circle' />
                                                     </div>  : value === 'action' ?  <div className='admin__btns'>
-                                                        <Button style={{marginRight: '5px'}} variant="contained" color="success">
+                                                        <Button onClick={() => navigate('update')} style={{marginRight: '5px'}} variant="contained" color="success">
                                                             Update
                                                         </Button>
                                                         <Button onClick={() => handleDeleteClothes(row.id)} variant="outlined" color="error">

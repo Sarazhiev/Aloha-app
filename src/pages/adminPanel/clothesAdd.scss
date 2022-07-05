@@ -5,6 +5,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    &-label {
+      width: 100px;
+    }
     &-content {
       width: 50%;
       padding: 20px;
@@ -18,7 +21,7 @@
 
 
     &-block {
-      width: 500px;
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -116,5 +119,11 @@
   input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+  .del__btn {
+    width: 150px;
+    height: 40px;
+    background: antiquewhite;
+    border: none;
   }
 

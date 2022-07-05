@@ -21,7 +21,7 @@ const ClothesAddBtn = ({images,setImages, num}) => {
     }
 
     return (
-        <li>
+        <li style={{display: 'flex', alignItems: 'center'}}>
             <Button onClick={() => image.current.click()} type='button' variant="contained" color="success">
                 Загрузить картинку {num}
             </Button>
@@ -29,8 +29,8 @@ const ClothesAddBtn = ({images,setImages, num}) => {
             {
                 images && (
                     <>
-                        <img style={{width:'50px'}} src={`http://localhost:4444${images}`} alt="Uploaded"/>
-                        <button onClick={() => setImages('')} type='button'>Удалить картинку</button>
+                        <img style={{width:'100px', margin: '0 20px'}} src={`http://localhost:4444${images}`} alt="Uploaded"/>
+                        <button className='del__btn' onClick={() => setImages('')} type='button'>Удалить картинку</button>
                     </>
                 )
             }

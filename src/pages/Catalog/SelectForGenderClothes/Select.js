@@ -8,12 +8,12 @@ const Select = () => {
     const status = useSelector(s => s.clothes.status)
     return (
         <>
-        <select value={status} onChange={(e) => {
+        <select className='select' value={status} onChange={(e) => {
             dispatch(changeStatus(e.target.value))
         }} name="clothes" id="gender">
-                <option value="all">Все</option>
-                <option value="man">Для мужчин</option>
-                <option value="woman">Для женщин</option>
+                <option className='select__option' value="all">Все</option>
+                <option className='select__option' value="man">Для мужчин</option>
+                <option className='select__option' value="woman">Для женщин</option>
             </select>
         </>
 

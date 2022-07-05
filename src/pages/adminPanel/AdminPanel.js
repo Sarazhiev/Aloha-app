@@ -7,6 +7,7 @@ import ClothesAdd from "./ClothesAdd";
 import {AiOutlineUser} from 'react-icons/ai'
 import {GiClothes} from 'react-icons/gi'
 import {ToastContainer} from "react-toastify";
+import ClothesUpdate from "./ClothesUpdate";
 
 const AdminPanel = () => {
     const location = useLocation();
@@ -30,6 +31,7 @@ const AdminPanel = () => {
                     <Route path='clothes' element={<Clothes/>}/>
                     <Route path='users' element={<Users/>}/>
                     <Route path='clothes/add' element={<ClothesAdd/>}/>
+                    <Route path='clothes/update' element={<ClothesUpdate/>}/>
                 </Routes>
             </div>
             <ToastContainer
