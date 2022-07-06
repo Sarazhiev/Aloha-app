@@ -18,26 +18,86 @@ import axios from "../../axios";
 function createData(
     email,
     login,
-    phone
+    phone,
+    orders
 ) {
     return {
         email,
         login,
         phone,
-        history: [
-            {
-                date: '2020-01-05',
-                customerId: '11091700',
-                amount: 3,
-            },
-            {
-                date: '2020-01-02',
-                customerId: 'Anonymous',
-                amount: 1,
-            },
-        ],
+        history: orders,
     };
 }
+
+function SecondRow({row}) {
+    const [open, setOpen] = React.useState(false);
+    return (
+        <React.Fragment>
+            <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+                <TableCell>
+                    <IconButton
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => setOpen(!open)}
+                    >
+                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
+                </TableCell>
+                <TableCell component="th" scope="row">
+                    {row.time.slice(0,10)}
+                </TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell align="right">{row.orders.length}</TableCell>
+                <TableCell align="right">{row.status}</TableCell>
+                <TableCell align="right">{row.price}</TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Box sx={{ margin: 1 }}>
+                            <Typography variant="h6" gutterBottom component="div">
+                                Номер заказа
+                            </Typography>
+                            <Table size="small" aria-label="purchases">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Title</TableCell>
+                                        <TableCell>Category</TableCell>
+                                        <TableCell align="right">Colors</TableCell>
+                                        <TableCell align="right">Size</TableCell>
+                                        <TableCell align="right">Count</TableCell>
+                                        <TableCell align="right">Total price ($)</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {row.orders.map((historyRow) => (
+                                        <TableRow key={historyRow._id}>
+                                            <TableCell component="th" scope="row">
+                                                {historyRow.title}
+                                            </TableCell>
+                                            <TableCell>{historyRow.category}</TableCell>
+                                            <TableCell align="right">{historyRow.color}</TableCell>
+                                            <TableCell align="right">{historyRow.size}</TableCell>
+
+                                            <TableCell align="right">
+                                                {historyRow.count}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {historyRow.count * historyRow.price}
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </Box>
+                    </Collapse>
+                </TableCell>
+            </TableRow>
+        </React.Fragment>
+    );
+}
+
+
 
 function Row({row}) {
     const [open, setOpen] = React.useState(false);
@@ -70,24 +130,17 @@ function Row({row}) {
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
                                     <TableRow>
+                                        <TableCell></TableCell>
                                         <TableCell>Date</TableCell>
-                                        <TableCell>Customer</TableCell>
-                                        <TableCell align="right">Amount</TableCell>
+                                        <TableCell>Name</TableCell>
+                                        <TableCell align="right">Count</TableCell>
+                                        <TableCell align="right">Status</TableCell>
                                         <TableCell align="right">Total price ($)</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {row.history.map((historyRow) => (
-                                        <TableRow key={historyRow.date}>
-                                            <TableCell component="th" scope="row">
-                                                {historyRow.date}
-                                            </TableCell>
-                                            <TableCell>{historyRow.customerId}</TableCell>
-                                            <TableCell align="right">{historyRow.amount}</TableCell>
-                                            <TableCell align="right">
-                                                {Math.round(historyRow.amount * row.price * 100) / 100}
-                                            </TableCell>
-                                        </TableRow>
+                                        <SecondRow key={row.email} row={historyRow}/>
                                     ))}
                                 </TableBody>
                             </Table>
@@ -110,7 +163,7 @@ export default function CollapsibleTable() {
     },[])
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer >
             <Table aria-label="collapsible table">
                 <TableHead>
                     <TableRow>
@@ -121,7 +174,7 @@ export default function CollapsibleTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {users && users.map((item) => createData(item.email, item.login, item.phone)).map((row) => (
+                    {users && users.map((item) => createData(item.email, item.login, item.phone, item.orders)).map((row) => (
                         <Row key={row.name} row={row} />
                     ))}
                 </TableBody>
