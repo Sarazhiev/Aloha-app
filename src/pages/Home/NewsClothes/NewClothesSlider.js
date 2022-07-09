@@ -59,7 +59,7 @@ const NewClothesSlider = ({clothes}) => {
         >
             {
                 clothes && clothes.filter((item, idx, array) => idx > array.length - 5).map(item => (
-                    <SwiperSlide key={item.id + item.title}>
+                    <SwiperSlide key={item.id + item.title + item.sizes}>
                         <div className='category__content'>
                             <Link onClick={() => animateScroll.scrollToTop({
                                 delay: 0,

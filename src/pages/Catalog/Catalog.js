@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import 'antd/dist/antd.css';
@@ -8,11 +8,12 @@ import PaginationAndRoutes from "./PaginationAndRoutes";
 import Crumbs from "../Crumbs/Crumbs";
 
 
-
 const Catalog = () => {
     const clothes = useSelector(s => s.clothes.clothes);
     const [page, setPage] = useState(1);
     const params = useParams();
+
+    useEffect(() => setPage(1), [params.category])
 
     return (
         <section className='catalog'>

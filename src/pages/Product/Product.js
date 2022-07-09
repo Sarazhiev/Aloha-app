@@ -15,7 +15,7 @@ import ProductRightSkeleton from "../../Components/Skeleton/ProductRightSkeleton
 const Product = () => {
     const [isActive, setIsActive] = useState(false);
     const [color, setColor] = useState("black");
-    const [size, setSize] = useState('xl');
+    const [size, setSize] = useState('');
     const params = useParams();
     const clothes = useSelector(s => s.clothes.clothes);
     const user = useSelector(s => s.user.user);
@@ -29,6 +29,7 @@ const Product = () => {
         axios(`/clothes/${params.id}`).then(({data}) => {
             setProduct(data);
             setIsLoading(true)
+            setSize(data.sizes[0])
         })
 
     }, [params]);

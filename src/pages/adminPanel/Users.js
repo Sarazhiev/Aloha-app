@@ -9,7 +9,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import {useEffect, useState} from "react";
@@ -52,7 +51,7 @@ function SecondRow({row}) {
                 <TableCell align="right">{row.price}</TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0, background: '#90839290'}} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
                             <Typography variant="h6" gutterBottom component="div">
@@ -121,7 +120,7 @@ function Row({row}) {
                 <TableCell align="right">{row.phone}</TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 , background: '#E0BEA280'}} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
                             <Typography variant="h6" gutterBottom component="div">

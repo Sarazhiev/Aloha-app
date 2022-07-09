@@ -4,6 +4,7 @@ import Category from "./Category/Category";
 import First from "./First/First";
 import NewClothes from "./NewsClothes/NewClothes";
 import Slider from "./Slider/Slider";
+import {ToastContainer} from "react-toastify";
 
 
 const Home = () => {
@@ -17,6 +18,17 @@ const Home = () => {
             <Slider delay={2500} color={'rgba(424, 170, 152, 0.99)'} category={'hoody'} title='Худи'/>
             <Slider delay={3000} color={'rgba(524, 200, 162, 0.95)'} category={'sweatshirt'} title='Свитшоты'/>
             <First/>
+            <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </main>
     );
 };

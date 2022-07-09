@@ -4,7 +4,7 @@ import CreateSizes from "./CreateSizes";
 import axios from "../../axios";
 import ClothesAddBtn from "./ClothesAddBtn";
 import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {toast} from "react-toastify";
 
 const ClothesUpdate = () => {
@@ -15,12 +15,16 @@ const ClothesUpdate = () => {
         handleSubmit
     } = useForm()
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const params = useParams()
+    const [clothes, setClothes] = useState({})
+
+
 
     const [colors, setColors] = useState('');
     const [sizes, setSizes] = useState([]);
     const [images, setImages] = useState([])
-    const [loading, setLoading] = useState(false)
+
 
     const [image1, setImage1] = useState('')
     const [image2, setImage2] = useState('')
@@ -28,22 +32,48 @@ const ClothesUpdate = () => {
     const [image4, setImage4] = useState('')
     const [image5, setImage5] = useState('')
 
-    const addClothe = (data) => {
+    useEffect(() => {
+        axios(`clothes/${params.id}`).then(({data}) => {
+            setClothes(data)
+            setColors(data.colors)
+            setImage1(data.images[0])
+            if (data.images[1]){
+                setImage2(data.images[1])
+            }
+            if (data.images[2]){
+                setImage3(data.images[2])
+            }
+            if (data.images[3]){
+                setImage4(data.images[3])
+            }
+            if (data.images[4]){
+                setImage5(data.images[4])
+            }
+            setSizes(data.sizes)
+        })
+    },[])
+
+    const addClothe =  (data) => {
+
         try {
-            setLoading(true)
-            axios.post('/clothes', {
-                ...data,
+             axios.patch(`clothes/${params.id}`, {
+                title: data.title.length ? data.title : clothes.title,
+                price: data.price.length ? +data.price : clothes.price,
+                inStock: data.inStock.length ? +data.inStock : clothes.inStock,
+                category: data.category.length ? data.category : clothes.category,
+                gender: data.gender !== null ? data.gender : clothes.gender,
                 colors,
                 sizes,
                 images
-            }).then(() => {
-                setLoading(false)
+            }).then((res) => {
+                console.log(res.data)
                 navigate('/admin/clothes')
                 toast("Продукт успешно изменён");
-                reset()
+
             }).catch(() => {
                 toast("Ошибка при изменении продукта")
             })
+
         } catch (err) {
             toast("Ошибка при изменении продукта")
         }
@@ -58,15 +88,15 @@ const ClothesUpdate = () => {
         <form className='create__form-content' onSubmit={handleSubmit(addClothe)}>
             <div className='create__form-block'>
                 <label htmlFor="title">Название</label>
-                <input {...register('title')} className='create__form-input'  type="text" id='title'/>
+                <input {...register('title')} defaultValue={clothes.title} className='create__form-input'  type="text" id='title'/>
             </div>
             <div className='create__form-block'>
                 <label htmlFor="price">Цена</label>
-                <input {...register('price')} className='create__form-input'  type="number" id='price'/>
+                <input {...register('price')} defaultValue={clothes.price} className='create__form-input'  type="number" id='price'/>
             </div>
             <div className='create__form-block'>
                 <label htmlFor="inStock">Количество</label>
-                <input {...register('inStock')} className='create__form-input'  type="number" id='inStock'/>
+                <input {...register('inStock')} defaultValue={clothes.inStock} className='create__form-input'  type="number" id='inStock'/>
             </div>
             <ul style={{display:"flex", flexDirection:"column", rowGap:"10px", alignItems: "flex-start"}} className='create__form-block'>
                 <ClothesAddBtn images={image1} setImages={setImage1} num={1}/>
@@ -102,21 +132,21 @@ const ClothesUpdate = () => {
             <div className='create__form-gender'>
                 <p className='create__form-title'>Товар для :</p>
                 <div className='create__form-inpt'>
-                    <input {...register('gender')} value='man' type="radio" id='man' />
+                    <input checked={clothes.gender === 'man'} {...register('gender')} value='man' type="radio" id='man' />
                     <label htmlFor="man">Для мужчин</label>
                 </div>
                 <div className='create__form-inpt'>
-                    <input {...register('gender')} value='woman' type="radio" id='woman'/>
+                    <input checked={clothes.gender === 'woman'} {...register('gender')} value='woman' type="radio" id='woman'/>
                     <label htmlFor="woman">Для женщин</label>
                 </div>
                 <div className='create__form-inpt'>
-                    <input {...register('gender')} value='uni' type="radio" id='uni' />
+                    <input checked={clothes.gender === 'uni'} {...register('gender')} value='uni' type="radio" id='uni' />
                     <label htmlFor="uni">Унисекс</label>
                 </div>
             </div>
             <div className='create__form-block'>
                 <label htmlFor="category">Категория</label>
-                <select {...register('category')} className='create__form-select'  id='category'>
+                <select defaultValue={clothes.category} {...register('category')} className='create__form-select'  id='category'>
                     <option>hoody</option>
                     <option>sportsuit</option>
                     <option>sweatshirt</option>

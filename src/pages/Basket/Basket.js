@@ -6,6 +6,7 @@ import {useSelector} from "react-redux"
 import img2 from "../Favorites/empty.png";
 import BasketContent from "./BasketContent";
 import Crumbs from "../Crumbs/Crumbs";
+import {ToastContainer} from "react-toastify";
 
 const Basket = () => {
     const basket = useSelector(s => s.basket.basket);
@@ -41,6 +42,18 @@ const Basket = () => {
 
                         </div>
                 }
+
+                <ToastContainer
+                    position="bottom-left"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
 
             </div>
         </div>

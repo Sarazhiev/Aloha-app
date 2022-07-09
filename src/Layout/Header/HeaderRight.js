@@ -31,7 +31,7 @@ const HeaderRight = ({user}) => {
                 }
                 {
                     user.email?.length || user.phoneNumber?.length ?
-                        <NavLink to='/favorites' className='header__nav-item'><MdOutlineFavoriteBorder/>{user.favorites && user.favorites.length}</NavLink>
+                        <NavLink to='/favorites' className='header__nav-item'><MdOutlineFavoriteBorder/>{user.favorites && user.favorites.length ? user.favorites.length : ''}</NavLink>
                         : ''
                 }
                 <NavLink to='/basket' className='header__nav-item'><span><RiShoppingCart2Line/>{basket.length ? basket.length : ' '}</span></NavLink>

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import img from "../Rectangle 10 (5).png";
 
 const HistoryList = ({item, user}) => {
-    console.log(item)
     const [isActive, setIsActive] = useState(false);
     return (
         <div className='history__order'>

@@ -16,7 +16,7 @@ const BtnForFavorites = ({item, product}) => {
                 dispatch(registerUser({obj: res.data}));
                 localStorage.setItem('user', JSON.stringify(res.data));
                 if (obj.status === 'del'){
-                    toast("Удалено их Избранных!")
+                    toast("Удалено из Избранных!")
                 } else {
                     toast("Добавлено в Избранное!")
                 }

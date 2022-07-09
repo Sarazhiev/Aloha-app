@@ -35,7 +35,7 @@ const AdminPanel = () => {
                     <Route path='users' element={<Users/>}/>
                     <Route path='orders' element={<Orders/>}/>
                     <Route path='clothes/add' element={<ClothesAdd/>}/>
-                    <Route path='clothes/update' element={<ClothesUpdate/>}/>
+                    <Route path='clothes/update/:id' element={<ClothesUpdate/>}/>
                 </Routes>
             </div>
             <ToastContainer

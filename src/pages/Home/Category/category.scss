@@ -7,6 +7,9 @@
     color: #252525;
     margin: 50px 0;
   }
+  &__img {
+    height: 400px!important;
+  }
   &__content {
     position: relative;
   }
@@ -34,6 +37,7 @@
     margin-bottom: 40px;
   }
 }
+
 
 .swiper {
   width: 100%;

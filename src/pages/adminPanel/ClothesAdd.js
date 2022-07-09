@@ -99,6 +99,8 @@ const ClothesAdd = () => {
                         <CreateColors colors={colors} setColors={setColors} color='red'/>
                         <CreateColors colors={colors} setColors={setColors} color='green'/>
                         <CreateColors colors={colors} setColors={setColors} color='orange'/>
+                        <CreateColors colors={colors} setColors={setColors} color='pink'/>
+                        <CreateColors colors={colors} setColors={setColors} color='grey'/>
                     </ul>
                 </div>
             </div>

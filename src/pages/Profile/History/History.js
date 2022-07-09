@@ -1,14 +1,11 @@
 import React, {useState} from "react";
-import {Link, NavLink} from "react-router-dom";
-import img from "../Rectangle 10 (5).png";
-import Profile from "../Profile";
+
 import PersonalData from "../PersonalData/PersonalData";
 import {useSelector} from "react-redux";
 import HistoryList from "./HistoryList";
 
 const History = () => {
     const user = useSelector(s => s.user.user);
-    // console.log(user)
     const [tab, setTab] = useState(2);
 
     return (
@@ -28,7 +25,10 @@ const History = () => {
                     tab === 1
                         ?
                         user && user.orders.map(item => (
-                            <HistoryList user={user}  item={item}/>
+
+                            <React.Fragment key={item.id + item.time}>
+                                <HistoryList user={user}  item={item}/>
+                            </React.Fragment>
                         ))
                         :
                         tab === 2

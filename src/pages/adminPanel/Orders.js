@@ -22,7 +22,10 @@ function createData(
     time,
     name,
     count,
-    status, price, orders
+    status, price,
+    number,
+    orders,
+    _id
 ) {
     return {
         time,
@@ -30,12 +33,25 @@ function createData(
         count,
         price,
         status,
+        number,
         history: orders,
+        _id
     };
 }
 
-function Row({row}) {
+function Row({row, setOrders}) {
     const [open, setOpen] = React.useState(false);
+
+    const handleActionStatus = (status, number,id) => {
+        axios.patch(`users/status/${id}`, {
+            status,
+            number
+        }).then(() => {
+            axios('/orders').then(({data}) => {
+                setOrders(data)
+            })
+        })
+    }
     return (
         <React.Fragment>
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -56,22 +72,25 @@ function Row({row}) {
                 <TableCell align="right">{row.status}</TableCell>
                 <TableCell align="right">{row.price}</TableCell>
                 <TableCell align="right">
-                    <div className='admin__btns'>
-                        <Button  style={{marginRight: '5px'}} variant="contained" color="success">
-                            Подтвердить
-                        </Button>
-                        <Button  variant="outlined" color="error">
-                            Отклонить
-                        </Button>
-                    </div>
+                    {
+                        row.status === 'pending' ?   <div className='admin__btns'>
+                            <Button  style={{marginRight: '5px', fontSize: '12px'}} variant="contained" color="success" onClick={() => handleActionStatus('success', row.number, row._id )}>
+                                Подтвердить
+                            </Button>
+                            <Button style={{fontSize: '12px'}}  variant="outlined" color="error" onClick={() => handleActionStatus('cancel', row.number, row._id )}>
+                                Отклонить
+                            </Button>
+                        </div> :  <div className='admin__btns'/>
+                    }
+
                 </TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0, background: '#E0BEA280'}} colSpan={7}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
                             <Typography variant="h6" gutterBottom component="div">
-                                Номер заказа
+                                Номер заказа : {row.number}
                             </Typography>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
@@ -86,7 +105,7 @@ function Row({row}) {
                                 </TableHead>
                                 <TableBody>
                                     {row.history.map((historyRow) => (
-                                        <TableRow key={historyRow._id}>
+                                        <TableRow key={historyRow._id + historyRow.size}>
                                             <TableCell component="th" scope="row">
                                                 {historyRow.title}
                                             </TableCell>
@@ -117,6 +136,7 @@ export default function CollapsibleTable() {
 
     const [orders, setOrders] = useState([])
 
+
     useEffect(() => {
         axios('/orders').then(({data}) => {
             setOrders(data)
@@ -140,8 +160,11 @@ export default function CollapsibleTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {orders && orders.map((item) => createData(item.time, item.name, item.orders.length, item.status, item.price, item.orders)).map((row) => (
-                        <Row key={row.name} row={row} />
+                    {orders && orders.map((item) => createData(item.time, item.name, item.orders.length, item.status, item.price,item.number, item.orders, item._id)).map((row) => (
+                       <React.Fragment key={row.time + row.name}>
+                           <Row setOrders={setOrders} row={row} />
+                       </React.Fragment>
+
                     ))}
                 </TableBody>
             </Table>

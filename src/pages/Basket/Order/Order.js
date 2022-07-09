@@ -6,10 +6,14 @@ import {registerUser} from "../../../redux/reducers/user";
 import {useNavigate} from "react-router-dom";
 import {removeCart} from "../../../redux/reducers/basket";
 import {toISOStringWithTimezone} from "../../../formatDate";
+import {toast, ToastContainer} from "react-toastify";
+import { v4 as uuidv4 } from 'uuid';
+import Toastify from "../../../Components/Toastify/Toastify";
+
 
 const Order = () => {
 
-    const user = useSelector((s) => s.user.user )
+    const user = useSelector((s) => s.user.user)
     const basket = useSelector(s => s.basket.basket)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -22,16 +26,25 @@ const Order = () => {
 
 
     const handleOrders = (data) => {
-        axios.patch(`users/${user._id}`, {...data,  time : toISOStringWithTimezone(new Date()), orders: basket, price: basket.reduce((acc, rec) => acc + rec.count * rec.price, 0), status: 'pending'})
+        axios.patch(`users/${user._id}`, {
+            ...data,
+            time: toISOStringWithTimezone(new Date()),
+            orders: basket,
+            price: basket.reduce((acc, rec) => acc + rec.count * rec.price, 0),
+            status: 'pending',
+            number: uuidv4(),
+            _id: user._id
+        })
             .then(async (res) => {
-                await localStorage.setItem('user', JSON.stringify(res.data))
-                await dispatch(registerUser({obj: res.data}));
-                await dispatch(removeCart({arr:  []}))
-                await reset()
-                await navigate('/')
-            })
+                await navigate('/');
 
-        axios.post('/users', data).then()
+                await localStorage.setItem('user', JSON.stringify(res.data));
+                await dispatch(registerUser({obj: res.data}));
+                await dispatch(removeCart({arr: []}));
+                await reset();
+                await toast("Заказ успешно совершен!")
+            });
+
     }
 
     return (
@@ -43,11 +56,14 @@ const Order = () => {
                     <div className='order__inputs'>
                         <div>
                             <input {...register("name")} className='order__input' placeholder='Ваше имя*' type="text"/>
-                            <input {...register("surname")} className='order__input' placeholder='Ваша фамилия*' type="text"/>
+                            <input {...register("surname")} className='order__input' placeholder='Ваша фамилия*'
+                                   type="text"/>
                         </div>
                         <div>
-                            <input {...register("email")} defaultValue={user.email} className='order__input' placeholder='Ваш e-mail*' type="email"/>
-                            <input {...register("phone")} defaultValue={user.phone} className='order__input' placeholder='Ваш телефон*' type="tel"/>
+                            <input {...register("email")} defaultValue={user.email} className='order__input'
+                                   placeholder='Ваш e-mail*' type="email"/>
+                            <input {...register("phone")} defaultValue={user.phone} className='order__input'
+                                   placeholder='Ваш телефон*' type="tel"/>
                         </div>
 
                     </div>
@@ -55,13 +71,16 @@ const Order = () => {
                     <div className='order__delivery'>
                         <ul className='order__list'>
                             <li className='order__item2'>По Украине:</li>
-                            <li className='order__item2'><input name='radio' type="radio" />Самовывоз - вул. Большая Васильковская 14(м. Льва Толстого)</li>
-                            <li className='order__item2'><input name='radio' type="radio" />Новая Почта</li>
+                            <li className='order__item2'><input name='radio' type="radio"/>Самовывоз - вул. Большая
+                                Васильковская 14(м. Льва Толстого)
+                            </li>
+                            <li className='order__item2'><input name='radio' type="radio"/>Новая Почта</li>
                         </ul>
                         <ul>
                             <li className='order__item2'>Международная доставка:</li>
-                            <li className='order__item2'><input name='radio' type="radio" />Украпочта / 1-3 недели / 30$</li>
-                            <li className='order__item2'><input name='radio' type="radio" />DHL / 3-7 дней / 60$</li>
+                            <li className='order__item2'><input name='radio' type="radio"/>Украпочта / 1-3 недели / 30$
+                            </li>
+                            <li className='order__item2'><input name='radio' type="radio"/>DHL / 3-7 дней / 60$</li>
                         </ul>
                     </div>
                     <p className='order__text'>Адрес доставки:</p>
@@ -73,9 +92,11 @@ const Order = () => {
                     <div className='order__inputs'>
                         <ul className='order__list'>
                             <li className='order__item2'><input type="radio"/>Полная предоплата через Приват 24</li>
-                            <li className='order__item2'><input type="radio"/>Наложенным платежом в отделении Новой Почты</li>
+                            <li className='order__item2'><input type="radio"/>Наложенным платежом в отделении Новой
+                                Почты
+                            </li>
                         </ul>
-                        <p className='order__item2'><input  type="radio"/>Денежным переводом  Visa/MasterCard</p>
+                        <p className='order__item2'><input type="radio"/>Денежным переводом Visa/MasterCard</p>
                     </div>
                     <p className='order__item2'>Использование бонусного счёта:</p>
                     <input className='order__inpt' placeholder='Сумма списания бонусов*' type="text"/>
@@ -99,11 +120,23 @@ const Order = () => {
                             </ul>
                         </div>
                         <button className='order__btn' type='submit'>ОФОРМИТЬ ЗАКАЗ</button>
-                        <p className='order__agree'>Нажимая на кнопку «оплатить заказ»,  <br/>
-                        я принимаю условия публичной оферты и политики конфиденциальности</p>
+
+                        <p className='order__agree'>Нажимая на кнопку «оплатить заказ», <br/>
+                            я принимаю условия публичной оферты и политики конфиденциальности</p>
                     </div>
                 </div>
             </form>
+            <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };
