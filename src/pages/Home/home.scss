@@ -1,6 +1,99 @@
 .new {
-  padding: 393px 0;
-  background-image: url("bg.png");
+  padding: 170px 0 170px;
+  background: url("bgg.png");
+  &__content {
+    display: flex;
+    background-color: rgba(0,0,0,.2);
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &-info::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,.2);
+      transition: background-color .3s ease;
+    }
+    &-list {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      opacity: 0;
+      z-index: 0;
+      transition: transform .7s ease,opacity .6s ease;
+      transform: translateY(10%);
+      &_active {
+        opacity: 100;
+        z-index: 100;
+        transition: transform .7s ease,opacity .6s ease;
+        transform: translateY(-90px);
+      }
+    }
+    &-item {
+      margin-bottom: 6px;
+      text-align: center;
+
+    }
+    &-to {
+      font-family: "Open Sans",Arial,sans-serif;
+      font-size: 15px;
+      line-height: 23px;
+      cursor: pointer;
+      color: #fff;
+      transition: .5s;
+      &:hover {
+        color: white;
+      }
+    }
+    &-link  {
+      position: relative;
+      display: flex;
+      transition: .5s;
+
+    }
+    &-link:hover::before {
+      z-index: 100;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0, .6);
+      transition: .5s;
+    }
+    &-card {
+      position: relative;
+      display: flex;
+      width: 100%;
+    }
+    &-title {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      font-family: Open Sans Condensed,Arial,sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      transition: transform .5s ease;
+      z-index: 100;
+      transform: translateY(-50%);
+      &_active {
+        transform: translateY(-130px);
+        transition: transform .7s ease,opacity .6s ease;
+      }
+    }
+  }
   &__title {
     font-weight: 300;
     font-size: 46px;

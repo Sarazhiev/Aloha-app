@@ -139,6 +139,11 @@ const ClothesAdd = () => {
                     <option>sportsuit</option>
                     <option>sweatshirt</option>
                     <option>tshort</option>
+                    <option>pants</option>
+                    <option>shorts</option>
+                    <option>jacket</option>
+                    <option>waistcoat</option>
+                    <option>sneakers</option>
                 </select>
             </div>
             <button className='create__form-btn' type='submit'>Создать</button>

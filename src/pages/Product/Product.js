@@ -14,7 +14,7 @@ import ProductRightSkeleton from "../../Components/Skeleton/ProductRightSkeleton
 
 const Product = () => {
     const [isActive, setIsActive] = useState(false);
-    const [color, setColor] = useState("black");
+    const [color, setColor] = useState('');
     const [size, setSize] = useState('');
     const params = useParams();
     const clothes = useSelector(s => s.clothes.clothes);
@@ -30,6 +30,7 @@ const Product = () => {
             setProduct(data);
             setIsLoading(true)
             setSize(data.sizes[0])
+            setColor(data.colors)
         })
 
     }, [params]);
@@ -64,7 +65,10 @@ const Product = () => {
                                     <span className='product__price-sale'>{product.priceSale} грн</span>
                                 </>
                                 : product.price}</p>
-                            {/*<ProductColors item={item} color={color} setColor={setColor}/>*/}
+
+                                <li key={product.id} onClick={() => setColor(product.colors)}
+                                    style={{background: product.colors, border: '1px solid grey', cursor: 'pointer'}}
+                                    className={`product__content-color ${product.colors === color ? 'product__content-color_active' : ''}`}/>
 
                             <ProductSize product={product} setSize={setSize} size={size}/>
                             {

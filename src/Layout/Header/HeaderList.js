@@ -33,16 +33,15 @@ const HeaderList = ({burger, user}) => {
             </button>
                 {
                     isActive && <ul className='header__nav-lists'>
-                        <li className='header__nav-itm'><Link to='catalog/all' onClick={() => dispatch(changeStatus('man'))}>Посмотреть все</Link></li>
-                        <li className='header__nav-itm'><Link to='catalog/hoody' onClick={() => dispatch(changeStatus('man'))}>Худи</Link></li>
-                        <li className='header__nav-itm'><Link to='catalog/sweatshirt' onClick={() => dispatch(changeStatus('man'))}>Свитшоты</Link></li>
-                        <li className='header__nav-itm'><Link to='catalog/tshort' onClick={() => dispatch(changeStatus('man'))}>Футболки</Link></li>
-                        <li className='header__nav-itm'>Штаны</li>
-                        <li className='header__nav-itm'>Рубашки</li>
-                        <li className='header__nav-itm'>Куртки</li>
-                        <li className='header__nav-itm'>Жилеты</li>
-                        <li className='header__nav-itm'>Аксессуары</li>
-                        <li className='header__nav-itm'>Шорты</li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/all' onClick={() => dispatch(changeStatus('man'))}>Посмотреть все</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/hoody' onClick={() => dispatch(changeStatus('man'))}>Худи</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/sweatshirt' onClick={() => dispatch(changeStatus('man'))}>Свитшоты</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/tshort' onClick={() => dispatch(changeStatus('man'))}>Футболки</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/pants' onClick={() => dispatch(changeStatus('man'))}>Штаны</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/shorts' onClick={() => dispatch(changeStatus('man'))}>Шорты</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/jacket' onClick={() => dispatch(changeStatus('man'))}>Куртки</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/waistcoat' onClick={() => dispatch(changeStatus('man'))}>Жилеты</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/sneakers' onClick={() => dispatch(changeStatus('man'))}>Кроссовки</Link></li>
                     </ul>
                 }
             </li>
@@ -66,16 +65,15 @@ const HeaderList = ({burger, user}) => {
 
                 {
                     isActive2 && <ul className='header__nav-lists'>
-                        <li className='header__nav-itm'><Link to='catalog/all' onClick={() =>   dispatch(changeStatus('woman'))}>Посмотреть все</Link></li>
-                        <li className='header__nav-itm'><Link to='catalog/hoody' onClick={() => dispatch(changeStatus('woman'))}>Худи</Link></li>
-                        <li className='header__nav-itm'><Link to='catalog/sweatshirt' onClick={() => dispatch(changeStatus('woman'))}>Свитшоты</Link></li>
-                        <li className='header__nav-itm'><Link to='catalog/tshort' onClick={() => dispatch(changeStatus('woman'))}>Футболки</Link></li>
-                        <li className='header__nav-itm'>Штаны</li>
-                        <li className='header__nav-itm'>Рубашки</li>
-                        <li className='header__nav-itm'>Куртки</li>
-                        <li className='header__nav-itm'>Жилеты</li>
-                        <li className='header__nav-itm'>Аксессуары</li>
-                        <li className='header__nav-itm'>Шорты</li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/all' onClick={() =>   dispatch(changeStatus('woman'))}>Посмотреть все</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/hoody' onClick={() => dispatch(changeStatus('woman'))}>Худи</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/sweatshirt' onClick={() => dispatch(changeStatus('woman'))}>Свитшоты</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/tshort' onClick={() => dispatch(changeStatus('woman'))}>Футболки</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/pants' onClick={() => dispatch(changeStatus('woman'))}>Штаны</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/shorts' onClick={() => dispatch(changeStatus('woman'))}>Шорты</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/jacket' onClick={() => dispatch(changeStatus('woman'))}>Куртки</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/waistcoat' onClick={() => dispatch(changeStatus('woman'))}>Жилеты</Link></li>
+                        <li className='header__nav-itm'><Link className='header__nav-itm' to='catalog/sneakers' onClick={() => dispatch(changeStatus('woman'))}>Кроссовки</Link></li>
                     </ul>
                 }
             </li>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Pagination} from "antd";
 import {useSelector} from "react-redux";
+import {animateScroll} from "react-scroll";
 
 const PaginationAndRoutes = ({clothes, setPage, page, params}) => {
     const status = useSelector(s => s.clothes.status)
@@ -28,7 +29,7 @@ const PaginationAndRoutes = ({clothes, setPage, page, params}) => {
                             return item.category === params.category
                     }
                 }).length > 9 ?
-                    <Pagination onChange={setPage} simple Current={page} total={clothes.filter((item) => {
+                    <Pagination  onChange={setPage} simple Current={page} total={clothes.filter((item) => {
                         switch (status){
                             case 'man':
                                 return item.gender === 'man'

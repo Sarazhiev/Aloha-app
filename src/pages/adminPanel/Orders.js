@@ -14,6 +14,7 @@ import Collapse from "@mui/material/Collapse";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {Button} from "@mui/material";
+import {toast, ToastContainer} from "react-toastify";
 
 
 
@@ -49,6 +50,7 @@ function Row({row, setOrders}) {
         }).then(() => {
             axios('/orders').then(({data}) => {
                 setOrders(data)
+                status === 'success' ? toast("Покупка подтверждена!") : toast("Покупка отклонена!")
             })
         })
     }
@@ -74,7 +76,8 @@ function Row({row, setOrders}) {
                 <TableCell align="right">
                     {
                         row.status === 'pending' ?   <div className='admin__btns'>
-                            <Button  style={{marginRight: '5px', fontSize: '12px'}} variant="contained" color="success" onClick={() => handleActionStatus('success', row.number, row._id )}>
+                            <Button  style={{marginRight: '5px', fontSize: '12px'}} variant="contained" color="success" onClick={() => handleActionStatus('success', row.number, row._id )
+                            }>
                                 Подтвердить
                             </Button>
                             <Button style={{fontSize: '12px'}}  variant="outlined" color="error" onClick={() => handleActionStatus('cancel', row.number, row._id )}>

@@ -115,6 +115,8 @@ const ClothesUpdate = () => {
                         <CreateColors colors={colors} setColors={setColors} color='red'/>
                         <CreateColors colors={colors} setColors={setColors} color='green'/>
                         <CreateColors colors={colors} setColors={setColors} color='orange'/>
+                        <CreateColors colors={colors} setColors={setColors} color='pink'/>
+                        <CreateColors colors={colors} setColors={setColors} color='grey'/>
                     </ul>
                 </div>
             </div>
@@ -151,6 +153,10 @@ const ClothesUpdate = () => {
                     <option>sportsuit</option>
                     <option>sweatshirt</option>
                     <option>tshort</option>
+                    <option>pants</option>
+                    <option>shorts</option>
+                    <option>waistcoat</option>
+                    <option>sneakers</option>
                 </select>
             </div>
             <button className='create__form-btn' type='submit'>Изменить</button>
