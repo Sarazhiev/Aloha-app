@@ -1,8 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Mansalva&display=swap');
+
+
 .header {
   padding: 25px 0 30px;
   position: absolute;
   width: 100%;
   z-index: 100;
+  &__title {
+    font-family: 'Mansalva', cursive;
+    font-size: 30px;
+    transition: .5s;
+    &:hover {
+      color: #E0BEA2;
+      transition: .5s;
+      border-bottom: 3px solid #E0BEA2;
+    }
+  }
   &__sides {
     display: flex;
     column-gap: 100px;
@@ -62,7 +75,7 @@
       color: #E0BEA2;
       cursor: pointer;
       &.active {
-        color: tomato;
+        color: #908392;
       }
     }
     &-select {

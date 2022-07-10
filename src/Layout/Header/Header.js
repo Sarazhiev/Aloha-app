@@ -19,7 +19,7 @@ const Header = () => {
                     <div className='header__sides'>
                         <div className='header__nav-left'>
                             <Link to='/'>
-                                <img src={logo} alt=""/>
+                                <h1 className='header__title'>ALOHA SHOP</h1>
 
                             </Link>
                         </div>

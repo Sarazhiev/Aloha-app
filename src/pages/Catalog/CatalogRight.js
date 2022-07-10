@@ -34,7 +34,7 @@ const CatalogRight = ({clothes, page, params}) => {
                         </svg>
                 }
                 {
-                    isActive ?  <ul className='catalog__content-list'>
+                    isActive ?  <ul className={`catalog__accordion-list ${isActive ? 'catalog__accordion-list_active' : ''} `}>
                         <li className='catalog__content-item'>
                             <NavLink onClick={() => animateScroll.scrollToTop({
                                 delay: 0,

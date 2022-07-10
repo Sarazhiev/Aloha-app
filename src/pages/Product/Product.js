@@ -76,17 +76,20 @@ const Product = () => {
                                 {/*            className={`product__content-color ${item === color ? 'product__content-color_active' : ''}`}/>*/}
                                 {/*    ))*/}
                                 {/*}*/}
+                                <ul style={{display: 'flex', columnGap: '10px'}}>
                                 {
                                     clothes && product ? clothes.filter(item => item.title === product.title).map(item => (
-                                        <li key={item._id} onClick={() => {
-                                            setColor(item.colors)
-                                            navigate(`/product/${item._id}`)
-                                        }}
-                                            style={{background: item.colors, border: '1px solid grey', cursor: 'pointer'}}
-                                            className={`product__content-color ${item.colors === color ? 'product__content-color_active' : ''}`}/>
+
+                                            <li key={item._id} onClick={() => {
+                                                setColor(item.colors)
+                                                navigate(`/product/${item._id}`)
+                                            }}
+                                                style={{background: item.colors, border: '1px solid grey', cursor: 'pointer'}}
+                                                className={`product__content-color ${item.colors === color ? 'product__content-color_active' : ''}`}/>
+
                                     )) : ''
                                 }
-
+                                </ul>
                             <ProductSize product={product} setSize={setSize} size={size}/>
                             {
                                 product.inStock ?
