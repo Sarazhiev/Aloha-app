@@ -28,7 +28,7 @@ const Card = ({item, user}) => {
                             <BtnForFavorites item={item}/>  : ''
                     }
                     <p className='catalog__content-name'>{item.title}</p>
-                    <p className='catalog__content-price'>{item.price} грн</p>
+                    <p className='catalog__content-price'>{item.price} сом</p>
                     <ul className='catalog__content-sizes'>
                         {
                             item.sizes.map((size) => (

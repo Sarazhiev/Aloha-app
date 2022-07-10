@@ -11,9 +11,9 @@ const PaginationAndRoutes = ({clothes, setPage, page, params}) => {
                 clothes.filter((item) => {
                     switch (status){
                         case 'man':
-                            return item.gender === 'man'
+                            return item.gender === 'man' || item.gender === 'uni'
                         case 'woman':
-                            return item.gender === 'woman'
+                            return item.gender === 'woman' || item.gender === 'uni'
                         default :
                             return item
                     }
@@ -32,9 +32,9 @@ const PaginationAndRoutes = ({clothes, setPage, page, params}) => {
                     <Pagination  onChange={setPage} simple Current={page} total={clothes.filter((item) => {
                         switch (status){
                             case 'man':
-                                return item.gender === 'man'
+                                return item.gender === 'man' || item.gender === 'uni'
                             case 'woman':
-                                return item.gender === 'woman'
+                                return item.gender === 'woman' || item.gender === 'uni'
                             default :
                                 return item
                         }

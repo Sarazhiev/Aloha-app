@@ -1,5 +1,4 @@
-import {db} from "./firebase/firebase";
-import {collection, getDocs} from "@firebase/firestore";
+
 import {Route, Routes} from 'react-router-dom'
 import Layout from "./Layout/Layout";
 import Home from "./pages/Home/Home";

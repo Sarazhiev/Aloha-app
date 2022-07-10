@@ -11,9 +11,9 @@ const CatalogClothesLenght = ({clothes, page, params}) => {
         <p>показано {clothes.filter((item) => {
             switch (status){
                 case 'man':
-                    return item.gender === 'man'
+                    return item.gender === 'man' || item.gender === 'uni'
                 case 'woman':
-                    return item.gender === 'woman'
+                    return item.gender === 'woman' || item.gender === 'uni'
                 default :
                     return item
             }
@@ -26,18 +26,18 @@ const CatalogClothesLenght = ({clothes, page, params}) => {
                 case 'sale' :
                     return item.priceSale;
                 case 'man' :
-                    return item.gender === 'man';
+                    return item.gender === 'man' || item.gender === 'uni'
                 case 'woman' :
-                    return item.gender === 'woman';
+                    return item.gender === 'woman' || item.gender === 'uni'
                 default:
                     return item.category === params.category
             }
         }).filter((item, idx) => idx + 1 <= page * 9 && idx >= page * 9 - 9).length} из {clothes.filter((item) => {
             switch (status){
                 case 'man':
-                    return item.gender === 'man'
+                    return item.gender === 'man' || item.gender === 'uni'
                 case 'woman':
-                    return item.gender === 'woman'
+                    return item.gender === 'woman' || item.gender === 'uni'
                 default :
                     return item
             }
@@ -50,9 +50,9 @@ const CatalogClothesLenght = ({clothes, page, params}) => {
                 case 'sale' :
                     return item.priceSale;
                 case 'man' :
-                    return item.gender === 'man';
+                    return item.gender === 'man' || item.gender === 'uni'
                 case 'woman' :
-                    return item.gender === 'woman';
+                    return item.gender === 'woman' || item.gender === 'uni'
                 default:
                     return item.category === params.category
             }

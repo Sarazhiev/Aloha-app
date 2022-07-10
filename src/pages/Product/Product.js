@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import Rec from "./Rec/Rec";
 import {useDispatch, useSelector} from "react-redux";
 import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
@@ -13,8 +13,10 @@ import ProductRightSkeleton from "../../Components/Skeleton/ProductRightSkeleton
 
 
 const Product = () => {
+    const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false);
     const [color, setColor] = useState('');
+    const [colors, setColors] = useState([]);
     const [size, setSize] = useState('');
     const params = useParams();
     const clothes = useSelector(s => s.clothes.clothes);
@@ -31,6 +33,7 @@ const Product = () => {
             setIsLoading(true)
             setSize(data.sizes[0])
             setColor(data.colors)
+            // setColors([data.colors])
         })
 
     }, [params]);
@@ -62,13 +65,27 @@ const Product = () => {
                                 ? <>
                                     <span style={{textDecoration: 'line-through'}}>{product.price}</span>
                                     <span className='product__price-line'>-</span>
-                                    <span className='product__price-sale'>{product.priceSale} грн</span>
+                                    <span className='product__price-sale'>{product.priceSale}</span>
                                 </>
-                                : product.price}</p>
+                                : product.price} сом</p>
 
-                                <li key={product.id} onClick={() => setColor(product.colors)}
-                                    style={{background: product.colors, border: '1px solid grey', cursor: 'pointer'}}
-                                    className={`product__content-color ${product.colors === color ? 'product__content-color_active' : ''}`}/>
+                                {/*{*/}
+                                {/*    colors.map(item => (*/}
+                                {/*        <li key={item} onClick={() => setColor(item)}*/}
+                                {/*            style={{background: item, border: '1px solid grey', cursor: 'pointer'}}*/}
+                                {/*            className={`product__content-color ${item === color ? 'product__content-color_active' : ''}`}/>*/}
+                                {/*    ))*/}
+                                {/*}*/}
+                                {
+                                    clothes && product ? clothes.filter(item => item.title === product.title).map(item => (
+                                        <li key={item._id} onClick={() => {
+                                            setColor(item.colors)
+                                            navigate(`/product/${item._id}`)
+                                        }}
+                                            style={{background: item.colors, border: '1px solid grey', cursor: 'pointer'}}
+                                            className={`product__content-color ${item.colors === color ? 'product__content-color_active' : ''}`}/>
+                                    )) : ''
+                                }
 
                             <ProductSize product={product} setSize={setSize} size={size}/>
                             {

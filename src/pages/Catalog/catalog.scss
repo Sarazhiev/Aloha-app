@@ -197,7 +197,6 @@
     }
     &-img {
       width: 100%;
-      height: 320px;
     }
 
     &-link {
@@ -266,6 +265,9 @@
   }
 }
 @media (max-width: 767px) {
+  .new__content-title {
+    font-size: 20px;
+  }
   .catalog {
     &__accordion {
       display: flex;
@@ -300,6 +302,12 @@
   }
   .css-2m9kme-MuiFormControl-root {
     width: 50px!important;
+  }
+  .catalog__crumbs {
+    margin-top: 130px;
+  }
+  .new {
+    padding: 200px 0 0;
   }
 
 }

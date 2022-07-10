@@ -9,14 +9,14 @@ import Select from "./SelectForGenderClothes/Select";
 const CatalogRight = ({clothes, page, params}) => {
     const [status, setStatus] = useState('all');
     const user = useSelector(s => s.user.user);
-    const [isActive] = useState(null);
+    const [isActive, setIsActive] = useState(false);
     const [sort, setSort] = useState('');
     const [search, setSearch] = useState('');
     return (
         <div className='catalog__content-right'>
             <input className='catalog__inputSearch' placeholder='search' id='search' value={search}
                    onChange={(e) => setSearch(e.target.value)} type="search"/>
-            <button className='catalog__accordion' onClick={() => setSearch(!isActive)}>
+            <button className='catalog__accordion' onClick={() => setIsActive(!isActive)}>
                 Каталог
                 {
                     isActive ? <svg width="16" height="10" viewBox="0 0 16 10" fill="none"
@@ -34,14 +34,14 @@ const CatalogRight = ({clothes, page, params}) => {
                         </svg>
                 }
                 {
-                    isActive && <ul className={`catalog__accordion-list ${isActive ? 'catalog__accordion-list_active' : ''}`}>
+                    isActive ?  <ul className='catalog__content-list'>
                         <li className='catalog__content-item'>
                             <NavLink onClick={() => animateScroll.scrollToTop({
                                 delay: 0,
                                 duration: 0
                             })} className='catalog__content-item' to={`/catalog/new`}>New</NavLink>
                         </li>
-                        <li  className='catalog__content-item'>Bestsellers</li>
+                        <li className='catalog__content-item'>Bestsellers</li>
                         {
                             clothes && clothes
                                 .filter((item, idx, arr) => arr.map(el => el.category).indexOf(item.category) === idx)
@@ -68,7 +68,7 @@ const CatalogRight = ({clothes, page, params}) => {
                             })} className='catalog__content-item' to={`/catalog/all`}>Посмотреть всё</NavLink>
                         </li>
 
-                    </ul>
+                    </ul> : ''
                 }
             </button>
             <div className='shop__sort-type'>

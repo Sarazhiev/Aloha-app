@@ -1,6 +1,6 @@
 .new {
-  padding: 170px 0 170px;
-  background: url("bgg.png");
+  padding: 170px 0 0;
+  //background: url("bgg.png");
   &__content {
     display: flex;
     background-color: rgba(0,0,0,.2);
@@ -31,7 +31,7 @@
       transform: translateY(10%);
       &_active {
         opacity: 100;
-        z-index: 100;
+        z-index: 81;
         transition: transform .7s ease,opacity .6s ease;
         transform: translateY(-90px);
       }
@@ -59,7 +59,7 @@
 
     }
     &-link:hover::before {
-      z-index: 100;
+      z-index: 80;
       content: '';
       position: absolute;
       top: 0;
@@ -86,7 +86,7 @@
       text-align: center;
       color: #fff;
       transition: transform .5s ease;
-      z-index: 100;
+      z-index: 81;
       transform: translateY(-50%);
       &_active {
         transform: translateY(-130px);

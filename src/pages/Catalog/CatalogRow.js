@@ -21,9 +21,9 @@ const CatalogRow = ({clothes, sort, params, page, user, search}) => {
                         .filter((item) => {
                             switch (status){
                                 case 'man':
-                                    return item.gender === 'man'
+                                    return item.gender === 'man' || item.gender === 'uni'
                                 case 'woman':
-                                    return item.gender === 'woman'
+                                    return item.gender === 'woman' || item.gender === 'uni'
                                 default :
                                     return item
                             }
@@ -45,7 +45,7 @@ const CatalogRow = ({clothes, sort, params, page, user, search}) => {
                             return (a.price) - (b.price)
                         }
                     }).filter((item, idx) => idx + 1 <= page * 9 && idx  >= page * 9 - 9).map((item) => (
-                        <React.Fragment key={item.id + item.sizes}>
+                        <React.Fragment key={item._id}>
                             <Card item={item} user={user}/>
                         </React.Fragment>
 

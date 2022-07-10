@@ -134,15 +134,15 @@ const ClothesUpdate = () => {
             <div className='create__form-gender'>
                 <p className='create__form-title'>Товар для :</p>
                 <div className='create__form-inpt'>
-                    <input checked={clothes.gender === 'man'} {...register('gender')} value='man' type="radio" id='man' />
+                    <input  {...register('gender')} value='man' type="radio" id='man' />
                     <label htmlFor="man">Для мужчин</label>
                 </div>
                 <div className='create__form-inpt'>
-                    <input checked={clothes.gender === 'woman'} {...register('gender')} value='woman' type="radio" id='woman'/>
+                    <input  {...register('gender')} value='woman' type="radio" id='woman'/>
                     <label htmlFor="woman">Для женщин</label>
                 </div>
                 <div className='create__form-inpt'>
-                    <input checked={clothes.gender === 'uni'} {...register('gender')} value='uni' type="radio" id='uni' />
+                    <input  {...register('gender')} value='uni' type="radio" id='uni' />
                     <label htmlFor="uni">Унисекс</label>
                 </div>
             </div>
