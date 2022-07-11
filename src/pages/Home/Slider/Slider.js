@@ -6,12 +6,16 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import {Link} from "react-router-dom";
-import React from "react";
+import React, {useState} from "react";
 import {animateScroll} from "react-scroll";
+import {motion} from "framer-motion";
+import img from "../../Catalog/img/1.png";
+import SliderCard from "../../../Components/SliderCard";
 
 
 const Slider = ({category, title, color, delay}) => {
     const clothes = useSelector(s =>  s.clothes.clothes);
+
     return (
         <section>
             <div className="container">
@@ -67,12 +71,7 @@ const Slider = ({category, title, color, delay}) => {
                         clothes && clothes.filter((item) => item.category === category).map((item, idx) => (
                             <SwiperSlide key={idx}>
                                 <div className='category__content'>
-                                    <Link onClick={() => animateScroll.scrollToTop({
-                                        delay: 0,
-                                        duration: 0
-                                    })} className='catalog__content-link' to={`/product/${item._id}`}>
-                                    <img className='category__img' src={`http://localhost:4444${item.images[0]}`} alt="img"/>
-                                    </Link>
+                                    <SliderCard item={item}/>
                                     <p style={{background: color }} className='category__text'>{item.title}</p>
                                 </div>
                             </SwiperSlide>

@@ -106,7 +106,7 @@ const Clothes = () => {
                                 Clothes
                             </TableCell>
                             <TableCell align="center" colSpan={1}>
-                                <Button onClick={() => navigate('add')} style={{color : '#E0BEA2', borderColor: '#E0BEA2'}} variant="outlined" >Add</Button>
+                                <Button onClick={() => navigate('add')} style={{color : '#E0BEA2', borderColor: '#E0BEA2'}} variant="outlined" >Добавить</Button>
                             </TableCell>
                         </TableRow>
                         <TableRow>
@@ -142,10 +142,10 @@ const Clothes = () => {
                                                         <div style={{background: value }}  className='admin__circle' />
                                                     </div>  : value === 'action' ?  <div className='admin__btns'>
                                                         <Button onClick={() => navigate(`update/${row.id}`)} style={{marginRight: '5px'}} variant="contained" color="success">
-                                                            Update
+                                                            Обновить
                                                         </Button>
                                                         <Button onClick={() => handleDeleteClothes(row.id)} variant="outlined" color="error">
-                                                            Delete
+                                                            Удалить
                                                         </Button>
                                                     </div> : value}
                                                 </TableCell>

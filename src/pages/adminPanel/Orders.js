@@ -71,7 +71,7 @@ function Row({row, setOrders}) {
                 </TableCell>
                 <TableCell>{row.name}</TableCell>
                 <TableCell align="right">{row.count}</TableCell>
-                <TableCell align="right">{row.status}</TableCell>
+                <TableCell style={{color: row.status === 'pending' ? 'yellow' : row.status === 'success' ? 'green' : row.status === 'cancel' ? 'red' : '', fontSize: '16px'}} align="right">{row.status}</TableCell>
                 <TableCell align="right">{row.price}</TableCell>
                 <TableCell align="right">
                     {
@@ -146,7 +146,6 @@ export default function CollapsibleTable() {
         })
     },[])
 
-    console.log(orders)
 
     return (
         <TableContainer >

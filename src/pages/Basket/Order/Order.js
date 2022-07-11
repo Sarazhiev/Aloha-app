@@ -70,7 +70,11 @@ const Order = () => {
                 <div className='order__total'>
                     <p className='order__grn'>Итого к оплате:</p>
                     <p className='order__grn'>{basket.reduce((acc, rec) => acc + rec.count * rec.price, 0)} сом</p>
+                    <button className='order__btn' type='submit'>ОФОРМИТЬ ЗАКАЗ</button>
+                    <p className='order__agree'>Нажимая на кнопку «оплатить заказ»,  <br/>
+                        я принимаю условия публичной оферты и политики конфиденциальности</p>
                 </div>
+
             </form>
             <ToastContainer
                 position="bottom-left"

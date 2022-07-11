@@ -20,13 +20,13 @@ const Contact = () => {
                         <li className='contact__item1'>В социальных сетях</li>
                         <div className='contact__icon'>
                             <li className='contact__item2'><BsTelegram/></li>
-                            <li className='contact__item2'><a target='_blank' href="https://www.instagram.com/aloha_shopkg/"><BsInstagram/></a></li>
+                            <li className='contact__item2'><a className='contact__item2' target='_blank' href="https://www.instagram.com/aloha_shopkg/"><BsInstagram/></a></li>
                             <li className='contact__item2'><BsWhatsapp/></li></div>
                     </ul>
                     <ul className='contact__list'>
                         <li className='contact__item1'>По телефону</li>
-                        <li className='contact__item'><a href="tel: +38(067) 158 82 66 ">+38(067) 158 82 66</a></li>
-                        <li className='contact__item'><a href="tel: +38(073) 226 39 81">+38(073) 226 39 81</a></li>
+                        <li className='contact__item'><a className='contact__item' href="tel: +38(067) 158 82 66 ">+38(067) 158 82 66</a></li>
+                        <li className='contact__item'><a className='contact__item' href="tel: +38(073) 226 39 81">+38(073) 226 39 81</a></li>
                     </ul>
                     <ul className='contact__list contact__list2'>
                         <li className='contact__item1'>По почте</li>

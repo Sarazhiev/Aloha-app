@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {removeCart, updateCart} from "../../redux/reducers/basket";
 import {FaTrashAlt} from 'react-icons/fa'
 import {useDispatch} from "react-redux";
+import {animateScroll} from "react-scroll";
+import {Link} from "react-router-dom";
 
 const BasketProduct = ({img,item,basket}) => {
     const dispatch = useDispatch();
@@ -16,7 +18,11 @@ const BasketProduct = ({img,item,basket}) => {
             <li className='basket__item basket__item-trash' onClick={() => dispatch(removeCart({arr: basket.filter((el) => {
                     return item._id !== el._id || item.color !== el.color || item.size !== el.size
                 })}))}><FaTrashAlt/></li>
-            <li><img className='basket__img' src={`http://localhost:4444${item.image}`} style={{width: '100px'}} alt=""/></li>
+            <li><Link onClick={() => animateScroll.scrollToTop({
+                delay: 0,
+                duration: 0
+            })} className='catalog__content-link' to={`/product/${item._id}`}>
+                <img className='basket__img' src={`http://localhost:4444${item.image}`} style={{width: '100px'}} alt=""/></Link></li>
             <li className='basket__item'>{item.title}</li>
             <li className='basket__item basket__item-green' style={{background: item.color}}/>
             <li className='basket__item'>{item.size}</li>

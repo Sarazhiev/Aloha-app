@@ -33,7 +33,7 @@
     font-size: 16px;
     line-height: 19px;
     padding-left: 19px;
-    color: rgba(37, 37, 37, 0.5);
+    color: black;
     border: 0.5px solid #252525;
   }
   &__delivery {
@@ -77,9 +77,9 @@
   }
   &__total {
     width: 100%;
-    justify-content: space-between;
     display: flex;
     align-items: center;
+    flex-direction: column;
   }
   &__subtitle {
     display: flex;

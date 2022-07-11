@@ -52,7 +52,7 @@ const Product = () => {
                     <span className="catalog__link">Product</span>
                 </div>
 
-                <div className='product__content' style={{minHeight: '800px'}}>
+                <div className='product__content' style={{minHeight: '630px'}}>
                     { isLoading  ? (
                             <ProductCard product={product} isLoading={isLoading}/>
                         ) : <ProductSkeleton/>
