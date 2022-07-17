@@ -1,9 +1,5 @@
-import React, {useState} from 'react';
-import {AnimatePresence, motion} from "framer-motion";
-import {Link} from "react-router-dom";
-import {animateScroll} from "react-scroll";
-import img from "./img/1.png";
-import BtnForFavorites from "../BtnForFavorites/BtnForFavorites";
+import React from 'react';
+
 import img2 from "../Favorites/empty.png";
 import {useSelector} from "react-redux";
 import Card from "../../Components/Card/Card";
@@ -32,7 +28,7 @@ const CatalogRow = ({clothes, sort, params, page, user, search}) => {
                             case 'all' :
                                 return item;
                             case 'new' :
-                                return idx > array.length - 5;
+                                return idx > array.length - 5
                             case 'sale' :
                                 return item.priceSale;
                             default:

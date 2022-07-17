@@ -27,7 +27,7 @@ const Favorites = () => {
                                 <div className='catalog__content-card' key={item._id}>
                                     <Link className='catalog__content-link' to={`/product/${item._id}`}>
                                         {!loaded && <div style={{height:'400px', width: "100%", background:"gray"}}></div>}
-                                        <img className='catalog__content-img' src={`http://localhost:4444${item.images[0]}`} alt="" onLoad={() => setLoaded(true)}/>
+                                        <img className='catalog__content-img' src={`http://87.236.22.119:4444${item.images[0]}`} alt="" onLoad={() => setLoaded(true)}/>
                                     </Link>
                                     <BtnForFavorites item={item}/>
                                     <p className='catalog__content-name'>{item.title}</p>

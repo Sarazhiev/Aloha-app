@@ -5,7 +5,6 @@ import HeaderList from "./HeaderList";
 import Gotop from "./Gotop";
 import Burger from "./Burger";
 import HeaderRight from "./HeaderRight";
-import logo from './asd.jpg'
 
 const Header = () => {
     const user = useSelector((s) => s.user.user);

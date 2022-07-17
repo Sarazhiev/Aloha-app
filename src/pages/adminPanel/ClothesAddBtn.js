@@ -29,7 +29,7 @@ const ClothesAddBtn = ({images,setImages, num}) => {
             {
                 images && (
                     <>
-                        <img style={{width:'100px', margin: '0 20px'}} src={`http://localhost:4444${images}`} alt="Uploaded"/>
+                        <img style={{width:'100px', margin: '0 20px'}} src={`http://87.236.22.119:4444${images}`} alt="Uploaded"/>
                         <Button style={{width:'200px'}} onClick={() => setImages('')} type='button' variant="contained">Удалить картинку</Button>
                     </>
                 )

@@ -4,8 +4,7 @@ import {animateScroll} from "react-scroll";
 import {useSelector} from "react-redux";
 import CatalogRow from "./CatalogRow";
 import CatalogClothesLenght from "./CatalogClothesLenght";
-import Select from "./SelectForGenderClothes/Select";
-
+import Select from "./SelectForGenderClothes/Select"
 const CatalogRight = ({clothes, page, params}) => {
     const [status, setStatus] = useState('all');
     const user = useSelector(s => s.user.user);

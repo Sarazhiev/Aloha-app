@@ -26,8 +26,8 @@ import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
 
-  const dispatch = useDispatch();
-  const basket = useSelector(s => s.basket.basket);
+  const dispatch = useDispatch()
+  const basket = useSelector(s => s.basket.basket)
 
 
 
@@ -48,7 +48,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('basket', JSON.stringify(basket))
-  },[basket]);
+  },[basket])
   return (
     <div className="App">
       <Routes>
@@ -62,7 +62,6 @@ function App() {
           <Route path='contact' element={<Contact/>}/>
           <Route path='admin/*' element={<AdminPanel/>}/>
         </Route>
-        <Route path='/number' element={<PhoneNumber/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/*' element={<NotFound/>}/>

@@ -65,7 +65,7 @@ const NewClothesSlider = ({clothes}) => {
                                 delay: 0,
                                 duration: 0
                             })} className='catalog__content-link' to={`/product/${item._id}`}>
-                                <img className='category__img' src={`http://localhost:4444${item.images[0]}`} alt="img"/>
+                                <img className='category__img' src={`http://87.236.22.119:4444${item.images[0]}`} alt="img"/>
                             </Link>
                             <p className='category__text'>{item.title}</p>
                         </div>

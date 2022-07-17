@@ -6,6 +6,14 @@ import ClothesAddBtn from "./ClothesAddBtn";
 import {useForm} from "react-hook-form";
 import {useNavigate, useParams} from "react-router-dom";
 import {toast} from "react-toastify";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+
 
 const ClothesUpdate = () => {
 
@@ -24,6 +32,8 @@ const ClothesUpdate = () => {
     const [colors, setColors] = useState('');
     const [sizes, setSizes] = useState([]);
     const [images, setImages] = useState([])
+    const [gender, setGender] = useState('')
+    const [category, setCategory] = useState('')
 
 
     const [image1, setImage1] = useState('')
@@ -50,6 +60,8 @@ const ClothesUpdate = () => {
                 setImage5(data.images[4])
             }
             setSizes(data.sizes)
+            setGender(data.gender)
+            setCategory(data.category)
         })
     },[])
 
@@ -61,10 +73,10 @@ const ClothesUpdate = () => {
                 price: data.price.length ? +data.price : clothes.price,
                 inStock: data.inStock.length ? +data.inStock : clothes.inStock,
                 category: data.category.length ? data.category : clothes.category,
-                gender: data.gender !== null ? data.gender : clothes.gender,
+                gender,
                 colors,
                 sizes,
-                images
+                images : images
             }).then((res) => {
                 console.log(res.data)
                 navigate('/admin/clothes')
@@ -132,32 +144,41 @@ const ClothesUpdate = () => {
                 </ul>
             </div>
             <div className='create__form-gender'>
-                <p className='create__form-title'>Товар для :</p>
-                <div className='create__form-inpt'>
-                    <input  {...register('gender')} value='man' type="radio" id='man' />
-                    <label htmlFor="man">Для мужчин</label>
-                </div>
-                <div className='create__form-inpt'>
-                    <input  {...register('gender')} value='woman' type="radio" id='woman'/>
-                    <label htmlFor="woman">Для женщин</label>
-                </div>
-                <div className='create__form-inpt'>
-                    <input  {...register('gender')} value='uni' type="radio" id='uni' />
-                    <label htmlFor="uni">Унисекс</label>
-                </div>
+
+                <FormLabel id="demo-controlled-radio-buttons-group">Товар для :</FormLabel>
+                <RadioGroup
+                    row
+                    aria-labelledby=" demo-controlled-radio-buttons-group"
+                    name="controlled-radio-buttons-group"
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+
+                >
+                    <FormControlLabel value="man" control={<Radio />} label="Для мужчин" />
+                    <FormControlLabel value="woman" control={<Radio />} label="Для женщин" />
+                    <FormControlLabel value="uni" control={<Radio />} label="Унисекс" />
+                </RadioGroup>
             </div>
             <div className='create__form-block'>
-                <label htmlFor="category">Категория</label>
-                <select defaultValue={clothes.category} {...register('category')} className='create__form-select'  id='category'>
-                    <option>hoody</option>
-                    <option>sportsuit</option>
-                    <option>sweatshirt</option>
-                    <option>tshort</option>
-                    <option>pants</option>
-                    <option>shorts</option>
-                    <option>waistcoat</option>
-                    <option>sneakers</option>
-                </select>
+                    <InputLabel id="demo-simple-select-label">Категория</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Категория"
+                        value={category}
+                        {...register('category')}
+                        onChange={(e) => setCategory(e.target.value)}
+                    >
+                        <MenuItem value={'hoody'}>hoody</MenuItem>
+                        <MenuItem value={'sportsuit'}>sportsuit</MenuItem>
+                        <MenuItem value={'sweatshirt'}>sweatshirt</MenuItem>
+                        <MenuItem value={'tshort'}>tshort</MenuItem>
+                        <MenuItem value={'pants'}>pants</MenuItem>
+                        <MenuItem value={'shorts'}>shorts</MenuItem>
+                        <MenuItem value={'waistcoat'}>waistcoat</MenuItem>
+                        <MenuItem value={'sneakers'}>sneakers</MenuItem>
+                    </Select>
+
             </div>
             <button className='create__form-btn' type='submit'>Изменить</button>
         </form>

@@ -1,13 +1,9 @@
 import React, {useRef} from 'react';
-import {NavLink, Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import InputMask from 'react-input-mask';
 import {useDispatch} from "react-redux";
 import {registerUser} from "../../redux/reducers/user";
-import {createUserWithEmailAndPassword} from "firebase/auth";
-import {auth, db} from "../../firebase/firebase";
-import {addDoc, collection} from "@firebase/firestore";
-import Google from "../LoginWithGoogle/Google";
 import {FcCellPhone} from 'react-icons/fc'
 import axios from "../../axios";
 
@@ -81,7 +77,6 @@ const Register = () => {
                     <button type='submit' className='register__btn'>ЗАРЕГИСТРИРОВАТЬСЯ</button>
                     <h2 style={{marginTop: '20px'}} className='register__title'>Войдите через Google или телефон</h2>
                     <div style={{display: "flex", alignItems: "center", columnGap: '10px', cursor: 'pointer'}}>
-                        <Google/>
                         <p><Link to='/number' style={{fontSize: '30px'}}><FcCellPhone/></Link></p>
 
                     </div>

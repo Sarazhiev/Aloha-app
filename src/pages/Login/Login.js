@@ -1,7 +1,6 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
-import Google from "../LoginWithGoogle/Google";
 import {FcCellPhone} from 'react-icons/fc'
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
@@ -12,6 +11,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import axios from "../../axios";
 import {registerUser} from "../../redux/reducers/user";
+
 
 
 const Login = () => {
@@ -30,15 +30,6 @@ const Login = () => {
         mode: 'onBlur'
     });
 
-    // const addUser = (data) => {
-    //     axios.post('https://alohadatabase.herokuapp.com/login', data)
-    //         .then((res) => {
-    //             localStorage.setItem('access', JSON.stringify(res.data.accessToken));
-    //             localStorage.setItem('user', JSON.stringify(res.data.user));
-    //             dispatch(registerUser(res.data.user))
-    //             navigate('/')
-    //         })
-    // }
 
 
     const [values, setValues] = React.useState({
@@ -129,7 +120,7 @@ const Login = () => {
                         <button type='submit' className='register__btn'>Войти</button>
                         <h2 style={{marginTop: '20px'}} className='register__title'>Войдите через Google</h2>
                         <div style={{display:"flex", alignItems:"center", columnGap: '10px', cursor: 'pointer'}}>
-                            <Google/>
+
                             <p><Link to='/number' style={{fontSize: '30px'}}><FcCellPhone/></Link></p>
                         </div>
                         <Link className='register__home' to='/'>Выйти на главную</Link>

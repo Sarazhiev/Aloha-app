@@ -31,7 +31,7 @@ const HistoryList = ({item, user}) => {
                 isActive &&
                     <>
                         <ul className='history__list'>
-                            <li className='history__item'><img style={{width: '100px'}} src={`http://localhost:4444${item.orders[0].image}`} alt=""/></li>
+                            <li className='history__item'><img style={{width: '100px'}} src={`http://87.236.22.119:4444${item.orders[0].image}`} alt=""/></li>
                             <li className='history__item'>{item.orders[0].title}</li>
                             <li className='history__item history__item-color'>{item.orders[0].color}</li>
                             <li className='history__item'>Размер: <span>{item.orders[0].size}</span></li>
