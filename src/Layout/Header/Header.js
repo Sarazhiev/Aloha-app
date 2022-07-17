@@ -18,7 +18,7 @@ const Header = () => {
                     <div className='header__sides'>
                         <div className='header__nav-left'>
                             <Link to='/'>
-                                <h1 className='header__title'>ALOHA SHOP</h1>
+                                <h1 className='header__title'>YNGAI SHOP</h1>
 
                             </Link>
                         </div>
