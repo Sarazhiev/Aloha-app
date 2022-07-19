@@ -1,5 +1,5 @@
 .product {
-  padding: 100px 0;
+  padding: 0 0 100px;
   position: relative;
   &__content {
     display: block;
@@ -52,7 +52,7 @@
   }
   &__right {
     position: absolute;
-    top: 200px;
+    top: 55px;
     right: 130px;
     z-index: 100;
     width: 500px;
@@ -286,7 +286,7 @@
 @media (max-width: 992px) {
   .product__right {
     right: -150px;
-    top: 168px;
+    top: 55px;
   }
   .product__price {
     font-size: 25px;

@@ -44,10 +44,10 @@
   height: 100%;
   padding: 0 50px;
 }
-.swiper-button-prev {
+.category .swiper-button-prev {
   display: none!important;
 }
-.swiper-button-next {
+.category .swiper-button-next {
   right: 8px!important;
   &::after {
     font-size:20px!important;

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Link, NavLink} from "react-router-dom";
 import {BsWhatsapp, BsInstagram, BsTelegram} from 'react-icons/bs'
 import First from "../Home/First/First";
 import Map from "./Map/Map";

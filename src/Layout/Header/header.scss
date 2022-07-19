@@ -2,9 +2,7 @@
 
 
 .header {
-  padding: 25px 0 30px;
-  position: absolute;
-  width: 100%;
+  padding: 20px 0 0;
   z-index: 100;
   &__title {
     font-family: 'Mansalva', cursive;
@@ -15,10 +13,6 @@
       transition: .5s;
       border-bottom: 3px solid #E0BEA2;
     }
-  }
-  &__sides {
-    display: flex;
-    column-gap: 100px;
   }
   &__nav {
     display: flex;

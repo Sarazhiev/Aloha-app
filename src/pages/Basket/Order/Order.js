@@ -8,7 +8,6 @@ import {removeCart} from "../../../redux/reducers/basket";
 import {toISOStringWithTimezone} from "../../../formatDate";
 import {toast, ToastContainer} from "react-toastify";
 import { v4 as uuidv4 } from 'uuid';
-import Toastify from "../../../Components/Toastify/Toastify";
 
 
 const Order = () => {
@@ -64,6 +63,7 @@ const Order = () => {
                                    placeholder='Ваш e-mail*' type="email"/>
                             <input {...register("phone")} defaultValue={user.phone} className='order__input'
                                    placeholder='Ваш телефон*' type="tel"/>
+                            <input {...register("delivery")}  className='order__input' placeholder='Адрес доставки *' type="tel"/>
                         </div>
                     </div>
                 </div>

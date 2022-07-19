@@ -72,7 +72,7 @@ const Rec = () => {
                                     delay: 0,
                                     duration: 0
                                 })}>
-                                    <img className='category__img' src={`http://87.236.22.119:4444${item.images[0]}`} alt="img"/>
+                                    <img className='category__img' src={`https://aloha.yngai.store${item.images[0]}`} alt="img"/>
                                 </Link>
                                 <p className='rec__name'>{item.title}</p>
                                 <p>{item.price}</p>

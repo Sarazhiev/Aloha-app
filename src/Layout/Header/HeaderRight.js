@@ -21,7 +21,7 @@ const HeaderRight = ({user}) => {
                 {
                     user.email?.length || user.phoneNumber?.length ?
                         <span style={{display: 'flex', columnGap: '10px'}}>
-                                <NavLink to='/profile' className='header__nav-item header__nav-item2 header__nav-item3'><BiUser/><span className='header__nav-name'>{user.email || user.phoneNumber}</span></NavLink>
+                                <NavLink to='/profile' className='header__nav-item header__nav-item2 header__nav-item3'><BiUser/></NavLink>
                                      <Link to='/login' className='header__nav-item2' onClick={() => {
                                          localStorage.removeItem('user');
                                          dispatch(logOutUser())

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {MdOutlineFavoriteBorder, MdDoneOutline} from "react-icons/md";
+import React from 'react';
+import {MdOutlineFavoriteBorder} from "react-icons/md";
 import {useDispatch, useSelector} from "react-redux";
 
 import {registerUser} from "../../redux/reducers/user";

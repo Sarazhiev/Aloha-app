@@ -2,6 +2,8 @@ import React from 'react';
 import {BsWhatsapp, BsInstagram, BsTelegram} from 'react-icons/bs'
 import {SiTiktok} from 'react-icons/si'
 import {FiPhoneCall} from 'react-icons/fi'
+import {Link} from "react-router-dom";
+import {animateScroll} from "react-scroll";
 
 const Footer = () => {
     return (
@@ -10,7 +12,10 @@ const Footer = () => {
                 <nav className='footer__nav'>
                     <ul className='footer__list'>
                         <li className='footer__item'>Покупателям</li>
-                        <li className='footer__item2'>Доставка</li>
+                        <li className='footer__item2'><Link onClick={() => animateScroll.scrollToTop({
+                            delay: 0,
+                            duration: 0
+                        })} to='/info'>Доставка</Link></li>
                         <li className='footer__item2'>Вопросы и ответы</li>
                         <li className='footer__item2'>Оптовым клиентам</li>
                         <li className='footer__item2'>Программа лояльности</li>

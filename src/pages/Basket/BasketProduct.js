@@ -22,7 +22,7 @@ const BasketProduct = ({img,item,basket}) => {
                 delay: 0,
                 duration: 0
             })} className='catalog__content-link' to={`/product/${item._id}`}>
-                <img className='basket__img' src={`http://87.236.22.119:4444${item.image}`} style={{width: '100px'}} alt=""/></Link></li>
+                <img className='basket__img' src={`https://aloha.yngai.store${item.image}`} style={{width: '100px'}} alt=""/></Link></li>
             <li className='basket__item'>{item.title}</li>
             <li className='basket__item basket__item-green' style={{background: item.color}}/>
             <li className='basket__item'>{item.size}</li>

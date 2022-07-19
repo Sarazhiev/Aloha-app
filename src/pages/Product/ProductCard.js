@@ -27,7 +27,7 @@ const  ProductCard = ({product}) => {
                 {product.images.filter((url) => url.length).map((url, idx) => (
                     <SwiperSlide key={idx}>
                         {!loaded && <div style={{height:'800px', width: "100%", background:"silver"}}></div>}
-                        <img src={`http://87.236.22.119:4444${url}`} alt={url} onLoad={() => setLoaded(true)}/>
+                        <img src={`https://aloha.yngai.store${url}`} alt={url} onLoad={() => setLoaded(true)}/>
                     </SwiperSlide>
 
                 ))}
@@ -46,7 +46,7 @@ const  ProductCard = ({product}) => {
                     {product.images.filter((url) => url.length).map((url, idx) => (
                         <SwiperSlide key={idx}>
                             {!loaded && <div style={{height:'200px', width: "102px", background:"silver"}}> </div>}
-                            <img src={`http://87.236.22.119:4444${url}`} alt={url} onLoad={() => setLoaded(true)}/>
+                            <img src={`https://aloha.yngai.store${url}`} alt={url} onLoad={() => setLoaded(true)}/>
                         </SwiperSlide>
                     ))}
                 </div>

@@ -1,16 +1,18 @@
 import React from 'react';
-import New from "./New/New";
+// import New from "./New/New";
 import Category from "./Category/Category";
 import First from "./First/First";
 import NewClothes from "./NewsClothes/NewClothes";
 import Slider from "./Slider/Slider";
 import {ToastContainer} from "react-toastify";
+import Banner from "./Banner/Banner";
 
 
 const Home = () => {
     return (
         <main>
-            <New/>
+            {/*<New/>*/}
+                <Banner/>
             <Category/>
             <NewClothes/>
             <Slider  delay={2500} color={'rgba(194, 190, 162, 0.75)'} category={'tshort'} title='футболки'/>

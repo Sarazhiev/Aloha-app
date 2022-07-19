@@ -5,11 +5,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {Link} from "react-router-dom";
 import React, {useState} from "react";
-import {animateScroll} from "react-scroll";
-import {motion} from "framer-motion";
-import img from "../../Catalog/img/1.png";
 import SliderCard from "../../../Components/SliderCard";
 
 
@@ -65,7 +61,7 @@ const Slider = ({category, title, color, delay}) => {
                     keyboard={true}
                     navigation={true}
                     modules={[Navigation, Mousewheel, Keyboard, Autoplay]}
-                    className="mySwiper"
+                    className="mySwiper category"
                 >
                     {
                         clothes && clothes.filter((item) => item.category === category).map((item, idx) => (

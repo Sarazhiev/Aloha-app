@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: process.env.STAGE_URL || 'http://87.236.22.119:4444'
+    baseURL: process.env.STAGE_URL || 'https://aloha.yngai.store'
 });
 
 export default instance;

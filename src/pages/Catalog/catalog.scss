@@ -1,5 +1,5 @@
 .catalog {
-  padding: 100px 0;
+  padding: 0 0 100px;
   &__accordion {
     display: none;
     background: #E0BEA2;
@@ -308,6 +308,19 @@
   }
   .new {
     padding: 200px 0 0;
+  }
+  .new__content {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    &-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
   }
 
 }

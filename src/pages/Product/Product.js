@@ -16,7 +16,6 @@ const Product = () => {
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false);
     const [color, setColor] = useState('');
-    const [colors, setColors] = useState([]);
     const [size, setSize] = useState('');
     const params = useParams();
     const clothes = useSelector(s => s.clothes.clothes);
@@ -33,7 +32,6 @@ const Product = () => {
             setIsLoading(true)
             setSize(data.sizes[0])
             setColor(data.colors)
-            // setColors([data.colors])
         })
 
     }, [params]);
@@ -69,13 +67,7 @@ const Product = () => {
                                 </>
                                 : product.price} сом</p>
 
-                                {/*{*/}
-                                {/*    colors.map(item => (*/}
-                                {/*        <li key={item} onClick={() => setColor(item)}*/}
-                                {/*            style={{background: item, border: '1px solid grey', cursor: 'pointer'}}*/}
-                                {/*            className={`product__content-color ${item === color ? 'product__content-color_active' : ''}`}/>*/}
-                                {/*    ))*/}
-                                {/*}*/}
+
                                 <ul style={{display: 'flex', columnGap: '10px'}}>
                                 {
                                     clothes && product ? clothes.filter(item => item.title === product.title).map(item => (

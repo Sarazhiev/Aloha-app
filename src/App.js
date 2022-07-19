@@ -17,9 +17,9 @@ import {registerUser} from "./redux/reducers/user";
 import AdminPanel from "./pages/adminPanel/AdminPanel";
 import './app.scss'
 import Contact from "./pages/Contact/Contact";
-import PhoneNumber from "./pages/RegisterWithNumber/PhoneNumber";
 import {getFromLocalStorage} from './redux/reducers/basket'
 import NotFound from "./pages/NotFound/NotFound";
+import Info from "./pages/Info/Info";
 
 
 
@@ -61,6 +61,7 @@ function App() {
           <Route path='favorites' element={<Favorites/>}/>
           <Route path='contact' element={<Contact/>}/>
           <Route path='admin/*' element={<AdminPanel/>}/>
+          <Route path='info' element={<Info/>}/>
         </Route>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>

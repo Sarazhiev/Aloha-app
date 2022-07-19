@@ -15,15 +15,10 @@ const Header = () => {
             <div className="container">
                 <nav className='header__nav'>
                     <Burger burger={burger} setBurger={setBurger}/>
-                    <div className='header__sides'>
-                        <div className='header__nav-left'>
-                            <Link to='/'>
-                                <h1 className='header__title'>YNGAI SHOP</h1>
-
-                            </Link>
-                        </div>
+                        <Link to='/'>
+                            <h1 className='header__title'>YNGAI SHOP</h1>
+                        </Link>
                         <HeaderRight user={user}/>
-                    </div>
                     <HeaderList burger={burger} user={user}/>
                 </nav>
             </div>

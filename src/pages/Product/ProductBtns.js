@@ -1,7 +1,6 @@
 import React from 'react';
 import {addCart, addCartPlus} from "../../redux/reducers/basket";
 import {toast, ToastContainer} from "react-toastify";
-import Toastify from "../../Components/Toastify/Toastify";
 
 const ProductBtns = ({item, count, setCount, basket, color, size, dispatch}) => {
     const notify = () => toast("Добавлено в Корзину!");
@@ -14,7 +13,6 @@ const ProductBtns = ({item, count, setCount, basket, color, size, dispatch}) => 
                    onChange={(e) => setCount(e.target.value >= item.inStock ? item.inStock : e.target.value)}
                    type="number"/>
             {
-                // user.email?.length || user.phoneNumber?.length ?
                 <button style={{
                     background: basket.findIndex(el => el._id === item._id) >= 0 ? "tomato" : '',
                     color: basket.findIndex(el => el._id === item._id) >= 0 ? "white" : '',
