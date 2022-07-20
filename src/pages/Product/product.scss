@@ -400,5 +400,11 @@
   .product__card {
     width: 100%;
   }
-
+}
+@media (max-width: 425px) {
+  .product__content-size {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
 }

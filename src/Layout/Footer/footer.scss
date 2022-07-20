@@ -9,6 +9,7 @@
   }
   &__item2 {
     margin-bottom: 10px;
+    color: black;
     display: flex;
     column-gap: 10px;
   }
@@ -17,11 +18,13 @@
     column-gap: 13px;
   }
   &__social {
-    color: #252525;
+    color: black;
     display: flex;
     column-gap: 10px;
   }
-
+  &__information {
+    color: black;
+  }
 }
 @media (max-width: 576px) {
   .footer__list2 {

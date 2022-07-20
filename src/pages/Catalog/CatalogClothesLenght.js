@@ -8,7 +8,7 @@ const CatalogClothesLenght = ({clothes, page, params}) => {
 
 
     return (
-        <p>показано {clothes.filter((item) => {
+        <p style={{marginTop: '10px'}}>показано {clothes.filter((item) => {
             switch (status){
                 case 'man':
                     return item.gender === 'man' || item.gender === 'uni'

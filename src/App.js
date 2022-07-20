@@ -20,6 +20,7 @@ import Contact from "./pages/Contact/Contact";
 import {getFromLocalStorage} from './redux/reducers/basket'
 import NotFound from "./pages/NotFound/NotFound";
 import Info from "./pages/Info/Info";
+import CustomizedAccordions from "./pages/Questions/Questions";
 
 
 
@@ -62,6 +63,7 @@ function App() {
           <Route path='contact' element={<Contact/>}/>
           <Route path='admin/*' element={<AdminPanel/>}/>
           <Route path='info' element={<Info/>}/>
+          <Route path='questions' element={<CustomizedAccordions/>}/>
         </Route>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>

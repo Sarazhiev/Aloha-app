@@ -12,11 +12,14 @@ const Footer = () => {
                 <nav className='footer__nav'>
                     <ul className='footer__list'>
                         <li className='footer__item'>Покупателям</li>
-                        <li className='footer__item2'><Link onClick={() => animateScroll.scrollToTop({
+                        <li className='footer__item2'><Link className='footer__information' onClick={() => animateScroll.scrollToTop({
                             delay: 0,
                             duration: 0
                         })} to='/info'>Доставка</Link></li>
-                        <li className='footer__item2'>Вопросы и ответы</li>
+                        <li className='footer__item2'><Link className='footer__information' onClick={() => animateScroll.scrollToTop({
+                            delay: 0,
+                            duration: 0
+                        })} to='/questions'>Вопросы и ответы</Link></li>
                         <li className='footer__item2'>Оптовым клиентам</li>
                         <li className='footer__item2'>Программа лояльности</li>
                         <li className='footer__item2'>Ткани и уход</li>
