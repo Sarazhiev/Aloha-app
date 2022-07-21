@@ -53,3 +53,12 @@
     margin-top: 20px;
   }
 }
+
+@media (max-width: 576px) {
+  .register__input {
+    width: 100%;
+  }
+  .register__btn {
+    width: 100%;
+  }
+}

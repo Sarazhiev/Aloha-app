@@ -63,3 +63,9 @@
 .swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet .swiper-pagination-bullet-active {
   background: white !important;
 }
+
+@media (max-width: 767px) {
+  .banner .swiper-button-next {
+    display: block !important;
+  }
+}

@@ -131,6 +131,12 @@
     margin: 0 auto;
     justify-content: center;
   }
+  .order__inputs {
+    display: flex;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media (max-width: 992px) {
   .order__inpt {

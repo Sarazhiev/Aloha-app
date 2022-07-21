@@ -4,7 +4,6 @@ import {useForm} from "react-hook-form";
 import InputMask from 'react-input-mask';
 import {useDispatch} from "react-redux";
 import {registerUser} from "../../redux/reducers/user";
-import {FcCellPhone} from 'react-icons/fc'
 import axios from "../../axios";
 
 
@@ -75,11 +74,7 @@ const Register = () => {
                     <p className='register__question'><Link className='register__login'
                                                             to='/login'>уже есть аккаунт? Войти</Link></p>
                     <button type='submit' className='register__btn'>ЗАРЕГИСТРИРОВАТЬСЯ</button>
-                    <h2 style={{marginTop: '20px'}} className='register__title'>Войдите через Google или телефон</h2>
-                    <div style={{display: "flex", alignItems: "center", columnGap: '10px', cursor: 'pointer'}}>
-                        <p><Link to='/number' style={{fontSize: '30px'}}><FcCellPhone/></Link></p>
 
-                    </div>
                     <Link className='register__home' to='/'>Выйти на главную</Link>
                 </form>
             </div>

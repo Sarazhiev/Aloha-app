@@ -1,7 +1,6 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
-import {FcCellPhone} from 'react-icons/fc'
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import FilledInput from '@mui/material/FilledInput';
@@ -118,11 +117,6 @@ const Login = () => {
                         <span>{errors?.password?.message}</span>
                         <p className='register__question'> <Link className='register__login' to='/register'>Нет аккаунта? Регистрация</Link></p>
                         <button type='submit' className='register__btn'>Войти</button>
-                        <h2 style={{marginTop: '20px'}} className='register__title'>Войдите через Google</h2>
-                        <div style={{display:"flex", alignItems:"center", columnGap: '10px', cursor: 'pointer'}}>
-
-                            <p><Link to='/number' style={{fontSize: '30px'}}><FcCellPhone/></Link></p>
-                        </div>
                         <Link className='register__home' to='/'>Выйти на главную</Link>
                     </form>
                 </div>
