@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import img from './Rectangle 10 (4).png'
 import Order from "./Order/Order";
 import {useSelector} from "react-redux"
