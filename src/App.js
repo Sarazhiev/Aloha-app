@@ -30,10 +30,12 @@ function App() {
   const dispatch = useDispatch()
   const basket = useSelector(s => s.basket.basket)
 
+  console.log(process.env)
 
 
   useEffect(() => {
-     axios('/clothes').then(({data}) => dispatch(getAll({arr: data})))
+    axios('/clothes').then(({data}) => dispatch(getAll({arr: data})))
+
 
   }, []);
 
@@ -50,6 +52,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('basket', JSON.stringify(basket))
   },[basket])
+
   return (
     <div className="App">
       <Routes>

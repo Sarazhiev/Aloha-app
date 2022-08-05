@@ -29,7 +29,7 @@ const ClothesAddBtn = ({images,setImages, num}) => {
             {
                 images && (
                     <>
-                        <img style={{width:'100px', margin: '0 20px'}} src={`https://aloha.yngai.store${images}`} alt="Uploaded"/>
+                        <img style={{width:'100px', margin: '0 20px'}} src={`${process.env.REACT_APP_STAGE_URL}${images}`} alt="Uploaded"/>
                         <Button style={{width:'200px'}} onClick={() => setImages('')} type='button' variant="contained">Удалить картинку</Button>
                     </>
                 )

@@ -65,7 +65,7 @@ const CategorySlider = ({clothes}) => {
                                 delay: 0,
                                 duration: 0
                             })} className='catalog__content-link' to={`/catalog/${item.category}`}>
-                                <img className='category__img' src={`https://aloha.yngai.store${item.images[0]}`} alt="img"/>
+                                <img className='category__img' src={`${process.env.REACT_APP_STAGE_URL}${item.images[0]}`} alt="img"/>
                             </Link>
                             <p className='category__text'>{item.category}</p>
                         </div>

@@ -4,8 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {registerUser} from "../../redux/reducers/user";
 import axios from "../../axios";
-import {toast, ToastContainer} from "react-toastify";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BtnForFavorites = ({item, product}) => {
     const user = useSelector(s => s.user.user);

@@ -11,7 +11,7 @@ import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "../../axios";
-import {toast} from "react-toastify";
+import {toast} from 'react-toastify'
 import {useDispatch, useSelector} from "react-redux";
 import {getAll} from "../../redux/reducers/clothes";
 

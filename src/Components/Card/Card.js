@@ -21,7 +21,7 @@ const Card = ({item, user}) => {
                         delay: 0,
                         duration: 0
                     })} className='catalog__content-link' to={`/product/${item._id}`}>
-                        <img  className='catalog__content-img' src={changeImg ? `https://aloha.yngai.store${item.images[0]}` : `http://87.236.22.119:4444${item.images[1]}`} alt=""/>
+                        <img  className='catalog__content-img' src={changeImg ? `${process.env.REACT_APP_STAGE_URL}${item.images[0]}` : `${process.env.REACT_APP_STAGE_URL}${item.images[1]}`} alt=""/>
                     </Link>
                     {
                         user.email?.length || user.phoneNumber?.length ?

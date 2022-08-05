@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {removeCart} from "../../../redux/reducers/basket";
 import {toISOStringWithTimezone} from "../../../formatDate";
 import {toast, ToastContainer} from "react-toastify";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 
 const Order = () => {
@@ -17,6 +17,7 @@ const Order = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+
     const {
         register,
         reset,
@@ -24,8 +25,9 @@ const Order = () => {
     } = useForm()
 
 
+
     const handleOrders = (data) => {
-        axios.patch(`users/${user._id}`, {
+        axios.post(`/orders`, {
             ...data,
             time: toISOStringWithTimezone(new Date()),
             orders: basket,
@@ -43,35 +45,56 @@ const Order = () => {
                 await reset();
                 await toast("Заказ успешно совершен!")
             });
-
     }
+
+
+
 
     return (
         <div className='order'>
             <h2 className='order__title'>Оформление заказа</h2>
-            <p className='order__text'>Персональные данные:</p>
+
             <form className='order__form' onSubmit={handleSubmit(handleOrders)}>
                 <div className='order__left'>
+                    <div className='order__method'>
+                        <h2 className='order__method-title'>Способ оплаты:</h2>
+                        <div className='order__method-content'>
+                            <div>
+                                <input {...register("cash")} className='order__method-input' checked type="radio" id="cash"
+                                       name="method" value="cash"/>
+                                <label className='order__method-label' htmlFor="cash">Наличными</label>
+                            </div>
+                            <div>
+                                <input {...register("card")} className='order__method-input' type="radio" id="contactChoice2"
+                                       name="method" value="card"/>
+                                <label className='order__method-label' htmlFor="contactChoice2">Картой</label>
+                            </div>
+                        </div>
+                    </div>
+                    <p className='order__text'>Персональные данные:</p>
                     <div className='order__inputs'>
                         <div>
                             <input {...register("name")} className='order__input' placeholder='Ваше имя*' type="text"/>
                             <input {...register("surname")} className='order__input' placeholder='Ваша фамилия*'
                                    type="text"/>
+                            <input {...register("city")} className='order__input' placeholder='Город*' type="text"/>
                         </div>
                         <div>
                             <input {...register("email")} defaultValue={user.email} className='order__input'
                                    placeholder='Ваш e-mail*' type="email"/>
                             <input {...register("phone")} defaultValue={user.phone} className='order__input'
                                    placeholder='Ваш телефон*' type="tel"/>
-                            <input {...register("delivery")}  className='order__input' placeholder='Адрес доставки *' type="tel"/>
+                            <input {...register("delivery")} className='order__input' placeholder='Адрес доставки *'
+                                   type="tel"/>
                         </div>
                     </div>
+
                 </div>
                 <div className='order__total'>
                     <p className='order__grn'>Итого к оплате:</p>
                     <p className='order__grn'>{basket.reduce((acc, rec) => acc + rec.count * rec.price, 0)} сом</p>
                     <button className='order__btn' type='submit'>ОФОРМИТЬ ЗАКАЗ</button>
-                    <p className='order__agree'>Нажимая на кнопку «оплатить заказ»,  <br/>
+                    <p className='order__agree'>Нажимая на кнопку «оплатить заказ», <br/>
                         я принимаю условия публичной оферты и политики конфиденциальности</p>
                 </div>
 
