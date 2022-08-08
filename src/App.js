@@ -19,8 +19,10 @@ import './app.scss'
 import Contact from "./pages/Contact/Contact";
 import {getFromLocalStorage} from './redux/reducers/basket'
 import NotFound from "./pages/NotFound/NotFound";
-import Info from "./pages/Info/Info";
+import Delivery from "./pages/Delivery/Delivery";
 import CustomizedAccordions from "./pages/Questions/Questions";
+import Care from "./pages/Care/Care";
+import Loyal from "./pages/Loyal/Loyal";
 
 
 
@@ -65,8 +67,10 @@ function App() {
           <Route path='favorites' element={<Favorites/>}/>
           <Route path='contact' element={<Contact/>}/>
           <Route path='admin/*' element={<AdminPanel/>}/>
-          <Route path='info' element={<Info/>}/>
+          <Route path='info' element={<Delivery/>}/>
           <Route path='questions' element={<CustomizedAccordions/>}/>
+          <Route path='care' element={<Care/>}/>
+          <Route path='loyal' element={<Loyal/>}/>
         </Route>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>

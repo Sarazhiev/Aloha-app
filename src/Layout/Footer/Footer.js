@@ -21,8 +21,14 @@ const Footer = () => {
                             duration: 0
                         })} to='/questions'>Вопросы и ответы</Link></li>
                         <li className='footer__item2'>Оптовым клиентам</li>
-                        <li className='footer__item2'>Программа лояльности</li>
-                        <li className='footer__item2'>Ткани и уход</li>
+                        <li className='footer__item2'><Link className='footer__information' onClick={() => animateScroll.scrollToTop({
+                            delay: 0,
+                            duration: 0
+                        })} to='/loyal'>Программа лояльности</Link></li>
+                        <li className='footer__item2'><Link className='footer__information' onClick={() => animateScroll.scrollToTop({
+                            delay: 0,
+                            duration: 0
+                        })} to='/care'>Ткани и уход</Link></li>
                     </ul>
                     <ul className='footer__list footer__list2'>
                         <li className='footer__item'>О компании</li>

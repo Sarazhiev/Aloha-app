@@ -46,8 +46,7 @@ const  ProductCard = ({product}) => {
                     {product.images.filter((url) => url.length).map((url, idx) => (
                         <SwiperSlide key={idx}>
                             {!loaded && <div style={{height:'200px', width: "102px", background:"silver"}}> </div>}
-                            <img src={`${process.env.REACT_APP_STAGE_URL}
-       ${url}`} alt={url} onLoad={() => setLoaded(true)}/>
+                            <img src={`${process.env.REACT_APP_STAGE_URL}${url}`} alt={url} onLoad={() => setLoaded(true)}/>
                         </SwiperSlide>
                     ))}
                 </div>

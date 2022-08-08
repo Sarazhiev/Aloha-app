@@ -1,0 +1,17 @@
+.delivery {
+  padding: 50px 0 80px;
+  &__title {
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  &__descr {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+  &__item {
+    list-style-type: disc;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+}
